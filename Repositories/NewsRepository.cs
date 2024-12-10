@@ -1,0 +1,213 @@
+﻿using MySql.Data.MySqlClient;
+using System;
+using System.Collections.Generic;
+using ZentechAPI.Models;
+
+namespace Zentech.Repositories
+{
+    public class NewsRepository
+    {
+        private readonly DatabaseContext _context;
+        public NewsRepository(DatabaseContext context)
+        {
+            _context = context;
+        }
+
+        // Method to get all news
+        public List<News> GetAllNews()
+        {
+            var newsList = new List<News>();
+
+            using (var connection = _context.GetConnection())
+            {
+                connection.Open();
+                var command = new MySqlCommand("SELECT * FROM News", connection);
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var news = new News
+                        {
+                            NewsID = reader.GetInt32("NewsID"),
+                            Title = reader.GetString("Title"),
+                            Content = reader.GetString("Content"),
+                            CreatedAt = reader.GetDateTime("CreatedAt"),
+                            Author = reader.GetString("Author"),
+                            Photos = GetPhotosForEntity(reader.GetInt32("NewsID"), "News") // get photos
+                        };
+                        newsList.Add(news);
+                    }
+                }
+            }
+            return newsList;
+        }
+
+        // Method to get a specific news item
+        public News GetNewsById(int id)
+        {
+            News news = null;
+
+            using (var connection = _context.GetConnection())
+            {
+                connection.Open();
+                var command = new MySqlCommand("SELECT * FROM News WHERE NewsID = @NewsID", connection);
+                command.Parameters.AddWithValue("@NewsID", id);
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        news = new News
+                        {
+                            NewsID = reader.GetInt32("NewsID"),
+                            Title = reader.GetString("Title"),
+                            Content = reader.GetString("Content"),
+                            CreatedAt = reader.GetDateTime("CreatedAt"),
+                            Author = reader.GetString("Author"),
+                            Photos = GetPhotosForEntity(reader.GetInt32("NewsID"), "News")
+                        };
+                    }
+                }
+            }
+            return news;
+        }
+
+        // Method to add a new news item
+        public News AddNews(News news)
+        {
+            using (var connection = _context.GetConnection())
+            {
+                connection.Open();
+                var command = new MySqlCommand(
+                    "INSERT INTO News (Title, Content, CreatedAt, Author) VALUES (@Title, @Content, @CreatedAt, @Author); SELECT LAST_INSERT_ID();",
+                    connection
+                );
+
+                command.Parameters.AddWithValue("@Title", news.Title);
+                command.Parameters.AddWithValue("@Content", news.Content);
+                command.Parameters.AddWithValue("@CreatedAt", DateTime.Now);
+                command.Parameters.AddWithValue("@Author", news.Author);
+
+                var newsId = Convert.ToInt32(command.ExecuteScalar());
+                news.NewsID = newsId;
+
+                // Method to add photos associated with the news item
+                foreach (var photo in news.Photos)
+                {
+                    AddPhoto(newsId, "News", photo); 
+                }
+            }
+
+            return news;
+        }
+
+        // Method to add a photo to an entity (News or Product)
+        public void AddPhoto(int entityId, string entityType, string photoUrl)
+        {
+            using (var connection = _context.GetConnection())
+            {
+                connection.Open();
+                var command = new MySqlCommand("INSERT INTO Photos (EntityID, EntityType, Url) VALUES (@EntityID, @EntityType, @Url)", connection);
+                command.Parameters.AddWithValue("@EntityID", entityId);
+                command.Parameters.AddWithValue("@EntityType", entityType);
+                command.Parameters.AddWithValue("@Url", photoUrl);
+                command.ExecuteNonQuery();
+            }
+        }
+
+        // Method to get the photos associated with an entity (News or Product)
+        public List<string> GetPhotosForEntity(int entityId, string entityType)
+        {
+            var photos = new List<string>();
+
+            using (var connection = _context.GetConnection())
+            {
+                connection.Open();
+                var command = new MySqlCommand("SELECT Url FROM Photos WHERE EntityID = @EntityID AND EntityType = @EntityType", connection);
+                command.Parameters.AddWithValue("@EntityID", entityId);
+                command.Parameters.AddWithValue("@EntityType", entityType);
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        photos.Add(reader.GetString("Url"));
+                    }
+                }
+            }
+
+            return photos;
+        }
+
+        // Method to delete a photo associated with an entity (News or Product)
+        public void DeletePhoto(string photoUrl)
+        {
+            using (var connection = _context.GetConnection())
+            {
+                connection.Open();
+                var command = new MySqlCommand("DELETE FROM Photos WHERE Url = @Url", connection);
+                command.Parameters.AddWithValue("@Url", photoUrl);
+                command.ExecuteNonQuery();
+            }
+        }
+
+        // Method to update a news article and its photos
+        public bool UpdateNews(News news)
+        {
+            using (var connection = _context.GetConnection())
+            {
+                connection.Open();
+
+                //  update a news
+                var command = new MySqlCommand(
+                    "UPDATE News SET Title = @Title, Content = @Content, Author = @Author WHERE NewsID = @NewsID",
+                    connection
+                );
+                command.Parameters.AddWithValue("@Title", news.Title);
+                command.Parameters.AddWithValue("@Content", news.Content);
+                command.Parameters.AddWithValue("@Author", news.Author);
+                command.Parameters.AddWithValue("@NewsID", news.NewsID);
+
+                var rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected == 0)
+                    return false;
+
+                // Method to delete photos that are no longer in the list of photos
+                var existingPhotos = GetPhotosForEntity(news.NewsID, "News");
+                var photosToDelete = existingPhotos.Except(news.Photos).ToList(); // Method to find photos that are no longer present
+                foreach (var photo in photosToDelete)
+                {
+                    DeletePhoto(photo); // Delete photo
+                }
+
+                // Method to add the new photos
+                foreach (var photo in news.Photos)
+                {
+                    if (!existingPhotos.Contains(photo)) // If the photo doesn't already exist, add it
+                    {
+                        AddPhoto(news.NewsID, "News", photo);
+                    }
+                }
+
+                return true;
+            }
+        }
+
+        // Method to delete a news article and its associated photos
+        public void DeleteNews(int newsId)
+        {
+            using (var connection = _context.GetConnection())
+            {
+                connection.Open();
+
+                // First, delete all photos associated with the news article
+                var deletePhotosCommand = new MySqlCommand("DELETE FROM Photos WHERE EntityID = @EntityID AND EntityType = 'News'", connection);
+                deletePhotosCommand.Parameters.AddWithValue("@EntityID", newsId);
+                deletePhotosCommand.ExecuteNonQuery();
+
+                // Delete the news article
+                var deleteNewsCommand = new MySqlCommand("DELETE FROM News WHERE NewsID = @NewsID", connection);
+                deleteNewsCommand.Parameters.AddWithValue("@NewsID", newsId);
+                deleteNewsCommand.ExecuteNonQuery();
+            }
+        }
+    }
+}

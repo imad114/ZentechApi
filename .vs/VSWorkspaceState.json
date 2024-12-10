@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\controllers",
+    "\\Data",
+    "\\Models",
+    "\\Repositories",
+    "\\Services"
+  ],
+  "SelectedNode": "\\ZentechAPI.csproj",
+  "PreviewInSolutionExplorer": false
+}
