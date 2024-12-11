@@ -84,6 +84,9 @@ builder.Services.AddScoped<UserService>();
 //news 
 builder.Services.AddScoped<NewsRepository>();
 builder.Services.AddScoped<NewsService>();
+//Category 
+builder.Services.AddScoped<CategoryRepository>();
+builder.Services.AddScoped<CategoryService>();
 
 
 

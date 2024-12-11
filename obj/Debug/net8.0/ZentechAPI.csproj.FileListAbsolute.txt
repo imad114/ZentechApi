@@ -64,3 +64,4 @@ C:\Users\helpdesk-admin\Desktop\ZentechWeb\ZentechAPI\obj\Debug\net8.0\refint\Ze
 C:\Users\helpdesk-admin\Desktop\ZentechWeb\ZentechAPI\obj\Debug\net8.0\ZentechAPI.pdb
 C:\Users\helpdesk-admin\Desktop\ZentechWeb\ZentechAPI\obj\Debug\net8.0\ZentechAPI.genruntimeconfig.cache
 C:\Users\helpdesk-admin\Desktop\ZentechWeb\ZentechAPI\obj\Debug\net8.0\ref\ZentechAPI.dll
+C:\Users\helpdesk-admin\Desktop\ZentechWeb\ZentechAPI\obj\Debug\net8.0\ZentechAPI.sourcelink.json

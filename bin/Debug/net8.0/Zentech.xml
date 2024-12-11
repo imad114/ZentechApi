@@ -4,44 +4,40 @@
         <name>ZentechAPI</name>
     </assembly>
     <members>
-        <member name="M:ContactController.GetAllContacts">
+        <member name="M:Zentech.Controllers.CategoryController.GetAllCategories">
             <summary>
-            Retrieve all contact requests.
+            Récupérer toutes les catégories.
             </summary>
-            <remarks>
-            This endpoint returns the complete list of contact requests.
-            Accessible only to administrators.
-            </remarks>
-            <returns>A list of all contact requests.</returns>
+            <returns>La liste complète des catégories.</returns>
         </member>
-        <member name="M:ContactController.GetContactById(System.Int32)">
+        <member name="M:Zentech.Controllers.CategoryController.GetCategoryById(System.Int32)">
             <summary>
-            Retrieve a contact request by ID.
+            Récupérer une catégorie par son ID.
             </summary>
-            <param name="id">The ID of the contact request.</param>
-            <returns>The details of the contact request.</returns>
+            <param name="id">Identifiant unique de la catégorie.</param>
+            <returns>Les détails de la catégorie correspondante.</returns>
         </member>
-        <member name="M:ContactController.CreateContact(Zentech.Models.ContactMessage)">
+        <member name="M:Zentech.Controllers.CategoryController.AddCategory(ZentechAPI.Models.Category)">
             <summary>
-            Create a new contact request.
+            Ajouter une nouvelle catégorie.
             </summary>
-            <param name="contactMessage">Object containing the details of the contact request.</param>
-            <returns>The created contact request.</returns>
+            <param name="category">Objet contenant les détails de la catégorie à ajouter.</param>
+            <returns>La catégorie créée avec son identifiant.</returns>
         </member>
-        <member name="M:ContactController.UpdateContact(System.Int32,Zentech.Models.ContactMessage)">
+        <member name="M:Zentech.Controllers.CategoryController.UpdateCategory(System.Int32,ZentechAPI.Models.Category)">
             <summary>
-            Update an existing contact request.
+            Mettre à jour une catégorie existante.
             </summary>
-            <param name="id">The ID of the contact request to be updated.</param>
-            <param name="contactMessage">Object containing the updated information of the contact request.</param>
-            <returns>The updated contact request.</returns>
+            <param name="id">ID de la catégorie à mettre à jour.</param>
+            <param name="category">Objet contenant les informations mises à jour de la catégorie.</param>
+            <returns>La catégorie mise à jour.</returns>
         </member>
-        <member name="M:ContactController.DeleteContact(System.Int32)">
+        <member name="M:Zentech.Controllers.CategoryController.DeleteCategory(System.Int32)">
             <summary>
-            Delete a contact request.
+            Supprimer une catégorie.
             </summary>
-            <param name="id">The ID of the contact request to be deleted.</param>
-            <returns>Confirmation of deletion.</returns>
+            <param name="id">ID de la catégorie à supprimer.</param>
+            <returns>Confirmation de la suppression.</returns>
         </member>
         <member name="T:Zentech.Controllers.NewsController">
             <summary>
@@ -167,6 +163,45 @@
             </summary>
             <param name="photoUrl">The URL of the photo to delete.</param>
             <returns>OK response if the photo is successfully deleted.</returns>
+        </member>
+        <member name="M:ContactController.GetAllContacts">
+            <summary>
+            Retrieve all contact requests.
+            </summary>
+            <remarks>
+            This endpoint returns the complete list of contact requests.
+            Accessible only to administrators.
+            </remarks>
+            <returns>A list of all contact requests.</returns>
+        </member>
+        <member name="M:ContactController.GetContactById(System.Int32)">
+            <summary>
+            Retrieve a contact request by ID.
+            </summary>
+            <param name="id">The ID of the contact request.</param>
+            <returns>The details of the contact request.</returns>
+        </member>
+        <member name="M:ContactController.CreateContact(Zentech.Models.ContactMessage)">
+            <summary>
+            Create a new contact request.
+            </summary>
+            <param name="contactMessage">Object containing the details of the contact request.</param>
+            <returns>The created contact request.</returns>
+        </member>
+        <member name="M:ContactController.UpdateContact(System.Int32,Zentech.Models.ContactMessage)">
+            <summary>
+            Update an existing contact request.
+            </summary>
+            <param name="id">The ID of the contact request to be updated.</param>
+            <param name="contactMessage">Object containing the updated information of the contact request.</param>
+            <returns>The updated contact request.</returns>
+        </member>
+        <member name="M:ContactController.DeleteContact(System.Int32)">
+            <summary>
+            Delete a contact request.
+            </summary>
+            <param name="id">The ID of the contact request to be deleted.</param>
+            <returns>Confirmation of deletion.</returns>
         </member>
         <member name="M:UserController.Register(Zentech.Models.User)">
             <summary>

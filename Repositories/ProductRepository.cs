@@ -13,7 +13,7 @@ namespace Zentech.Repositories
             _context = context;
         }
 
-        // Method to retrieve all products
+        // Méthode pour récupérer tous les produits avec leur catégorie
         public List<Product> GetAllProducts()
         {
             var productList = new List<Product>();
@@ -21,7 +21,11 @@ namespace Zentech.Repositories
             using (var connection = _context.GetConnection())
             {
                 connection.Open();
-                var command = new MySqlCommand("SELECT * FROM Products", connection);
+                var command = new MySqlCommand(@"
+                    SELECT p.*, c.CategoryID, c.Name AS CategoryName, c.Description AS CategoryDescription
+                    FROM Products p
+                    LEFT JOIN Categories c ON p.CategoryID = c.CategoryID", connection);
+
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -32,17 +36,25 @@ namespace Zentech.Repositories
                             Name = reader.GetString("Name"),
                             Description = reader.GetString("Description"),
                             Price = reader.GetDecimal("Price"),
-                            CreatedAt = reader.GetDateTime("CreatedDate"),
-                            Photos = GetPhotosForEntity(reader.GetInt32("ProductID"), "Products") 
+                            CreatedAt = reader.IsDBNull(reader.GetOrdinal("CreatedDate")) ? (DateTime?)null : reader.GetDateTime("CreatedDate"),
+                            UpdatedAt = reader.IsDBNull(reader.GetOrdinal("UpdatedAt")) ? (DateTime?)null : reader.GetDateTime("UpdatedAt"),
+                            Photos = GetPhotosForEntity(reader.GetInt32("ProductID"), "Products"),
+                            Category = new Category
+                            {
+                                CategoryID = reader.IsDBNull(reader.GetOrdinal("CategoryID")) ? 0 : reader.GetInt32("CategoryID"),
+                                Name = reader.IsDBNull(reader.GetOrdinal("CategoryName")) ? null : reader.GetString("CategoryName"),
+                                Description = reader.IsDBNull(reader.GetOrdinal("CategoryDescription")) ? null : reader.GetString("CategoryDescription")
+                            }
                         };
                         productList.Add(product);
                     }
                 }
             }
+
             return productList;
         }
 
-        // Method to retrieve a specific product
+        // Méthode pour récupérer un produit spécifique avec sa catégorie
         public Product GetProductById(int id)
         {
             Product product = null;
@@ -50,8 +62,14 @@ namespace Zentech.Repositories
             using (var connection = _context.GetConnection())
             {
                 connection.Open();
-                var command = new MySqlCommand("SELECT * FROM Products WHERE ProductID = @ProductID", connection);
+                var command = new MySqlCommand(@"
+                    SELECT p.*, c.CategoryID, c.Name AS CategoryName, c.Description AS CategoryDescription
+                    FROM Products p
+                    LEFT JOIN Categories c ON p.CategoryID = c.CategoryID
+                    WHERE p.ProductID = @ProductID", connection);
+
                 command.Parameters.AddWithValue("@ProductID", id);
+
                 using (var reader = command.ExecuteReader())
                 {
                     if (reader.Read())
@@ -62,31 +80,40 @@ namespace Zentech.Repositories
                             Name = reader.GetString("Name"),
                             Description = reader.GetString("Description"),
                             Price = reader.GetDecimal("Price"),
-                            CreatedAt = reader.GetDateTime("CreatedDate"),
-                            Photos = GetPhotosForEntity(reader.GetInt32("ProductID"), "Products")
+                            CreatedAt = reader.IsDBNull(reader.GetOrdinal("CreatedDate")) ? (DateTime?)null : reader.GetDateTime("CreatedDate"),
+                            UpdatedAt = reader.IsDBNull(reader.GetOrdinal("UpdatedAt")) ? (DateTime?)null : reader.GetDateTime("UpdatedAt"),
+                            Photos = GetPhotosForEntity(reader.GetInt32("ProductID"), "Products"),
+                            Category = new Category
+                            {
+                                CategoryID = reader.IsDBNull(reader.GetOrdinal("CategoryID")) ? 0 : reader.GetInt32("CategoryID"),
+                                Name = reader.IsDBNull(reader.GetOrdinal("CategoryName")) ? null : reader.GetString("CategoryName"),
+                                Description = reader.IsDBNull(reader.GetOrdinal("CategoryDescription")) ? null : reader.GetString("CategoryDescription")
+                            }
                         };
                     }
                 }
             }
+
             return product;
         }
 
-        // Method to add a new product
+        // Méthode pour ajouter un nouveau produit
         public Product AddProduct(Product product, string createdBy)
         {
             using (var connection = _context.GetConnection())
             {
                 connection.Open();
-                var command = new MySqlCommand(
-                    "INSERT INTO Products (Name, Description, Price, CreatedDate, CreatedBy) VALUES (@Name, @Description, @Price, @CreatedDate, @CreatedBy); SELECT LAST_INSERT_ID();",
-                    connection
-                );
+                var command = new MySqlCommand(@"
+                    INSERT INTO Products (Name, Description, Price, CreatedDate, CreatedBy, CategoryID) 
+                    VALUES (@Name, @Description, @Price, @CreatedDate, @CreatedBy, @CategoryID); 
+                    SELECT LAST_INSERT_ID();", connection);
 
                 command.Parameters.AddWithValue("@Name", product.Name);
                 command.Parameters.AddWithValue("@Description", product.Description);
                 command.Parameters.AddWithValue("@Price", product.Price);
                 command.Parameters.AddWithValue("@CreatedDate", DateTime.Now);
-                command.Parameters.AddWithValue("@CreatedBy", createdBy); // Add the logged-in user
+                command.Parameters.AddWithValue("@CreatedBy", createdBy);
+                command.Parameters.AddWithValue("@CategoryID", product.CategoryID);
 
                 var productId = Convert.ToInt32(command.ExecuteScalar());
                 product.ProductID = productId;
@@ -99,7 +126,6 @@ namespace Zentech.Repositories
 
             return product;
         }
-
 
         // Method to add a photo to an entity (Product or News)
         public void AddPhoto(int entityId, string entityType, string photoUrl)
@@ -150,41 +176,41 @@ namespace Zentech.Repositories
             }
         }
 
-        // Method to update a product and its photos
+        // Méthode pour mettre à jour un produit existant
         public bool UpdateProduct(Product product, string updatedBy)
         {
             using (var connection = _context.GetConnection())
             {
                 connection.Open();
-
-                var command = new MySqlCommand(
-                    "UPDATE Products SET Name = @Name, Description = @Description, Price = @Price, UpdatedBy = @UpdatedBy, UpdatedAt = @UpdatedAt WHERE ProductID = @ProductID",
-                    connection
-                );
+                var command = new MySqlCommand(@"
+                    UPDATE Products 
+                    SET Name = @Name, Description = @Description, Price = @Price, 
+                        UpdatedBy = @UpdatedBy, UpdatedAt = @UpdatedAt, CategoryID = @CategoryID 
+                    WHERE ProductID = @ProductID", connection);
 
                 command.Parameters.AddWithValue("@Name", product.Name);
                 command.Parameters.AddWithValue("@Description", product.Description);
                 command.Parameters.AddWithValue("@Price", product.Price);
-                command.Parameters.AddWithValue("@UpdatedBy", updatedBy); 
-                command.Parameters.AddWithValue("@ProductID", product.ProductID);
+                command.Parameters.AddWithValue("@UpdatedBy", updatedBy);
                 command.Parameters.AddWithValue("@UpdatedAt", DateTime.Now);
+                command.Parameters.AddWithValue("@ProductID", product.ProductID);
+                command.Parameters.AddWithValue("@CategoryID", product.CategoryID);
 
                 var rowsAffected = command.ExecuteNonQuery();
                 if (rowsAffected == 0)
                     return false;
 
-                // Method to delete photos that are no longer in the photo list
+                // Mise à jour des photos
                 var existingPhotos = GetPhotosForEntity(product.ProductID, "Products");
-                var photosToDelete = existingPhotos.Except(product.Photos).ToList(); // Method to find photos that are no longer present
+                var photosToDelete = existingPhotos.Except(product.Photos).ToList();
                 foreach (var photo in photosToDelete)
                 {
                     DeletePhoto(photo);
                 }
 
-                // Method to add new photos
                 foreach (var photo in product.Photos)
                 {
-                    if (!existingPhotos.Contains(photo)) // If the photo doesn't already exist, add it
+                    if (!existingPhotos.Contains(photo))
                     {
                         AddPhoto(product.ProductID, "Products", photo);
                     }
