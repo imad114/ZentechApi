@@ -66,9 +66,8 @@ namespace Zentech.Controllers
             return CreatedAtAction(nameof(GetCategoryById), new { id = createdCategory.CategoryID }, createdCategory);
         }
 
-        // Mettre à jour une catégorie existante
         /// <summary>
-        /// Mettre à jour une catégorie existante.
+        /// Update existing category.
         /// </summary>
         /// <param name="id">ID de la catégorie à mettre à jour.</param>
         /// <param name="category">Objet contenant les informations mises à jour de la catégorie.</param>
