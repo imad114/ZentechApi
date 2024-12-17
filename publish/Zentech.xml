@@ -1,0 +1,229 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ZentechAPI</name>
+    </assembly>
+    <members>
+        <member name="M:Zentech.Controllers.CategoryController.GetAllCategories">
+            <summary>
+            Retrieve all categories.
+            </summary>
+            <returns>The complete list of categories.</returns>
+        </member>
+        <member name="M:Zentech.Controllers.CategoryController.GetCategoryById(System.Int32)">
+            <summary>
+            Retrieve a category by its ID.
+            </summary>
+            <param name="id">Unique identifier of the category.</param>
+            <returns>The details of the corresponding category.</returns>
+        </member>
+        <member name="M:Zentech.Controllers.CategoryController.AddCategory(ZentechAPI.Models.Category)">
+            <summary>
+            Add a new category.
+            </summary>
+            <param name="category">Object containing the details of the category to add.</param>
+            <returns>The created category with its identifier.</returns>
+        </member>
+        <member name="M:Zentech.Controllers.CategoryController.UpdateCategory(System.Int32,ZentechAPI.Models.Category)">
+            <summary>
+            Update an existing category.
+            </summary>
+            <param name="id">ID of the category to update.</param>
+            <param name="category">Object containing the updated information of the category.</param>
+            <returns>The updated category.</returns>
+        </member>
+        <member name="M:Zentech.Controllers.CategoryController.DeleteCategory(System.Int32)">
+            <summary>
+            Delete a category.
+            </summary>
+            <param name="id">ID of the category to delete.</param>
+            <returns>Confirmation of deletion.</returns>
+        </member>
+        <member name="T:Zentech.Controllers.NewsController">
+            <summary>
+            Controller for managing news.
+            Allows retrieving, adding, updating, and deleting news.
+            </summary>
+        </member>
+        <member name="M:Zentech.Controllers.NewsController.#ctor(Zentech.Services.NewsService)">
+            <summary>
+            Constructor to inject the news management service.
+            </summary>
+            <param name="newsService">Service for managing news.</param>
+        </member>
+        <member name="M:Zentech.Controllers.NewsController.GetAllNews">
+            <summary>
+            Retrieve all news.
+            Accessible only to users with the "Admin" role.
+            </summary>
+            <returns>List of all news.</returns>
+        </member>
+        <member name="M:Zentech.Controllers.NewsController.GetNewsById(System.Int32)">
+            <summary>
+            Retrieve a specific news item by ID.
+            Accessible only to users with the "Admin" role.
+            </summary>
+            <param name="id">The ID of the news item to retrieve.</param>
+            <returns>The requested news or NotFound if not found.</returns>
+        </member>
+        <member name="M:Zentech.Controllers.NewsController.AddNews(ZentechAPI.Dto.NewsDto)">
+            <summary>
+            Add a new news item.
+            Accessible only to users with the "Admin" role.
+            </summary>
+            <param name="news">The news data to add.</param>
+            <returns>The created news item.</returns>
+        </member>
+        <member name="M:Zentech.Controllers.NewsController.UpdateNews(System.Int32,ZentechAPI.Dto.NewsDto)">
+            <summary>
+            Update an existing news item.
+            Accessible only to users with the "Admin" role.
+            </summary>
+            <param name="id">The ID of the news item to update.</param>
+            <param name="news">The updated news data.</param>
+            <returns>The updated news item.</returns>
+        </member>
+        <member name="M:Zentech.Controllers.NewsController.DeleteNews(System.Int32)">
+            <summary>
+            Delete a news item.
+            Accessible only to users with the "Admin" role.
+            </summary>
+            <param name="id">The ID of the news item to delete.</param>
+            <returns>NoContent response if the deletion is successful.</returns>
+        </member>
+        <member name="M:Zentech.Controllers.NewsController.DeletePhotoFromNews(System.String)">
+            <summary>
+            Delete a photo from a news item.
+            Accessible only to users with the "Admin" role.
+            </summary>
+            <param name="photoUrl">The URL of the photo to delete.</param>
+            <returns>OK response if the photo was deleted successfully.</returns>
+        </member>
+        <member name="M:ContactController.GetAllContacts">
+            <summary>
+            Retrieve all contact requests.
+            </summary>
+            <remarks>
+            This endpoint returns the complete list of contact requests.
+            Accessible only to administrators.
+            </remarks>
+            <returns>A list of all contact requests.</returns>
+        </member>
+        <member name="M:ContactController.GetContactById(System.Int32)">
+            <summary>
+            Retrieve a contact request by ID.
+            </summary>
+            <param name="id">The ID of the contact request.</param>
+            <returns>The details of the contact request.</returns>
+        </member>
+        <member name="M:ContactController.CreateContact(Zentech.Models.ContactMessage)">
+            <summary>
+            Create a new contact request.
+            </summary>
+            <param name="contactMessage">Object containing the details of the contact request.</param>
+            <returns>The created contact request.</returns>
+        </member>
+        <member name="M:ContactController.UpdateContact(System.Int32,Zentech.Models.ContactMessage)">
+            <summary>
+            Update an existing contact request.
+            </summary>
+            <param name="id">The ID of the contact request to be updated.</param>
+            <param name="contactMessage">Object containing the updated information of the contact request.</param>
+            <returns>The updated contact request.</returns>
+        </member>
+        <member name="M:ContactController.DeleteContact(System.Int32)">
+            <summary>
+            Delete a contact request.
+            </summary>
+            <param name="id">The ID of the contact request to be deleted.</param>
+            <returns>Confirmation of deletion.</returns>
+        </member>
+        <member name="M:UserController.Register(Zentech.Models.User)">
+            <summary>
+            User registration.
+            </summary>
+            <remarks>
+            This endpoint creates a new user by providing a full name, email, and password.
+            The password is encrypted before being saved to the database.
+            </remarks>
+            <param name="user">The information of the user to register.</param>
+            <returns>Returns the created user with an HTTP 201 status code.</returns>
+        </member>
+        <member name="M:UserController.Login(LoginRequest)">
+            <summary>
+            User authentication.
+            </summary>
+            <remarks>
+            This endpoint allows a user to log in by providing their email and password.
+            The password is compared with the one stored in the database.
+            </remarks>
+            <param name="request">The login information of the user.</param>
+            <returns>Returns a JWT token if authentication is successful.</returns>
+        </member>
+        <member name="M:UserController.GetUserById(System.Int32)">
+            <summary>
+            Retrieve a user by their ID.
+            </summary>
+            <remarks>
+            This endpoint returns the detailed information of a specific user.
+            Accessible only by administrators.
+            </remarks>
+            <param name="id">The ID of the user.</param>
+            <returns>The details of the user.</returns>
+        </member>
+        <member name="M:UserController.GetAllUsers">
+            <summary>
+            Retrieve all users.
+            </summary>
+            <remarks>
+            Returns the complete list of users registered in the system.
+            Accessible only by administrators.
+            </remarks>
+        </member>
+        <member name="M:UserController.UpdateUser(System.Int32,Zentech.Models.User)">
+            <summary>
+            Update a user.
+            </summary>
+            <remarks>
+            Allows updating the information of an existing user.
+            Ensure that the ID matches the one provided in the request body.
+            Accessible only by administrators.
+            </remarks>
+            <param name="id">The ID of the user to update.</param>
+            <param name="user">The updated information of the user.</param>
+            <returns>The updated user.</returns>
+        </member>
+        <member name="M:UserController.DeleteUser(System.Int32)">
+            <summary>
+            Delete a user.
+            </summary>
+            <remarks>
+            Deletes an existing user by their ID.
+            Accessible only by administrators.
+            </remarks>
+            <param name="id">The ID of the user to delete.</param>
+            <returns>Confirmation of deletion.</returns>
+        </member>
+        <member name="M:UserController.IsUserInRole(System.Int32,System.String)">
+            <summary>
+            Check if a user belongs to a role.
+            </summary>
+            <remarks>
+            Checks if a user has a specific role.
+            Accessible only by administrators.
+            </remarks>
+            <param name="id">The ID of the user.</param>
+            <param name="roleName">The name of the role to check.</param>
+            <returns>A boolean indicating if the user belongs to the role.</returns>
+        </member>
+        <member name="M:UserController.GetAllRoles">
+            <summary>
+            Retrieve all roles.
+            </summary>
+            <remarks>
+            Returns the list of roles available in the system.
+            Accessible only by administrators.
+            </remarks>
+        </member>
+    </members>
+</doc>
