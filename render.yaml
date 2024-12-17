@@ -3,7 +3,7 @@ services:
     type: web
     runtime: docker
     plan: free
-    dockerfilePath: ./ZentechAPI/Dockerfile 
+    dockerfilePath: ./Dockerfile 
     buildCommand: docker build -t zentech-api .
     startCommand: docker run -d -p 80:80 zentech-api
     envVars:

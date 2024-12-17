@@ -6,16 +6,16 @@ WORKDIR /app
 
 # Copier les fichiers du projet vers le conteneur Docker
 # Assure-toi que tu copies les fichiers .csproj et le reste du projet dans le conteneur
-COPY ["ZentechAPI/ZentechAPI.csproj", "ZentechAPI/"]
+COPY ["ZentechAPI.csproj", "ZentechAPI/"]
 
 # Restaurer les dépendances
-RUN dotnet restore "ZentechAPI/ZentechAPI.csproj"
+RUN dotnet restore "ZentechAPI.csproj"
 
 # Copier tout le code source
 COPY . .
 
 # Publier l'application
-RUN dotnet publish "ZentechAPI/ZentechAPI.csproj" -c Release -o /app/publish
+RUN dotnet publish "ZentechAPI.csproj" -c Release -o /app/publish
 
 # Créer l'image d'exécution avec l'image .NET ASP.NET Runtime
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
