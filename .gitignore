@@ -1,0 +1,23 @@
+# Ignorer les dossiers de build et debug
+bin/
+obj/
+.vs/
+
+# Ignorer les fichiers de configuration utilisateur
+ZentechAPI.csproj.user
+
+# Ignorer les fichiers temporaires
+*.cache
+*.pdb
+*.exe
+*.dll
+*.json
+
+# Ignorer les Procfile temporaire si nécessaire
+Procfile
+
+# Ignorer les dossiers de solution
+*.sln
+
+# Ignorer le dossier wwwroot généré automatiquement
+wwwroot/
