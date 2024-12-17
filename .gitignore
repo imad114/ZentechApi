@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Ignorer les dossiers de build et debug
 bin/
 obj/
@@ -21,3 +22,6 @@ Procfile
 
 # Ignorer le dossier wwwroot généré automatiquement
 wwwroot/
+=======
+.vs/
+>>>>>>> 49e709d9939d5a8fc9c3035e096dd3097f1d532f

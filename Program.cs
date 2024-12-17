@@ -77,10 +77,16 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateAudience = true,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
+<<<<<<< HEAD
             ValidIssuer = builder.Configuration["Jwt:Issuer"],  // Issuer to be defined in appsettings.json
 
             ValidAudience = builder.Configuration["Jwt:Audience"], // Audience to be defined in appsettings.json
             IssuerSigningKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"]))  // Secret key to be defined in appsettings.json
+=======
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],  // Issuer à définir dans appsettings.json
+            ValidAudience = builder.Configuration["Jwt:Audience"],  // Audience à définir dans appsettings.json wya
+            IssuerSigningKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"]))  // Secret key à définir dans appsettings.json
+>>>>>>> 49e709d9939d5a8fc9c3035e096dd3097f1d532f
         };
     });
 
