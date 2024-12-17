@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Copier les fichiers du projet vers le conteneur Docker
 # Assure-toi que tu copies les fichiers .csproj et le reste du projet dans le conteneur
-COPY ["ZentechAPI.csproj", "ZentechAPI/"]
+COPY ["ZentechAPI.csproj", "./"]
 
 # Restaurer les dépendances
 RUN dotnet restore "ZentechAPI.csproj"
