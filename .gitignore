@@ -1,27 +1,13 @@
-<<<<<<< HEAD
-# Ignorer les dossiers de build et debug
+# Fichiers de build
 bin/
 obj/
+
+# Fichiers générés par Visual Studio
 .vs/
+.user
+.userosscache
+.suo
+.vscode/
 
-# Ignorer les fichiers de configuration utilisateur
-ZentechAPI.csproj.user
-
-# Ignorer les fichiers temporaires
-*.cache
-*.pdb
-*.exe
-*.dll
-*.json
-
-# Ignorer les Procfile temporaire si nécessaire
-Procfile
-
-# Ignorer les dossiers de solution
-*.sln
-
-# Ignorer le dossier wwwroot généré automatiquement
-wwwroot/
-=======
-.vs/
->>>>>>> 49e709d9939d5a8fc9c3035e096dd3097f1d532f
+# Fichiers de dépendances nuget
+packages/
