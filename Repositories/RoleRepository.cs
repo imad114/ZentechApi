@@ -12,7 +12,7 @@ namespace Zentech.Repositories
             _context = context;
         }
 
-        // Récupérer tous les rôles
+       
         public async Task<List<Role>> GetAllAsync()
         {
             var roles = new List<Role>();
@@ -39,7 +39,7 @@ namespace Zentech.Repositories
 
 
 
-        // Ajouter un nouveau rôle
+       
         public async Task<Role> AddRoleAsync(Role role)
         {
             using (var connection = _context.GetConnection())

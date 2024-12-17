@@ -10,7 +10,6 @@
         public string? CreatedBy { get; set; }
         public string? UpdatedBy { get; set; }
 
-        // Liste des produits associés
-        //public List<Product> Products { get; set; }
+     
     }
 }

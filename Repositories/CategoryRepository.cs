@@ -14,7 +14,8 @@ namespace Zentech.Repositories
             _context = context;
         }
 
-        // Méthode pour obtenir toutes les catégories
+        // Method to get all categories
+
         public List<Category> GetAllCategories()
         {
             var categoryList = new List<Category>();
@@ -44,7 +45,8 @@ namespace Zentech.Repositories
             return categoryList;
         }
 
-        // Méthode pour obtenir une catégorie par ID
+        // Method to get a category by ID
+
         public Category GetCategoryById(int id)
         {
             Category category = null;
@@ -74,7 +76,8 @@ namespace Zentech.Repositories
             return category;
         }
 
-        // Méthode pour ajouter une nouvelle catégorie
+        // Method to add a new category
+
         public Category AddCategory(Category category, string createdBy)
         {
             using (var connection = _context.GetConnection())
@@ -88,7 +91,7 @@ namespace Zentech.Repositories
                 command.Parameters.AddWithValue("@Name", category.Name);
                 command.Parameters.AddWithValue("@Description", category.Description);
                 command.Parameters.AddWithValue("@CreatedDate", DateTime.Now);
-                command.Parameters.AddWithValue("@CreatedBy", createdBy); // Utilise l'utilisateur connecté
+                command.Parameters.AddWithValue("@CreatedBy", createdBy); 
 
                 var categoryId = Convert.ToInt32(command.ExecuteScalar());
                 category.CategoryID = categoryId;
@@ -97,7 +100,8 @@ namespace Zentech.Repositories
             return category;
         }
 
-        // Méthode pour mettre à jour une catégorie existante
+        // Method to update an existing category
+
         public bool UpdateCategory(Category category, string updatedBy)
         {
             using (var connection = _context.GetConnection())
@@ -116,11 +120,12 @@ namespace Zentech.Repositories
                 command.Parameters.AddWithValue("@UpdatedDate", DateTime.Now);
 
                 var rowsAffected = command.ExecuteNonQuery();
-                return rowsAffected > 0; // Retourne true si la mise à jour a réussi
+                return rowsAffected > 0; 
             }
         }
 
-        // Méthode pour supprimer une catégorie
+        // Method to delete a category
+
         public void DeleteCategory(int categoryId)
         {
             using (var connection = _context.GetConnection())

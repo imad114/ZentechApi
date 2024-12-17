@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 using Zentech.Models;
 using Zentech.Services;
+using ZentechAPI.Dto;
 using ZentechAPI.Models;
 
 namespace Zentech.Controllers
@@ -63,7 +65,7 @@ namespace Zentech.Controllers
         /// <returns>The created news item.</returns>
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public IActionResult AddNews([FromBody] News news)
+        public IActionResult AddNews([FromBody] NewsDto news)
         {
             if (news == null || string.IsNullOrEmpty(news.Title) || string.IsNullOrEmpty(news.Content))
             {
@@ -83,7 +85,7 @@ namespace Zentech.Controllers
         /// <returns>The updated news item.</returns>
         [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
-        public IActionResult UpdateNews(int id, [FromBody] News news)
+        public IActionResult UpdateNews(int id, [FromBody] NewsDto news)
         {
             if (news == null || id != news.NewsID)
             {
@@ -113,25 +115,66 @@ namespace Zentech.Controllers
             return NoContent();
         }
 
-        /// <summary>
-        /// Add a photo to a news item.
-        /// Accessible only to users with the "Admin" role.
-        /// </summary>
-        /// <param name="newsId">The ID of the news item.</param>
-        /// <param name="photoUrl">The URL of the photo to add.</param>
-        /// <returns>OK response if the photo was added successfully.</returns>
-        [Authorize(Roles = "Admin")]
-        [HttpPost("{newsId}/photos")]
-        public IActionResult AddPhotoToNews(int newsId, [FromBody] string photoUrl)
-        {
-            if (string.IsNullOrEmpty(photoUrl))
-            {
-                return BadRequest(new { Message = "Invalid photo URL." });
-            }
 
-            _newsService.AddPhotoToNews(newsId, photoUrl);
-            return Ok(new { Message = "Photo added successfully." });
+
+        [HttpPost("{newsId}/upload-photo1")]
+        [SwaggerOperation(Summary = "Upload a photo for a news", Description = "Allows uploading a photo for a specific news.")]
+        [SwaggerResponse(StatusCodes.Status201Created, "Photo uploaded successfully", typeof(object))]
+        [SwaggerResponse(StatusCodes.Status400BadRequest, "Invalid file upload", typeof(object))]
+        [SwaggerResponse(StatusCodes.Status500InternalServerError, "An error occurred while uploading the photo", typeof(object))]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> AddPhotoToNews(int newsId, IFormFile file)
+        {
+            try
+            {
+                if (file == null || file.Length == 0)
+                {
+                    return BadRequest(new { Message = "Invalid file upload." });
+                }
+
+                // Validation du type de fichier
+                var allowedExtensions = new[] { ".jpg", ".jpeg", ".png" };
+                var fileExtension = Path.GetExtension(file.FileName).ToLower();
+                if (!allowedExtensions.Contains(fileExtension))
+                {
+                    return BadRequest(new { Message = "Invalid file type. Only JPG and PNG files are allowed." });
+                }
+
+                // Validation de la taille du fichier (10 Mo max)
+                if (file.Length > 10 * 1024 * 1024)
+                {
+                    return BadRequest(new { Message = "File size exceeds the maximum limit of 10MB." });
+                }
+
+                var uploadFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
+                if (!Directory.Exists(uploadFolder))
+                {
+                    Directory.CreateDirectory(uploadFolder);
+                }
+
+                var fileName = $"{Guid.NewGuid()}_{file.FileName}";
+                var filePath = Path.Combine(uploadFolder, fileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+
+                var photoUrl = $"/uploads/{fileName}";
+                _newsService.AddPhotoToNews(newsId, photoUrl);
+
+                return CreatedAtAction("AddPhotoToNews", new { newsId, photoUrl }, new { Message = "Photo uploaded successfully.", Url = photoUrl });
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (you can use a logger here)
+                return StatusCode(500, new { Message = "An error occurred while uploading the photo.", Error = ex.Message });
+            }
         }
+
+
+
+
 
         /// <summary>
         /// Delete a photo from a news item.

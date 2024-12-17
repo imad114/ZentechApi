@@ -18,27 +18,27 @@ namespace Zentech.Controllers
             _categoryService = categoryService;
         }
 
-        // Obtenir toutes les catégories
+        // Get all categories
         /// <summary>
-        /// Récupérer toutes les catégories.
+        /// Retrieve all categories.
         /// </summary>
-        /// <returns>La liste complète des catégories.</returns>
+        /// <returns>The complete list of categories.</returns>
         [HttpGet]
-        [SwaggerOperation(Summary = "Obtenir toutes les catégories", Description = "Retourne la liste complète des catégories.")]
+        [SwaggerOperation(Summary = "Get all categories", Description = "Returns the complete list of categories.")]
         public async Task<IActionResult> GetAllCategories()
         {
             var categories = await _categoryService.GetAllCategoriesAsync();
             return Ok(categories);
         }
 
-        // Obtenir une catégorie par ID
+        // Get a category by ID
         /// <summary>
-        /// Récupérer une catégorie par son ID.
+        /// Retrieve a category by its ID.
         /// </summary>
-        /// <param name="id">Identifiant unique de la catégorie.</param>
-        /// <returns>Les détails de la catégorie correspondante.</returns>
+        /// <param name="id">Unique identifier of the category.</param>
+        /// <returns>The details of the corresponding category.</returns>
         [HttpGet("{id}")]
-        [SwaggerOperation(Summary = "Obtenir une catégorie par ID", Description = "Retourne les détails d'une catégorie spécifique.")]
+        [SwaggerOperation(Summary = "Get a category by ID", Description = "Returns the details of a specific category.")]
         public async Task<IActionResult> GetCategoryById(int id)
         {
             var category = await _categoryService.GetCategoryByIdAsync(id);
@@ -47,15 +47,15 @@ namespace Zentech.Controllers
             return Ok(category);
         }
 
-        // Ajouter une nouvelle catégorie
+        // Add a new category
         /// <summary>
-        /// Ajouter une nouvelle catégorie.
+        /// Add a new category.
         /// </summary>
-        /// <param name="category">Objet contenant les détails de la catégorie à ajouter.</param>
-        /// <returns>La catégorie créée avec son identifiant.</returns>
+        /// <param name="category">Object containing the details of the category to add.</param>
+        /// <returns>The created category with its identifier.</returns>
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        [SwaggerOperation(Summary = "Ajouter une catégorie", Description = "Ajoute une nouvelle catégorie au système.")]
+        [SwaggerOperation(Summary = "Add a category", Description = "Adds a new category to the system.")]
         public async Task<IActionResult> AddCategory([FromBody] Category category)
         {
             if (!ModelState.IsValid)
@@ -66,22 +66,22 @@ namespace Zentech.Controllers
             return CreatedAtAction(nameof(GetCategoryById), new { id = createdCategory.CategoryID }, createdCategory);
         }
 
-        // Mettre à jour une catégorie existante
+        // Update an existing category
         /// <summary>
-        /// Mettre à jour une catégorie existante.
+        /// Update an existing category.
         /// </summary>
-        /// <param name="id">ID de la catégorie à mettre à jour.</param>
-        /// <param name="category">Objet contenant les informations mises à jour de la catégorie.</param>
-        /// <returns>La catégorie mise à jour.</returns>
+        /// <param name="id">ID of the category to update.</param>
+        /// <param name="category">Object containing the updated information of the category.</param>
+        /// <returns>The updated category.</returns>
         [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
-        [SwaggerOperation(Summary = "Mettre à jour une catégorie", Description = "Met à jour les informations d'une catégorie existante.")]
+        [SwaggerOperation(Summary = "Update a category", Description = "Updates the information of an existing category.")]
         public async Task<IActionResult> UpdateCategory(int id, [FromBody] Category category)
         {
             if (id != category.CategoryID)
                 return BadRequest("ID de la catégorie non valide.");
 
-            var updatedBy = User.Identity.Name;  // Récupère le nom de l'utilisateur connecté
+            var updatedBy = User.Identity.Name;  // Get the name of the logged-in user
             var isUpdated = await _categoryService.UpdateCategoryAsync(category, updatedBy);
             if (!isUpdated)
                 return NotFound();
@@ -89,15 +89,15 @@ namespace Zentech.Controllers
             return Ok(category);
         }
 
-        // Supprimer une catégorie
+        // Delete a category
         /// <summary>
-        /// Supprimer une catégorie.
+        /// Delete a category.
         /// </summary>
-        /// <param name="id">ID de la catégorie à supprimer.</param>
-        /// <returns>Confirmation de la suppression.</returns>
+        /// <param name="id">ID of the category to delete.</param>
+        /// <returns>Confirmation of deletion.</returns>
         [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
-        [SwaggerOperation(Summary = "Supprimer une catégorie", Description = "Supprime une catégorie du système.")]
+        [SwaggerOperation(Summary = "Delete a category", Description = "Deletes a category from the system.")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
             var isDeleted = await _categoryService.DeleteCategoryAsync(id);

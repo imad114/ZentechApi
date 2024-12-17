@@ -10,9 +10,9 @@ public class Product
     public DateTime? UpdatedAt { get; set; }
     public string? CreatedBy { get; set; } 
     public string? UpdatedBy { get; set; }
-    // Relation avec la catégorie
+   
     public int CategoryID { get; set; }
-    public Category? Category { get; set; } // Propriété de navigation
-    // Liste des photos associées
-    public List<string> Photos { get; set; }
+   // public Category? Category { get; set; } 
+    
+    public List<string>? Photos { get; set; }
 }

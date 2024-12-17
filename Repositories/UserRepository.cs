@@ -14,7 +14,8 @@ namespace Zentech.Repositories
             _context = context;
         }
 
-        // Ajouter un nouvel utilisateur
+        // Add a new user
+
         public async Task<User> AddAsync(User user, string createdBy)
         {
             using (var connection = _context.GetConnection())
@@ -36,7 +37,8 @@ namespace Zentech.Repositories
             return user;
         }
 
-        // Récupérer un utilisateur par ID
+        // Retrieve a user by ID
+
         public async Task<User?> GetByIdAsync(int userId)
         {
             using (var connection = _context.GetConnection())
@@ -70,7 +72,8 @@ namespace Zentech.Repositories
             return null;
         }
 
-        // Récupérer un utilisateur par email
+        // Retrieve a user by email
+
         public async Task<User?> GetByEmailAsync(string email)
         {
             using (var connection = _context.GetConnection())
@@ -104,7 +107,8 @@ namespace Zentech.Repositories
             return null;
         }
 
-        // Récupérer tous les utilisateurs
+        // Retrieve all users
+
         public async Task<List<User>> GetAllAsync()
         {
             var users = new List<User>();
@@ -138,7 +142,8 @@ namespace Zentech.Repositories
             return users;
         }
 
-        // Mettre à jour un utilisateur
+        // Update  user
+
         public async Task<User?> UpdateAsync(User user, string updatedBy)
         {
             using (var connection = _context.GetConnection())
@@ -163,7 +168,7 @@ namespace Zentech.Repositories
             }
         }
 
-        // Supprimer un utilisateur
+        // Delete User
         public async Task<bool> DeleteAsync(int userId)
         {
             using (var connection = _context.GetConnection())
@@ -179,7 +184,8 @@ namespace Zentech.Repositories
             }
         }
 
-        // Vérifier si un utilisateur a un rôle donné
+        // Check if a user has a given role
+
         public async Task<bool> IsUserInRoleAsync(int userId, string roleName)
         {
             using (var connection = _context.GetConnection())
@@ -197,7 +203,8 @@ namespace Zentech.Repositories
             }
         }
 
-        // Récupérer tous les rôles disponibles
+        // Retrieve all available roles
+
         public async Task<List<Role>> GetAllRolesAsync()
         {
             var roles = new List<Role>();

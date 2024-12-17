@@ -1,13 +1,10 @@
-﻿namespace ZentechAPI.Models
+﻿namespace ZentechAPI.Dto
 {
-    public class News
+    public class NewsDto
     {
         public int NewsID { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
-        public DateTime? CreatedAt { get; set; }
         public string Author { get; set; }
-        public List<String>? Photos { get; set; }
     }
-
 }

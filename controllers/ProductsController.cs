@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.FileProviders;
 using Swashbuckle.AspNetCore.Annotations;
+using System.IO;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 using Zentech.Services;
 using ZentechAPI.Models;
+using System;
+using ZentechAPI.Dto;
 
 namespace Zentech.Controllers
 {
@@ -20,14 +23,6 @@ namespace Zentech.Controllers
         }
 
         // Get all products
-        /// <summary>
-        /// Get all products.
-        /// </summary>
-        /// <remarks>
-        /// This endpoint returns the complete list of available products.
-        /// Accessible without authentication.
-        /// </remarks>
-        /// <returns>A list of all products.</returns>
         [HttpGet]
         [SwaggerOperation(Summary = "Get all products", Description = "Returns the complete list of products.")]
         public async Task<IActionResult> GetAllProducts()
@@ -37,11 +32,6 @@ namespace Zentech.Controllers
         }
 
         // Get a specific product by ID
-        /// <summary>
-        /// Get a product by ID.
-        /// </summary>
-        /// <param name="id">Unique product identifier.</param>
-        /// <returns>The details of the corresponding product.</returns>
         [HttpGet("{id}")]
         [SwaggerOperation(Summary = "Get a product by ID", Description = "Returns the details of a specific product.")]
         public async Task<IActionResult> GetProductById(int id)
@@ -53,41 +43,31 @@ namespace Zentech.Controllers
         }
 
         // Add a new product
-        /// <summary>
-        /// Add a new product.
-        /// </summary>
-        /// <param name="product">Object containing the details of the product to be added.</param>
-        /// <returns>The created product with its identifier.</returns>
         [Authorize(Roles = "Admin")]
         [HttpPost]
         [SwaggerOperation(Summary = "Add a product", Description = "Adds a new product to the system.")]
-        public async Task<IActionResult> AddProduct([FromBody] Product product)
+        public async Task<IActionResult> AddProduct([FromBody] ProductDto product)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var createdBy = User.Identity.Name; // // Retrieves the name of the logged-in user
-            var createdProduct = await _productService.AddProductAsync(product, createdBy);
-            return CreatedAtAction(nameof(GetProductById), new { id = createdProduct.ProductID }, createdProduct);
+
+            var createdBy = User.Identity?.Name;
+            var ProductID = await _productService.AddProductAsync(product, createdBy);
+            return CreatedAtAction(nameof(GetProductById), new { id = ProductID }, ProductID);
         }
 
         // Update an existing product
-        /// <summary>
-        /// Update an existing product.
-        /// </summary>
-        /// <param name="id">ID of the product to update.</param>
-        /// <param name="product">Object containing the updated product information.</param>
-        /// <returns>The updated product.</returns>
         [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         [SwaggerOperation(Summary = "Update a product", Description = "Updates the information of an existing product.")]
-        public async Task<IActionResult> UpdateProduct(int id, [FromBody] Product product)
+        public async Task<IActionResult> UpdateProduct(int id, [FromBody] ProductDto product)
         {
             if (id != product.ProductID)
                 return BadRequest("Product ID mismatch.");
 
-            var createdBy = User.Identity.Name;  // Retrieves the name of the logged-in user
-
+            var createdBy = User.Identity?.Name;
             var isUpdated = await _productService.UpdateProductAsync(product, createdBy);
+
             if (!isUpdated)
                 return NotFound();
 
@@ -95,11 +75,6 @@ namespace Zentech.Controllers
         }
 
         // Delete a product
-        /// <summary>
-        /// Delete a product.
-        /// </summary>
-        /// <param name="id">ID of the product to delete.</param>
-        /// <returns>Confirmation of deletion.</returns>
         [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         [SwaggerOperation(Summary = "Delete a product", Description = "Deletes a product from the system.")]
@@ -111,34 +86,68 @@ namespace Zentech.Controllers
 
             return NoContent();
         }
-        /// <summary>
-        /// Add a photo to a product.
-        /// Accessible only to users with the "Admin" role.
-        /// </summary>
-        /// <param name="productId">The product ID.</param>
-        /// <param name="photoUrl">The URL of the photo to add.</param>
-        /// <returns>OK response if the photo is successfully added.</returns>
+        [HttpPost("{productId}/upload-photo")]
+        [SwaggerOperation(Summary = "Upload a photo for a product", Description = "Allows uploading a photo for a specific product.")]
+        [SwaggerResponse(StatusCodes.Status201Created, "Photo uploaded successfully", typeof(object))]
+        [SwaggerResponse(StatusCodes.Status400BadRequest, "Invalid file upload", typeof(object))]
+        [SwaggerResponse(StatusCodes.Status500InternalServerError, "An error occurred while uploading the photo", typeof(object))]
         [Authorize(Roles = "Admin")]
-        [HttpPost("{productId}/photos")]
-        public IActionResult AddPhotoToProduct(int productId, [FromBody] string photoUrl)
+        public async Task<IActionResult> UploadPhotoToProduct(int productId, IFormFile file)
         {
-            if (string.IsNullOrEmpty(photoUrl))
+            try
             {
-                return BadRequest(new { Message = "Invalid photo URL." });
-            }
+                if (file == null || file.Length == 0)
+                {
+                    return BadRequest(new { Message = "Invalid file upload." });
+                }
 
-            _productService.AddPhotoToProduct(productId, photoUrl);
-            return Ok(new { Message = "Photo added successfully." });
+                // Validation du type de fichier
+                var allowedExtensions = new[] { ".jpg", ".jpeg", ".png" };
+                var fileExtension = Path.GetExtension(file.FileName).ToLower();
+                if (!allowedExtensions.Contains(fileExtension))
+                {
+                    return BadRequest(new { Message = "Invalid file type. Only JPG and PNG files are allowed." });
+                }
+
+                // Validation de la taille du fichier (10 Mo max)
+                if (file.Length > 10 * 1024 * 1024)
+                {
+                    return BadRequest(new { Message = "File size exceeds the maximum limit of 10MB." });
+                }
+
+                var uploadFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
+                if (!Directory.Exists(uploadFolder))
+                {
+                    Directory.CreateDirectory(uploadFolder);
+                }
+
+                var fileName = $"{Guid.NewGuid()}_{file.FileName}";
+                var filePath = Path.Combine(uploadFolder, fileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+
+                var photoUrl = $"/uploads/{fileName}";
+
+                _productService.AddPhotoToProduct(productId, photoUrl);
+
+                return CreatedAtAction("UploadPhotoToProduct", new { productId, photoUrl }, new { Message = "Photo uploaded successfully.", Url = photoUrl });
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (you can use a logger here)
+                return StatusCode(500, new { Message = "An error occurred while uploading the photo.", Error = ex.Message });
+            }
         }
 
-        /// <summary>
-        /// Delete a photo from a product.
-        /// Accessible only to users with the "Admin" role.
-        /// </summary>
-        /// <param name="photoUrl">The URL of the photo to delete.</param>
-        /// <returns>OK response if the photo is successfully deleted.</returns>
+
+
+        // Delete a photo from a product
         [Authorize(Roles = "Admin")]
         [HttpDelete("photos")]
+        [SwaggerOperation(Summary = "Delete a photo from a product", Description = "Deletes a specific photo by its URL.")]
         public IActionResult DeletePhotoFromProduct([FromBody] string photoUrl)
         {
             if (string.IsNullOrEmpty(photoUrl))
@@ -149,5 +158,7 @@ namespace Zentech.Controllers
             _productService.DeletePhotoFromProduct(photoUrl);
             return Ok(new { Message = "Photo deleted successfully." });
         }
+
+    
     }
 }

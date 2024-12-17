@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using ZentechAPI.Dto;
 using ZentechAPI.Models;
 
 namespace Zentech.Repositories
@@ -13,7 +14,8 @@ namespace Zentech.Repositories
             _context = context;
         }
 
-        // Méthode pour récupérer tous les produits avec leur catégorie
+        // Method to retrieve all products with their category
+
         public List<Product> GetAllProducts()
         {
             var productList = new List<Product>();
@@ -38,13 +40,16 @@ namespace Zentech.Repositories
                             Price = reader.GetDecimal("Price"),
                             CreatedAt = reader.IsDBNull(reader.GetOrdinal("CreatedDate")) ? (DateTime?)null : reader.GetDateTime("CreatedDate"),
                             UpdatedAt = reader.IsDBNull(reader.GetOrdinal("UpdatedAt")) ? (DateTime?)null : reader.GetDateTime("UpdatedAt"),
+                            CategoryID = reader.IsDBNull(reader.GetOrdinal("CategoryID")) ? 0 : reader.GetInt32("CategoryID"),
+                            CreatedBy = reader.IsDBNull(reader.GetOrdinal("CreatedBy")) ? null : reader.GetString("CreatedBy"),
+                            UpdatedBy = reader.IsDBNull(reader.GetOrdinal("UpdatedBy")) ? null : reader.GetString("UpdatedBy"),
                             Photos = GetPhotosForEntity(reader.GetInt32("ProductID"), "Products"),
-                            Category = new Category
-                            {
-                                CategoryID = reader.IsDBNull(reader.GetOrdinal("CategoryID")) ? 0 : reader.GetInt32("CategoryID"),
-                                Name = reader.IsDBNull(reader.GetOrdinal("CategoryName")) ? null : reader.GetString("CategoryName"),
-                                Description = reader.IsDBNull(reader.GetOrdinal("CategoryDescription")) ? null : reader.GetString("CategoryDescription")
-                            }
+                            //Category = new Category
+                            //{
+                            //    CategoryID = reader.IsDBNull(reader.GetOrdinal("CategoryID")) ? 0 : reader.GetInt32("CategoryID"),
+                            //    Name = reader.IsDBNull(reader.GetOrdinal("CategoryName")) ? null : reader.GetString("CategoryName"),
+                            //    Description = reader.IsDBNull(reader.GetOrdinal("CategoryDescription")) ? null : reader.GetString("CategoryDescription")
+                            //}
                         };
                         productList.Add(product);
                     }
@@ -54,7 +59,8 @@ namespace Zentech.Repositories
             return productList;
         }
 
-        // Méthode pour récupérer un produit spécifique avec sa catégorie
+        // Method to retrieve a specific product with its category
+
         public Product GetProductById(int id)
         {
             Product product = null;
@@ -82,13 +88,14 @@ namespace Zentech.Repositories
                             Price = reader.GetDecimal("Price"),
                             CreatedAt = reader.IsDBNull(reader.GetOrdinal("CreatedDate")) ? (DateTime?)null : reader.GetDateTime("CreatedDate"),
                             UpdatedAt = reader.IsDBNull(reader.GetOrdinal("UpdatedAt")) ? (DateTime?)null : reader.GetDateTime("UpdatedAt"),
+                            CategoryID = reader.GetInt32("CategoryID"),
                             Photos = GetPhotosForEntity(reader.GetInt32("ProductID"), "Products"),
-                            Category = new Category
-                            {
-                                CategoryID = reader.IsDBNull(reader.GetOrdinal("CategoryID")) ? 0 : reader.GetInt32("CategoryID"),
-                                Name = reader.IsDBNull(reader.GetOrdinal("CategoryName")) ? null : reader.GetString("CategoryName"),
-                                Description = reader.IsDBNull(reader.GetOrdinal("CategoryDescription")) ? null : reader.GetString("CategoryDescription")
-                            }
+                            //Category = new Category
+                            //{
+                            //    CategoryID = reader.IsDBNull(reader.GetOrdinal("CategoryID")) ? 0 : reader.GetInt32("CategoryID"),
+                            //    Name = reader.IsDBNull(reader.GetOrdinal("CategoryName")) ? null : reader.GetString("CategoryName"),
+                            //    Description = reader.IsDBNull(reader.GetOrdinal("CategoryDescription")) ? null : reader.GetString("CategoryDescription")
+                            //}
                         };
                     }
                 }
@@ -97,8 +104,9 @@ namespace Zentech.Repositories
             return product;
         }
 
-        // Méthode pour ajouter un nouveau produit
-        public Product AddProduct(Product product, string createdBy)
+        // Method to add a new product
+
+        public int AddProduct(ProductDto product, string createdBy)
         {
             using (var connection = _context.GetConnection())
             {
@@ -116,15 +124,10 @@ namespace Zentech.Repositories
                 command.Parameters.AddWithValue("@CategoryID", product.CategoryID);
 
                 var productId = Convert.ToInt32(command.ExecuteScalar());
-                product.ProductID = productId;
-
-                foreach (var photo in product.Photos)
-                {
-                    AddPhoto(productId, "Products", photo);
-                }
+                return productId;
             }
 
-            return product;
+           
         }
 
         // Method to add a photo to an entity (Product or News)
@@ -176,8 +179,9 @@ namespace Zentech.Repositories
             }
         }
 
-        // Méthode pour mettre à jour un produit existant
-        public bool UpdateProduct(Product product, string updatedBy)
+        // Method to update an existing product
+
+        public bool UpdateProduct(ProductDto product, string updatedBy)
         {
             using (var connection = _context.GetConnection())
             {
@@ -200,21 +204,8 @@ namespace Zentech.Repositories
                 if (rowsAffected == 0)
                     return false;
 
-                // Mise à jour des photos
-                var existingPhotos = GetPhotosForEntity(product.ProductID, "Products");
-                var photosToDelete = existingPhotos.Except(product.Photos).ToList();
-                foreach (var photo in photosToDelete)
-                {
-                    DeletePhoto(photo);
-                }
 
-                foreach (var photo in product.Photos)
-                {
-                    if (!existingPhotos.Contains(photo))
-                    {
-                        AddPhoto(product.ProductID, "Products", photo);
-                    }
-                }
+                
 
                 return true;
             }

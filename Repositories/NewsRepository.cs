@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using ZentechAPI.Dto;
 using ZentechAPI.Models;
 
 namespace Zentech.Repositories
@@ -72,7 +73,7 @@ namespace Zentech.Repositories
         }
 
         // Method to add a new news item
-        public News AddNews(News news)
+        public NewsDto AddNews(NewsDto news)
         {
             using (var connection = _context.GetConnection())
             {
@@ -88,13 +89,7 @@ namespace Zentech.Repositories
                 command.Parameters.AddWithValue("@Author", news.Author);
 
                 var newsId = Convert.ToInt32(command.ExecuteScalar());
-                news.NewsID = newsId;
-
-                // Method to add photos associated with the news item
-                foreach (var photo in news.Photos)
-                {
-                    AddPhoto(newsId, "News", photo); 
-                }
+               
             }
 
             return news;
@@ -150,7 +145,7 @@ namespace Zentech.Repositories
         }
 
         // Method to update a news article and its photos
-        public bool UpdateNews(News news)
+        public bool UpdateNews(NewsDto news)
         {
             using (var connection = _context.GetConnection())
             {
@@ -170,22 +165,9 @@ namespace Zentech.Repositories
                 if (rowsAffected == 0)
                     return false;
 
-                // Method to delete photos that are no longer in the list of photos
-                var existingPhotos = GetPhotosForEntity(news.NewsID, "News");
-                var photosToDelete = existingPhotos.Except(news.Photos).ToList(); // Method to find photos that are no longer present
-                foreach (var photo in photosToDelete)
-                {
-                    DeletePhoto(photo); // Delete photo
-                }
+               
 
-                // Method to add the new photos
-                foreach (var photo in news.Photos)
-                {
-                    if (!existingPhotos.Contains(photo)) // If the photo doesn't already exist, add it
-                    {
-                        AddPhoto(news.NewsID, "News", photo);
-                    }
-                }
+               
 
                 return true;
             }

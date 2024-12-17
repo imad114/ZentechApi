@@ -3,12 +3,18 @@ using Zentech.Repositories;
 using Zentech.Services;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
+// Configurer les logs (niveau 'Information' ou 'Debug' pour voir les détails)
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+builder.Logging.AddDebug();  // Utilisez le débogage pour afficher dans la console de débogage
 
-//  des services
+//  services
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
+
 
 builder.Services.AddSwaggerGen(options =>
 {
@@ -18,10 +24,18 @@ builder.Services.AddSwaggerGen(options =>
         Version = "v1",
         Description = "API documentation for Zentech application",
     });
+    // Configure Swagger to handle file uploads via IFormFile
+    options.MapType<IFormFile>(() => new OpenApiSchema
+    {
+        Type = "string",
+        Format = "binary",
+        Description = "Upload file"
+    });
     var xmlFile = Path.Combine(AppContext.BaseDirectory, "Zentech.xml");
     options.IncludeXmlComments(xmlFile);
 
-    // Configuration de la sécurité pour Swagger pour accepter JWT 
+    // Security configuration for Swagger to accept JWT
+
     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Name = "Authorization",
@@ -32,7 +46,8 @@ builder.Services.AddSwaggerGen(options =>
         Description = "Please enter JWT with Bearer in front of the token"
     });
 
-    // Appliquer la sécurité à toutes les opérations
+    // Apply security to all operations
+
     options.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
         {
@@ -49,11 +64,12 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
-// Ajouter l'authentification JWT
+// Add JWT authentication
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
-        options.RequireHttpsMetadata = false; //  (true en production)
+        options.RequireHttpsMetadata = false; //  (true in production)
         options.SaveToken = true;
         options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
         {
@@ -61,16 +77,19 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateAudience = true,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
-            ValidIssuer = builder.Configuration["Jwt:Issuer"],  // Issuer à définir dans appsettings.json
-            ValidAudience = builder.Configuration["Jwt:Audience"],  // Audience à définir dans appsettings.json
-            IssuerSigningKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"]))  // Secret key à définir dans appsettings.json
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],  // Issuer to be defined in appsettings.json
+
+            ValidAudience = builder.Configuration["Jwt:Audience"], // Audience to be defined in appsettings.json
+            IssuerSigningKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"]))  // Secret key to be defined in appsettings.json
         };
     });
 
-// Enregistrer DatabaseContext comme service
+// Register DatabaseContext as a service
+
 builder.Services.AddScoped<DatabaseContext>();
 
-// Enregistrer les services et repositories
+// Register services and repositories
+
 
 // product
 builder.Services.AddScoped<ProductService>();
@@ -88,31 +107,76 @@ builder.Services.AddScoped<NewsService>();
 builder.Services.AddScoped<CategoryRepository>();
 builder.Services.AddScoped<CategoryService>();
 
+//......................................................................
+builder.Services.Configure<IISServerOptions>(options =>
+{
+    options.MaxRequestBodySize = 10 * 1024 * 1024; // Par exemple, pour autoriser les fichiers de 10 Mo
+});
+
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
 
 
 
+//..................................................
 
 
 var app = builder.Build();
 
+app.UseCors("AllowAll");
 
 
 
-// Configure le pipeline HTTP
+
+// Configure the HTTP pipeline
+
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
+    //app.UseSwagger();
+    app.UseSwagger(c =>
+    {
+        c.PreSerializeFilters.Add((swaggerDoc, httpReq) =>
+        {
+            try
+            {
+                // Swagger generation logic
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in Swagger generation: {ex.Message}");
+            }
+        });
+    });
+
     app.UseSwaggerUI(c =>
     {
-        // Swagger UI sera accessible sur /swagger
+        // Swagger UI will be accessible at /swagger
+
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Zentech API V1");
-        c.RoutePrefix = string.Empty; // Pour accéder à Swagger UI via http://localhost:5033/
+        c.RoutePrefix = string.Empty; // To access Swagger UI via    http://localhost:5033/
+     
     });
 }
 
+// Serve static files from the 'wwwroot/uploads' folder
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads")),
+    RequestPath = "/uploads"
+});
 
-app.UseAuthentication();  
-// pour redirection http ver https
+
+app.UseAuthentication();
+// For HTTP to HTTPS redirection
 //app.UseHttpsRedirection();
 app.UseAuthorization();
 
