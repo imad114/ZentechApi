@@ -69,7 +69,7 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
-        options.RequireHttpsMetadata = false; //  (true in production)
+        options.RequireHttpsMetadata = true; //  (true in production)
         options.SaveToken = true;
         options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
         {
@@ -178,7 +178,7 @@ app.UseStaticFiles(new StaticFileOptions
 
 app.UseAuthentication();
 // For HTTP to HTTPS redirection
-//app.UseHttpsRedirection();
+app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
