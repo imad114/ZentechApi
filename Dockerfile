@@ -20,7 +20,7 @@ RUN dotnet publish "ZentechAPI.csproj" -c Release -o /app/publish
 # Créer l'image d'exécution avec l'image .NET ASP.NET Runtime
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
-EXPOSE 80
+EXPOSE 5033
 
 # Copier les fichiers publiés depuis l'étape de construction
 COPY --from=build /app/publish .
