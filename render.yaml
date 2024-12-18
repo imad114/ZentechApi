@@ -5,7 +5,7 @@ services:
     plan: free
     dockerfilePath: ./Dockerfile 
     buildCommand: docker build -t zentech-api .
-    startCommand: docker run -d -p 80:80 zentech-api
+    startCommand: docker run -d -p 80:5033 zentech-api
     envVars:
       - key: ASPNETCORE_ENVIRONMENT
         value: Production
