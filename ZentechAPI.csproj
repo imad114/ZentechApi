@@ -12,6 +12,18 @@
 		<NoWarn>1591</NoWarn>
 		<!-- Ignore missing comment warnings -->
 	</PropertyGroup>
+	
+	<ItemGroup>
+	  <Content Remove="launchSettings.json" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <None Include="launchSettings.json">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+	  </None>
+	</ItemGroup>
 
 
 	<ItemGroup>

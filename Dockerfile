@@ -1,29 +1,32 @@
-# Utiliser l'image de base pour la construction de l'application .NET
+# Étape 1 : Image de base pour la construction
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 
-# Définir le répertoire de travail dans l'image Docker
-WORKDIR /app
+# Définir le répertoire de travail
+WORKDIR /src
 
-# Copier les fichiers du projet vers le conteneur Docker
-# Assure-toi que tu copies les fichiers .csproj et le reste du projet dans le conteneur
+# Copier le fichier .csproj et restaurer les dépendances
 COPY ["ZentechAPI.csproj", "./"]
+RUN dotnet restore "./ZentechAPI.csproj"
 
-# Restaurer les dépendances
-RUN dotnet restore "ZentechAPI.csproj"
+ENV ASPNETCORE_ENVIRONMENT=Production
 
-# Copier tout le code source
+# Copier tout le code source dans le conteneur
 COPY . .
 
-# Publier l'application
-RUN dotnet publish "ZentechAPI.csproj" -c Release -o /app/publish
+# Publier l'application dans le répertoire de sortie
+RUN dotnet publish "./ZentechAPI.csproj" -c Release -o /app/publish
 
-# Créer l'image d'exécution avec l'image .NET ASP.NET Runtime
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+# Étape 2 : Image d'exécution (plus légère, pour exécuter l'application)
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+
+# Définir le répertoire de travail
 WORKDIR /app
-EXPOSE 5033
 
 # Copier les fichiers publiés depuis l'étape de construction
 COPY --from=build /app/publish .
 
-# Démarrer l'application
+# Exposer le port 5033 pour l'application
+EXPOSE 5033
+
+# Définir l'exécution de l'application
 ENTRYPOINT ["dotnet", "ZentechAPI.dll"]

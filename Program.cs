@@ -69,7 +69,7 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
-        options.RequireHttpsMetadata = true; //  (true in production)
+        options.RequireHttpsMetadata = false; //  (true in production)
         options.SaveToken = true;
         options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
         {
@@ -125,11 +125,13 @@ builder.Services.AddCors(options =>
 });
 
 
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(5033);  // Modifiez ici le port
+});
 
 //..................................................
-var port = Environment.GetEnvironmentVariable("PORT") ?? "5033";
-//builder.WebHost.UseUrls($"http://*:{port}");
-builder.WebHost.UseUrls($"https://*:{port}");
+
 
 var app = builder.Build();
 
@@ -179,7 +181,12 @@ app.UseStaticFiles(new StaticFileOptions
 
 app.UseAuthentication();
 // For HTTP to HTTPS redirection
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
+if (!app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
+
 app.UseAuthorization();
 
 app.MapControllers();
