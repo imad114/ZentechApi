@@ -128,7 +128,8 @@ builder.Services.AddCors(options =>
 
 //..................................................
 var port = Environment.GetEnvironmentVariable("PORT") ?? "5033";
-builder.WebHost.UseUrls($"http://*:{port}");
+//builder.WebHost.UseUrls($"http://*:{port}");
+builder.WebHost.UseUrls($"https://*:{port}");
 
 var app = builder.Build();
 
