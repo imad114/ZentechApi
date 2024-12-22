@@ -10,6 +10,7 @@ namespace ZentechAPI.Dto
         public decimal Price { get; set; }
         public int CategoryID { get; set; }
 
+        public List<SpecificationDto> Specifications { get; set; }
 
     }
 }

@@ -66,3 +66,7 @@ C:\Users\helpdesk-admin\Desktop\ZentechWeb\v2\ZentechAPI (2)\ZentechAPI\obj\Debu
 C:\Users\helpdesk-admin\Desktop\ZentechWeb\v2\ZentechAPI (2)\ZentechAPI\obj\Debug\net8.0\ZentechAPI.pdb
 C:\Users\helpdesk-admin\Desktop\ZentechWeb\v2\ZentechAPI (2)\ZentechAPI\obj\Debug\net8.0\ZentechAPI.genruntimeconfig.cache
 C:\Users\helpdesk-admin\Desktop\ZentechWeb\v2\ZentechAPI (2)\ZentechAPI\obj\Debug\net8.0\ref\ZentechAPI.dll
+C:\Users\helpdesk-admin\Desktop\ZentechWeb\v2\ZentechAPI (2)\ZentechAPI\bin\Debug\net8.0\ZentechAPI.staticwebassets.endpoints.json
+C:\Users\helpdesk-admin\Desktop\ZentechWeb\v2\ZentechAPI (2)\ZentechAPI\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\helpdesk-admin\Desktop\ZentechWeb\v2\ZentechAPI (2)\ZentechAPI\obj\Debug\net8.0\staticwebassets\msbuild.ZentechAPI.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+C:\Users\helpdesk-admin\Desktop\ZentechWeb\v2\ZentechAPI (2)\ZentechAPI\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

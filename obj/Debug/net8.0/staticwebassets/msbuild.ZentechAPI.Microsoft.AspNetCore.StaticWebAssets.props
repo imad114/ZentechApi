@@ -1,6 +1,6 @@
 ﻿<Project>
   <ItemGroup>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\0158ee52-eb31-4329-859d-17bb47ee68a2_Screenshot 2024-12-12 113257.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\0158ee52-eb31-4329-859d-17bb47ee68a2_Screenshot 2024-12-12 113257.png'))">
       <SourceType>Package</SourceType>
       <SourceId>ZentechAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
@@ -12,11 +12,13 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>3x5nq1ey1a</Fingerprint>
+      <Integrity>SSQqnqiPAgb5glqonRhpLib7+GXlS4BqHZuZuXHL/TY=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\0158ee52-eb31-4329-859d-17bb47ee68a2_Screenshot 2024-12-12 113257.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\0158ee52-eb31-4329-859d-17bb47ee68a2_Screenshot 2024-12-12 113257.png'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\022e1059-c273-4a45-8356-1c8d1274f03a_serie-fmf.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\022e1059-c273-4a45-8356-1c8d1274f03a_serie-fmf.png'))">
       <SourceType>Package</SourceType>
       <SourceId>ZentechAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
@@ -28,11 +30,31 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>bi0u16rw25</Fingerprint>
+      <Integrity>E4dzmUh78ZcEleOeLJT4fsxrFfWC789yXbtlWOj29Qw=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\022e1059-c273-4a45-8356-1c8d1274f03a_serie-fmf.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\022e1059-c273-4a45-8356-1c8d1274f03a_serie-fmf.png'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\0e6a52ba-916c-4d2a-b690-18275ee8ce8f_serie-eg.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\0c739ae3-bb11-415a-af97-737df72e2772_serie-eg.png'))">
+      <SourceType>Package</SourceType>
+      <SourceId>ZentechAPI</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/ZentechAPI</BasePath>
+      <RelativePath>uploads/0c739ae3-bb11-415a-af97-737df72e2772_serie-eg.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>z0chxoqcnv</Fingerprint>
+      <Integrity>3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\0c739ae3-bb11-415a-af97-737df72e2772_serie-eg.png'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\0e6a52ba-916c-4d2a-b690-18275ee8ce8f_serie-eg.png'))">
       <SourceType>Package</SourceType>
       <SourceId>ZentechAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
@@ -44,11 +66,13 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>z0chxoqcnv</Fingerprint>
+      <Integrity>3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\0e6a52ba-916c-4d2a-b690-18275ee8ce8f_serie-eg.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\0e6a52ba-916c-4d2a-b690-18275ee8ce8f_serie-eg.png'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\1070e306-94be-4197-b13e-4015da230bd2_serie-fmx-1.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\1070e306-94be-4197-b13e-4015da230bd2_serie-fmx-1.png'))">
       <SourceType>Package</SourceType>
       <SourceId>ZentechAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
@@ -60,11 +84,13 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>ml5ia8p4rh</Fingerprint>
+      <Integrity>Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\1070e306-94be-4197-b13e-4015da230bd2_serie-fmx-1.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\1070e306-94be-4197-b13e-4015da230bd2_serie-fmx-1.png'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\1bbe09d2-0dd4-4244-b5a8-07baba2bb618_serie-eg.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\1bbe09d2-0dd4-4244-b5a8-07baba2bb618_serie-eg.png'))">
       <SourceType>Package</SourceType>
       <SourceId>ZentechAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
@@ -76,11 +102,13 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>z0chxoqcnv</Fingerprint>
+      <Integrity>3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\1bbe09d2-0dd4-4244-b5a8-07baba2bb618_serie-eg.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\1bbe09d2-0dd4-4244-b5a8-07baba2bb618_serie-eg.png'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\1ff69400-1355-4289-916a-e23e032ce061_serie-fmx-1.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\1ff69400-1355-4289-916a-e23e032ce061_serie-fmx-1.png'))">
       <SourceType>Package</SourceType>
       <SourceId>ZentechAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
@@ -92,11 +120,13 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>ml5ia8p4rh</Fingerprint>
+      <Integrity>Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\1ff69400-1355-4289-916a-e23e032ce061_serie-fmx-1.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\1ff69400-1355-4289-916a-e23e032ce061_serie-fmx-1.png'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\39a1afad-f646-4219-98ba-65eadd608b68_Screenshot 2024-12-01 132727.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\39a1afad-f646-4219-98ba-65eadd608b68_Screenshot 2024-12-01 132727.png'))">
       <SourceType>Package</SourceType>
       <SourceId>ZentechAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
@@ -108,11 +138,13 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>gg7kfcmcn0</Fingerprint>
+      <Integrity>wOEbtDTAX1NKucQmzmXbJzXeGTzkUX8TmAeEaMc0dho=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\39a1afad-f646-4219-98ba-65eadd608b68_Screenshot 2024-12-01 132727.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\39a1afad-f646-4219-98ba-65eadd608b68_Screenshot 2024-12-01 132727.png'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\3eec0e58-c9e7-413d-9748-c64207769279_serie-eg.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\3eec0e58-c9e7-413d-9748-c64207769279_serie-eg.png'))">
       <SourceType>Package</SourceType>
       <SourceId>ZentechAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
@@ -124,11 +156,13 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>z0chxoqcnv</Fingerprint>
+      <Integrity>3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\3eec0e58-c9e7-413d-9748-c64207769279_serie-eg.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\3eec0e58-c9e7-413d-9748-c64207769279_serie-eg.png'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\41ed9869-c431-41d8-b793-6024233d5d8c_serie-eg.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\41ed9869-c431-41d8-b793-6024233d5d8c_serie-eg.png'))">
       <SourceType>Package</SourceType>
       <SourceId>ZentechAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
@@ -140,11 +174,13 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>z0chxoqcnv</Fingerprint>
+      <Integrity>3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\41ed9869-c431-41d8-b793-6024233d5d8c_serie-eg.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\41ed9869-c431-41d8-b793-6024233d5d8c_serie-eg.png'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\520c2d83-675b-40c2-a5e1-dfa16104836e_serie-es.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\520c2d83-675b-40c2-a5e1-dfa16104836e_serie-es.png'))">
       <SourceType>Package</SourceType>
       <SourceId>ZentechAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
@@ -156,11 +192,13 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>zlq2tma66l</Fingerprint>
+      <Integrity>yZcGOwOiWLvky/eXOrn82dFxj9yNtcCq4+DgVDGU4UY=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\520c2d83-675b-40c2-a5e1-dfa16104836e_serie-es.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\520c2d83-675b-40c2-a5e1-dfa16104836e_serie-es.png'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\58a06e87-5ff8-434b-b070-4b81c7bf0b63_serie-fmf.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\58a06e87-5ff8-434b-b070-4b81c7bf0b63_serie-fmf.png'))">
       <SourceType>Package</SourceType>
       <SourceId>ZentechAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
@@ -172,11 +210,13 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>bi0u16rw25</Fingerprint>
+      <Integrity>E4dzmUh78ZcEleOeLJT4fsxrFfWC789yXbtlWOj29Qw=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\58a06e87-5ff8-434b-b070-4b81c7bf0b63_serie-fmf.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\58a06e87-5ff8-434b-b070-4b81c7bf0b63_serie-fmf.png'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\5b8ae2e7-fbfd-4c6c-bb9d-16b5a9d86966_serie-em.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\5b8ae2e7-fbfd-4c6c-bb9d-16b5a9d86966_serie-em.png'))">
       <SourceType>Package</SourceType>
       <SourceId>ZentechAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
@@ -188,11 +228,13 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>hduq4ysqm9</Fingerprint>
+      <Integrity>Rag12yzCVUdl12wgC8OIDbSs329ayRRoFhHgChKKM8U=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\5b8ae2e7-fbfd-4c6c-bb9d-16b5a9d86966_serie-em.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\5b8ae2e7-fbfd-4c6c-bb9d-16b5a9d86966_serie-em.png'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\603dfe61-4ac8-4e23-a714-0456d7fd6c68_serie-fmx-1.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\603dfe61-4ac8-4e23-a714-0456d7fd6c68_serie-fmx-1.png'))">
       <SourceType>Package</SourceType>
       <SourceId>ZentechAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
@@ -204,11 +246,13 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>ml5ia8p4rh</Fingerprint>
+      <Integrity>Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\603dfe61-4ac8-4e23-a714-0456d7fd6c68_serie-fmx-1.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\603dfe61-4ac8-4e23-a714-0456d7fd6c68_serie-fmx-1.png'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\61dfb3a7-3a2f-4367-89b4-c72fb1f14558_Screenshot 2024-12-01 133335.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\61dfb3a7-3a2f-4367-89b4-c72fb1f14558_Screenshot 2024-12-01 133335.png'))">
       <SourceType>Package</SourceType>
       <SourceId>ZentechAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
@@ -220,11 +264,31 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>ee0d1ap9vl</Fingerprint>
+      <Integrity>RhzZSqadoQ1SnQRY7NsqbCU5SEdFNJfhYezGvOAprTE=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\61dfb3a7-3a2f-4367-89b4-c72fb1f14558_Screenshot 2024-12-01 133335.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\61dfb3a7-3a2f-4367-89b4-c72fb1f14558_Screenshot 2024-12-01 133335.png'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\8c392b24-37cc-4d93-be9f-d7085f1a28c4_serie-fmx-1.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\705d0802-b762-4b70-b0fa-e21b7de6a164_serie-fms.png'))">
+      <SourceType>Package</SourceType>
+      <SourceId>ZentechAPI</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/ZentechAPI</BasePath>
+      <RelativePath>uploads/705d0802-b762-4b70-b0fa-e21b7de6a164_serie-fms.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>zf0gvwx53h</Fingerprint>
+      <Integrity>wUrmvBe/AS/ktjSeLiR67xxvmXpXq5GizwEea8iQB8I=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\705d0802-b762-4b70-b0fa-e21b7de6a164_serie-fms.png'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\8c392b24-37cc-4d93-be9f-d7085f1a28c4_serie-fmx-1.png'))">
       <SourceType>Package</SourceType>
       <SourceId>ZentechAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
@@ -236,11 +300,13 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>ml5ia8p4rh</Fingerprint>
+      <Integrity>Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\8c392b24-37cc-4d93-be9f-d7085f1a28c4_serie-fmx-1.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\8c392b24-37cc-4d93-be9f-d7085f1a28c4_serie-fmx-1.png'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\a0d20000-800e-40e2-a1ab-ba538e53ce75_serie-fmx-1.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\a0d20000-800e-40e2-a1ab-ba538e53ce75_serie-fmx-1.png'))">
       <SourceType>Package</SourceType>
       <SourceId>ZentechAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
@@ -252,11 +318,13 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>ml5ia8p4rh</Fingerprint>
+      <Integrity>Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\a0d20000-800e-40e2-a1ab-ba538e53ce75_serie-fmx-1.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\a0d20000-800e-40e2-a1ab-ba538e53ce75_serie-fmx-1.png'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\b520692a-c27c-4564-9ccb-d9dd70612d6e_serie-eg.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\b520692a-c27c-4564-9ccb-d9dd70612d6e_serie-eg.png'))">
       <SourceType>Package</SourceType>
       <SourceId>ZentechAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
@@ -268,11 +336,13 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>z0chxoqcnv</Fingerprint>
+      <Integrity>3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\b520692a-c27c-4564-9ccb-d9dd70612d6e_serie-eg.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\b520692a-c27c-4564-9ccb-d9dd70612d6e_serie-eg.png'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\c2f28b98-28cd-4b2b-837b-2d7569a66da2_serie-fmf.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\c2f28b98-28cd-4b2b-837b-2d7569a66da2_serie-fmf.png'))">
       <SourceType>Package</SourceType>
       <SourceId>ZentechAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
@@ -284,11 +354,13 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>bi0u16rw25</Fingerprint>
+      <Integrity>E4dzmUh78ZcEleOeLJT4fsxrFfWC789yXbtlWOj29Qw=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\c2f28b98-28cd-4b2b-837b-2d7569a66da2_serie-fmf.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\c2f28b98-28cd-4b2b-837b-2d7569a66da2_serie-fmf.png'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\cadeeead-7770-401b-8a34-e8b86c8b3e6c_serie-fmf.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\cadeeead-7770-401b-8a34-e8b86c8b3e6c_serie-fmf.png'))">
       <SourceType>Package</SourceType>
       <SourceId>ZentechAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
@@ -300,11 +372,13 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>bi0u16rw25</Fingerprint>
+      <Integrity>E4dzmUh78ZcEleOeLJT4fsxrFfWC789yXbtlWOj29Qw=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\cadeeead-7770-401b-8a34-e8b86c8b3e6c_serie-fmf.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\cadeeead-7770-401b-8a34-e8b86c8b3e6c_serie-fmf.png'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\d929cee9-7ee9-4225-aeea-b62096edd279_serie-fmf.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\d929cee9-7ee9-4225-aeea-b62096edd279_serie-fmf.png'))">
       <SourceType>Package</SourceType>
       <SourceId>ZentechAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
@@ -316,11 +390,31 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>bi0u16rw25</Fingerprint>
+      <Integrity>E4dzmUh78ZcEleOeLJT4fsxrFfWC789yXbtlWOj29Qw=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\d929cee9-7ee9-4225-aeea-b62096edd279_serie-fmf.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\d929cee9-7ee9-4225-aeea-b62096edd279_serie-fmf.png'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\e13c129f-a9b2-4770-b6d0-bda2583f31df_serie-fmx-1.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\da5c9976-1c76-456f-a497-2227d135eec0_serie-eg.png'))">
+      <SourceType>Package</SourceType>
+      <SourceId>ZentechAPI</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/ZentechAPI</BasePath>
+      <RelativePath>uploads/da5c9976-1c76-456f-a497-2227d135eec0_serie-eg.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>z0chxoqcnv</Fingerprint>
+      <Integrity>3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\da5c9976-1c76-456f-a497-2227d135eec0_serie-eg.png'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\e13c129f-a9b2-4770-b6d0-bda2583f31df_serie-fmx-1.png'))">
       <SourceType>Package</SourceType>
       <SourceId>ZentechAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
@@ -332,9 +426,47 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>ml5ia8p4rh</Fingerprint>
+      <Integrity>Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\e13c129f-a9b2-4770-b6d0-bda2583f31df_serie-fmx-1.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\e13c129f-a9b2-4770-b6d0-bda2583f31df_serie-fmx-1.png'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\e7b1c776-8ff7-492e-97a3-e8dad107f0dd_serie-em.png'))">
+      <SourceType>Package</SourceType>
+      <SourceId>ZentechAPI</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/ZentechAPI</BasePath>
+      <RelativePath>uploads/e7b1c776-8ff7-492e-97a3-e8dad107f0dd_serie-em.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>hduq4ysqm9</Fingerprint>
+      <Integrity>Rag12yzCVUdl12wgC8OIDbSs329ayRRoFhHgChKKM8U=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\e7b1c776-8ff7-492e-97a3-e8dad107f0dd_serie-em.png'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\ff5e9d9a-2aab-41af-b0ce-b130a8186151_serie-fms.png'))">
+      <SourceType>Package</SourceType>
+      <SourceId>ZentechAPI</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/ZentechAPI</BasePath>
+      <RelativePath>uploads/ff5e9d9a-2aab-41af-b0ce-b130a8186151_serie-fms.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>zf0gvwx53h</Fingerprint>
+      <Integrity>wUrmvBe/AS/ktjSeLiR67xxvmXpXq5GizwEea8iQB8I=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\ff5e9d9a-2aab-41af-b0ce-b130a8186151_serie-fms.png'))</OriginalItemSpec>
     </StaticWebAsset>
   </ItemGroup>
 </Project>

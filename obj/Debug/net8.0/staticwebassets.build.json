@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "hlI85RwEuXd/HyUb/QOyEF6Q6F7YaWs9hFaeVhCFFiE=",
+  "Hash": "xCkbRMHeF0Mn2488s7sNlUnh8pL0ndTtY9+2mEEJh3o=",
   "Source": "ZentechAPI",
   "BasePath": "_content/ZentechAPI",
   "Mode": "Default",
@@ -22,15 +22,17 @@
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\",
       "BasePath": "_content/ZentechAPI",
-      "RelativePath": "uploads/0158ee52-eb31-4329-859d-17bb47ee68a2_Screenshot 2024-12-12 113257.png",
+      "RelativePath": "uploads/0158ee52-eb31-4329-859d-17bb47ee68a2_Screenshot 2024-12-12 113257#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "3x5nq1ey1a",
+      "Integrity": "SSQqnqiPAgb5glqonRhpLib7+GXlS4BqHZuZuXHL/TY=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\0158ee52-eb31-4329-859d-17bb47ee68a2_Screenshot 2024-12-12 113257.png"
@@ -41,18 +43,41 @@
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\",
       "BasePath": "_content/ZentechAPI",
-      "RelativePath": "uploads/022e1059-c273-4a45-8356-1c8d1274f03a_serie-fmf.png",
+      "RelativePath": "uploads/022e1059-c273-4a45-8356-1c8d1274f03a_serie-fmf#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "bi0u16rw25",
+      "Integrity": "E4dzmUh78ZcEleOeLJT4fsxrFfWC789yXbtlWOj29Qw=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\022e1059-c273-4a45-8356-1c8d1274f03a_serie-fmf.png"
+    },
+    {
+      "Identity": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\0c739ae3-bb11-415a-af97-737df72e2772_serie-eg.png",
+      "SourceId": "ZentechAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\",
+      "BasePath": "_content/ZentechAPI",
+      "RelativePath": "uploads/0c739ae3-bb11-415a-af97-737df72e2772_serie-eg#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "z0chxoqcnv",
+      "Integrity": "3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\0c739ae3-bb11-415a-af97-737df72e2772_serie-eg.png"
     },
     {
       "Identity": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\0e6a52ba-916c-4d2a-b690-18275ee8ce8f_serie-eg.png",
@@ -60,15 +85,17 @@
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\",
       "BasePath": "_content/ZentechAPI",
-      "RelativePath": "uploads/0e6a52ba-916c-4d2a-b690-18275ee8ce8f_serie-eg.png",
+      "RelativePath": "uploads/0e6a52ba-916c-4d2a-b690-18275ee8ce8f_serie-eg#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "z0chxoqcnv",
+      "Integrity": "3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\0e6a52ba-916c-4d2a-b690-18275ee8ce8f_serie-eg.png"
@@ -79,15 +106,17 @@
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\",
       "BasePath": "_content/ZentechAPI",
-      "RelativePath": "uploads/1070e306-94be-4197-b13e-4015da230bd2_serie-fmx-1.png",
+      "RelativePath": "uploads/1070e306-94be-4197-b13e-4015da230bd2_serie-fmx-1#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "ml5ia8p4rh",
+      "Integrity": "Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\1070e306-94be-4197-b13e-4015da230bd2_serie-fmx-1.png"
@@ -98,15 +127,17 @@
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\",
       "BasePath": "_content/ZentechAPI",
-      "RelativePath": "uploads/1bbe09d2-0dd4-4244-b5a8-07baba2bb618_serie-eg.png",
+      "RelativePath": "uploads/1bbe09d2-0dd4-4244-b5a8-07baba2bb618_serie-eg#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "z0chxoqcnv",
+      "Integrity": "3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\1bbe09d2-0dd4-4244-b5a8-07baba2bb618_serie-eg.png"
@@ -117,15 +148,17 @@
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\",
       "BasePath": "_content/ZentechAPI",
-      "RelativePath": "uploads/1ff69400-1355-4289-916a-e23e032ce061_serie-fmx-1.png",
+      "RelativePath": "uploads/1ff69400-1355-4289-916a-e23e032ce061_serie-fmx-1#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "ml5ia8p4rh",
+      "Integrity": "Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\1ff69400-1355-4289-916a-e23e032ce061_serie-fmx-1.png"
@@ -136,15 +169,17 @@
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\",
       "BasePath": "_content/ZentechAPI",
-      "RelativePath": "uploads/39a1afad-f646-4219-98ba-65eadd608b68_Screenshot 2024-12-01 132727.png",
+      "RelativePath": "uploads/39a1afad-f646-4219-98ba-65eadd608b68_Screenshot 2024-12-01 132727#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "gg7kfcmcn0",
+      "Integrity": "wOEbtDTAX1NKucQmzmXbJzXeGTzkUX8TmAeEaMc0dho=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\39a1afad-f646-4219-98ba-65eadd608b68_Screenshot 2024-12-01 132727.png"
@@ -155,15 +190,17 @@
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\",
       "BasePath": "_content/ZentechAPI",
-      "RelativePath": "uploads/3eec0e58-c9e7-413d-9748-c64207769279_serie-eg.png",
+      "RelativePath": "uploads/3eec0e58-c9e7-413d-9748-c64207769279_serie-eg#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "z0chxoqcnv",
+      "Integrity": "3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\3eec0e58-c9e7-413d-9748-c64207769279_serie-eg.png"
@@ -174,15 +211,17 @@
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\",
       "BasePath": "_content/ZentechAPI",
-      "RelativePath": "uploads/41ed9869-c431-41d8-b793-6024233d5d8c_serie-eg.png",
+      "RelativePath": "uploads/41ed9869-c431-41d8-b793-6024233d5d8c_serie-eg#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "z0chxoqcnv",
+      "Integrity": "3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\41ed9869-c431-41d8-b793-6024233d5d8c_serie-eg.png"
@@ -193,15 +232,17 @@
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\",
       "BasePath": "_content/ZentechAPI",
-      "RelativePath": "uploads/520c2d83-675b-40c2-a5e1-dfa16104836e_serie-es.png",
+      "RelativePath": "uploads/520c2d83-675b-40c2-a5e1-dfa16104836e_serie-es#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "zlq2tma66l",
+      "Integrity": "yZcGOwOiWLvky/eXOrn82dFxj9yNtcCq4+DgVDGU4UY=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\520c2d83-675b-40c2-a5e1-dfa16104836e_serie-es.png"
@@ -212,15 +253,17 @@
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\",
       "BasePath": "_content/ZentechAPI",
-      "RelativePath": "uploads/58a06e87-5ff8-434b-b070-4b81c7bf0b63_serie-fmf.png",
+      "RelativePath": "uploads/58a06e87-5ff8-434b-b070-4b81c7bf0b63_serie-fmf#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "bi0u16rw25",
+      "Integrity": "E4dzmUh78ZcEleOeLJT4fsxrFfWC789yXbtlWOj29Qw=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\58a06e87-5ff8-434b-b070-4b81c7bf0b63_serie-fmf.png"
@@ -231,15 +274,17 @@
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\",
       "BasePath": "_content/ZentechAPI",
-      "RelativePath": "uploads/5b8ae2e7-fbfd-4c6c-bb9d-16b5a9d86966_serie-em.png",
+      "RelativePath": "uploads/5b8ae2e7-fbfd-4c6c-bb9d-16b5a9d86966_serie-em#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "hduq4ysqm9",
+      "Integrity": "Rag12yzCVUdl12wgC8OIDbSs329ayRRoFhHgChKKM8U=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\5b8ae2e7-fbfd-4c6c-bb9d-16b5a9d86966_serie-em.png"
@@ -250,15 +295,17 @@
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\",
       "BasePath": "_content/ZentechAPI",
-      "RelativePath": "uploads/603dfe61-4ac8-4e23-a714-0456d7fd6c68_serie-fmx-1.png",
+      "RelativePath": "uploads/603dfe61-4ac8-4e23-a714-0456d7fd6c68_serie-fmx-1#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "ml5ia8p4rh",
+      "Integrity": "Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\603dfe61-4ac8-4e23-a714-0456d7fd6c68_serie-fmx-1.png"
@@ -269,18 +316,41 @@
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\",
       "BasePath": "_content/ZentechAPI",
-      "RelativePath": "uploads/61dfb3a7-3a2f-4367-89b4-c72fb1f14558_Screenshot 2024-12-01 133335.png",
+      "RelativePath": "uploads/61dfb3a7-3a2f-4367-89b4-c72fb1f14558_Screenshot 2024-12-01 133335#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "ee0d1ap9vl",
+      "Integrity": "RhzZSqadoQ1SnQRY7NsqbCU5SEdFNJfhYezGvOAprTE=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\61dfb3a7-3a2f-4367-89b4-c72fb1f14558_Screenshot 2024-12-01 133335.png"
+    },
+    {
+      "Identity": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\705d0802-b762-4b70-b0fa-e21b7de6a164_serie-fms.png",
+      "SourceId": "ZentechAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\",
+      "BasePath": "_content/ZentechAPI",
+      "RelativePath": "uploads/705d0802-b762-4b70-b0fa-e21b7de6a164_serie-fms#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "zf0gvwx53h",
+      "Integrity": "wUrmvBe/AS/ktjSeLiR67xxvmXpXq5GizwEea8iQB8I=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\705d0802-b762-4b70-b0fa-e21b7de6a164_serie-fms.png"
     },
     {
       "Identity": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\8c392b24-37cc-4d93-be9f-d7085f1a28c4_serie-fmx-1.png",
@@ -288,15 +358,17 @@
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\",
       "BasePath": "_content/ZentechAPI",
-      "RelativePath": "uploads/8c392b24-37cc-4d93-be9f-d7085f1a28c4_serie-fmx-1.png",
+      "RelativePath": "uploads/8c392b24-37cc-4d93-be9f-d7085f1a28c4_serie-fmx-1#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "ml5ia8p4rh",
+      "Integrity": "Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\8c392b24-37cc-4d93-be9f-d7085f1a28c4_serie-fmx-1.png"
@@ -307,15 +379,17 @@
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\",
       "BasePath": "_content/ZentechAPI",
-      "RelativePath": "uploads/a0d20000-800e-40e2-a1ab-ba538e53ce75_serie-fmx-1.png",
+      "RelativePath": "uploads/a0d20000-800e-40e2-a1ab-ba538e53ce75_serie-fmx-1#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "ml5ia8p4rh",
+      "Integrity": "Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\a0d20000-800e-40e2-a1ab-ba538e53ce75_serie-fmx-1.png"
@@ -326,15 +400,17 @@
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\",
       "BasePath": "_content/ZentechAPI",
-      "RelativePath": "uploads/b520692a-c27c-4564-9ccb-d9dd70612d6e_serie-eg.png",
+      "RelativePath": "uploads/b520692a-c27c-4564-9ccb-d9dd70612d6e_serie-eg#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "z0chxoqcnv",
+      "Integrity": "3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\b520692a-c27c-4564-9ccb-d9dd70612d6e_serie-eg.png"
@@ -345,15 +421,17 @@
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\",
       "BasePath": "_content/ZentechAPI",
-      "RelativePath": "uploads/c2f28b98-28cd-4b2b-837b-2d7569a66da2_serie-fmf.png",
+      "RelativePath": "uploads/c2f28b98-28cd-4b2b-837b-2d7569a66da2_serie-fmf#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "bi0u16rw25",
+      "Integrity": "E4dzmUh78ZcEleOeLJT4fsxrFfWC789yXbtlWOj29Qw=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\c2f28b98-28cd-4b2b-837b-2d7569a66da2_serie-fmf.png"
@@ -364,15 +442,17 @@
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\",
       "BasePath": "_content/ZentechAPI",
-      "RelativePath": "uploads/cadeeead-7770-401b-8a34-e8b86c8b3e6c_serie-fmf.png",
+      "RelativePath": "uploads/cadeeead-7770-401b-8a34-e8b86c8b3e6c_serie-fmf#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "bi0u16rw25",
+      "Integrity": "E4dzmUh78ZcEleOeLJT4fsxrFfWC789yXbtlWOj29Qw=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\cadeeead-7770-401b-8a34-e8b86c8b3e6c_serie-fmf.png"
@@ -383,18 +463,41 @@
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\",
       "BasePath": "_content/ZentechAPI",
-      "RelativePath": "uploads/d929cee9-7ee9-4225-aeea-b62096edd279_serie-fmf.png",
+      "RelativePath": "uploads/d929cee9-7ee9-4225-aeea-b62096edd279_serie-fmf#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "bi0u16rw25",
+      "Integrity": "E4dzmUh78ZcEleOeLJT4fsxrFfWC789yXbtlWOj29Qw=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\d929cee9-7ee9-4225-aeea-b62096edd279_serie-fmf.png"
+    },
+    {
+      "Identity": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\da5c9976-1c76-456f-a497-2227d135eec0_serie-eg.png",
+      "SourceId": "ZentechAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\",
+      "BasePath": "_content/ZentechAPI",
+      "RelativePath": "uploads/da5c9976-1c76-456f-a497-2227d135eec0_serie-eg#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "z0chxoqcnv",
+      "Integrity": "3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\da5c9976-1c76-456f-a497-2227d135eec0_serie-eg.png"
     },
     {
       "Identity": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\e13c129f-a9b2-4770-b6d0-bda2583f31df_serie-fmx-1.png",
@@ -402,18 +505,2196 @@
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\",
       "BasePath": "_content/ZentechAPI",
-      "RelativePath": "uploads/e13c129f-a9b2-4770-b6d0-bda2583f31df_serie-fmx-1.png",
+      "RelativePath": "uploads/e13c129f-a9b2-4770-b6d0-bda2583f31df_serie-fmx-1#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "ml5ia8p4rh",
+      "Integrity": "Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\e13c129f-a9b2-4770-b6d0-bda2583f31df_serie-fmx-1.png"
+    },
+    {
+      "Identity": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\e7b1c776-8ff7-492e-97a3-e8dad107f0dd_serie-em.png",
+      "SourceId": "ZentechAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\",
+      "BasePath": "_content/ZentechAPI",
+      "RelativePath": "uploads/e7b1c776-8ff7-492e-97a3-e8dad107f0dd_serie-em#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "hduq4ysqm9",
+      "Integrity": "Rag12yzCVUdl12wgC8OIDbSs329ayRRoFhHgChKKM8U=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\e7b1c776-8ff7-492e-97a3-e8dad107f0dd_serie-em.png"
+    },
+    {
+      "Identity": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\ff5e9d9a-2aab-41af-b0ce-b130a8186151_serie-fms.png",
+      "SourceId": "ZentechAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\",
+      "BasePath": "_content/ZentechAPI",
+      "RelativePath": "uploads/ff5e9d9a-2aab-41af-b0ce-b130a8186151_serie-fms#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "zf0gvwx53h",
+      "Integrity": "wUrmvBe/AS/ktjSeLiR67xxvmXpXq5GizwEea8iQB8I=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\ff5e9d9a-2aab-41af-b0ce-b130a8186151_serie-fms.png"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "uploads/0158ee52-eb31-4329-859d-17bb47ee68a2_Screenshot 2024-12-12 113257.3x5nq1ey1a.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\0158ee52-eb31-4329-859d-17bb47ee68a2_Screenshot 2024-12-12 113257.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "122470"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"SSQqnqiPAgb5glqonRhpLib7+GXlS4BqHZuZuXHL/TY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Dec 2024 12:49:26 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "3x5nq1ey1a"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/0158ee52-eb31-4329-859d-17bb47ee68a2_Screenshot 2024-12-12 113257.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-SSQqnqiPAgb5glqonRhpLib7+GXlS4BqHZuZuXHL/TY="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/0158ee52-eb31-4329-859d-17bb47ee68a2_Screenshot 2024-12-12 113257.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\0158ee52-eb31-4329-859d-17bb47ee68a2_Screenshot 2024-12-12 113257.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "122470"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"SSQqnqiPAgb5glqonRhpLib7+GXlS4BqHZuZuXHL/TY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Dec 2024 12:49:26 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-SSQqnqiPAgb5glqonRhpLib7+GXlS4BqHZuZuXHL/TY="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/022e1059-c273-4a45-8356-1c8d1274f03a_serie-fmf.bi0u16rw25.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\022e1059-c273-4a45-8356-1c8d1274f03a_serie-fmf.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "293822"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"E4dzmUh78ZcEleOeLJT4fsxrFfWC789yXbtlWOj29Qw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 10:27:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "bi0u16rw25"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/022e1059-c273-4a45-8356-1c8d1274f03a_serie-fmf.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-E4dzmUh78ZcEleOeLJT4fsxrFfWC789yXbtlWOj29Qw="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/022e1059-c273-4a45-8356-1c8d1274f03a_serie-fmf.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\022e1059-c273-4a45-8356-1c8d1274f03a_serie-fmf.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "293822"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"E4dzmUh78ZcEleOeLJT4fsxrFfWC789yXbtlWOj29Qw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 10:27:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-E4dzmUh78ZcEleOeLJT4fsxrFfWC789yXbtlWOj29Qw="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/0c739ae3-bb11-415a-af97-737df72e2772_serie-eg.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\0c739ae3-bb11-415a-af97-737df72e2772_serie-eg.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "505424"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 19 Dec 2024 08:10:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/0c739ae3-bb11-415a-af97-737df72e2772_serie-eg.z0chxoqcnv.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\0c739ae3-bb11-415a-af97-737df72e2772_serie-eg.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "505424"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 19 Dec 2024 08:10:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "z0chxoqcnv"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/0c739ae3-bb11-415a-af97-737df72e2772_serie-eg.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/0e6a52ba-916c-4d2a-b690-18275ee8ce8f_serie-eg.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\0e6a52ba-916c-4d2a-b690-18275ee8ce8f_serie-eg.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "505424"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 10:26:58 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/0e6a52ba-916c-4d2a-b690-18275ee8ce8f_serie-eg.z0chxoqcnv.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\0e6a52ba-916c-4d2a-b690-18275ee8ce8f_serie-eg.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "505424"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 10:26:58 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "z0chxoqcnv"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/0e6a52ba-916c-4d2a-b690-18275ee8ce8f_serie-eg.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/1070e306-94be-4197-b13e-4015da230bd2_serie-fmx-1.ml5ia8p4rh.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\1070e306-94be-4197-b13e-4015da230bd2_serie-fmx-1.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "575819"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 10:28:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ml5ia8p4rh"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/1070e306-94be-4197-b13e-4015da230bd2_serie-fmx-1.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/1070e306-94be-4197-b13e-4015da230bd2_serie-fmx-1.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\1070e306-94be-4197-b13e-4015da230bd2_serie-fmx-1.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "575819"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 10:28:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/1bbe09d2-0dd4-4244-b5a8-07baba2bb618_serie-eg.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\1bbe09d2-0dd4-4244-b5a8-07baba2bb618_serie-eg.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "505424"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 10:27:06 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/1bbe09d2-0dd4-4244-b5a8-07baba2bb618_serie-eg.z0chxoqcnv.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\1bbe09d2-0dd4-4244-b5a8-07baba2bb618_serie-eg.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "505424"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 10:27:06 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "z0chxoqcnv"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/1bbe09d2-0dd4-4244-b5a8-07baba2bb618_serie-eg.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/1ff69400-1355-4289-916a-e23e032ce061_serie-fmx-1.ml5ia8p4rh.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\1ff69400-1355-4289-916a-e23e032ce061_serie-fmx-1.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "575819"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 10:28:18 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ml5ia8p4rh"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/1ff69400-1355-4289-916a-e23e032ce061_serie-fmx-1.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/1ff69400-1355-4289-916a-e23e032ce061_serie-fmx-1.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\1ff69400-1355-4289-916a-e23e032ce061_serie-fmx-1.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "575819"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 10:28:18 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/39a1afad-f646-4219-98ba-65eadd608b68_Screenshot 2024-12-01 132727.gg7kfcmcn0.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\39a1afad-f646-4219-98ba-65eadd608b68_Screenshot 2024-12-01 132727.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "167804"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"wOEbtDTAX1NKucQmzmXbJzXeGTzkUX8TmAeEaMc0dho=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Dec 2024 13:57:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "gg7kfcmcn0"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/39a1afad-f646-4219-98ba-65eadd608b68_Screenshot 2024-12-01 132727.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-wOEbtDTAX1NKucQmzmXbJzXeGTzkUX8TmAeEaMc0dho="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/39a1afad-f646-4219-98ba-65eadd608b68_Screenshot 2024-12-01 132727.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\39a1afad-f646-4219-98ba-65eadd608b68_Screenshot 2024-12-01 132727.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "167804"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"wOEbtDTAX1NKucQmzmXbJzXeGTzkUX8TmAeEaMc0dho=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Dec 2024 13:57:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-wOEbtDTAX1NKucQmzmXbJzXeGTzkUX8TmAeEaMc0dho="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/3eec0e58-c9e7-413d-9748-c64207769279_serie-eg.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\3eec0e58-c9e7-413d-9748-c64207769279_serie-eg.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "505424"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 10:27:10 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/3eec0e58-c9e7-413d-9748-c64207769279_serie-eg.z0chxoqcnv.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\3eec0e58-c9e7-413d-9748-c64207769279_serie-eg.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "505424"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 10:27:10 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "z0chxoqcnv"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/3eec0e58-c9e7-413d-9748-c64207769279_serie-eg.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/41ed9869-c431-41d8-b793-6024233d5d8c_serie-eg.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\41ed9869-c431-41d8-b793-6024233d5d8c_serie-eg.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "505424"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 08:18:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/41ed9869-c431-41d8-b793-6024233d5d8c_serie-eg.z0chxoqcnv.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\41ed9869-c431-41d8-b793-6024233d5d8c_serie-eg.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "505424"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 08:18:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "z0chxoqcnv"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/41ed9869-c431-41d8-b793-6024233d5d8c_serie-eg.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/520c2d83-675b-40c2-a5e1-dfa16104836e_serie-es.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\520c2d83-675b-40c2-a5e1-dfa16104836e_serie-es.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "279436"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"yZcGOwOiWLvky/eXOrn82dFxj9yNtcCq4+DgVDGU4UY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 08:19:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-yZcGOwOiWLvky/eXOrn82dFxj9yNtcCq4+DgVDGU4UY="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/520c2d83-675b-40c2-a5e1-dfa16104836e_serie-es.zlq2tma66l.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\520c2d83-675b-40c2-a5e1-dfa16104836e_serie-es.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "279436"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"yZcGOwOiWLvky/eXOrn82dFxj9yNtcCq4+DgVDGU4UY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 08:19:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "zlq2tma66l"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/520c2d83-675b-40c2-a5e1-dfa16104836e_serie-es.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-yZcGOwOiWLvky/eXOrn82dFxj9yNtcCq4+DgVDGU4UY="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/58a06e87-5ff8-434b-b070-4b81c7bf0b63_serie-fmf.bi0u16rw25.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\58a06e87-5ff8-434b-b070-4b81c7bf0b63_serie-fmf.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "293822"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"E4dzmUh78ZcEleOeLJT4fsxrFfWC789yXbtlWOj29Qw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 10:27:48 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "bi0u16rw25"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/58a06e87-5ff8-434b-b070-4b81c7bf0b63_serie-fmf.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-E4dzmUh78ZcEleOeLJT4fsxrFfWC789yXbtlWOj29Qw="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/58a06e87-5ff8-434b-b070-4b81c7bf0b63_serie-fmf.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\58a06e87-5ff8-434b-b070-4b81c7bf0b63_serie-fmf.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "293822"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"E4dzmUh78ZcEleOeLJT4fsxrFfWC789yXbtlWOj29Qw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 10:27:48 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-E4dzmUh78ZcEleOeLJT4fsxrFfWC789yXbtlWOj29Qw="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/5b8ae2e7-fbfd-4c6c-bb9d-16b5a9d86966_serie-em.hduq4ysqm9.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\5b8ae2e7-fbfd-4c6c-bb9d-16b5a9d86966_serie-em.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "276772"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Rag12yzCVUdl12wgC8OIDbSs329ayRRoFhHgChKKM8U=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 08:19:08 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "hduq4ysqm9"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/5b8ae2e7-fbfd-4c6c-bb9d-16b5a9d86966_serie-em.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Rag12yzCVUdl12wgC8OIDbSs329ayRRoFhHgChKKM8U="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/5b8ae2e7-fbfd-4c6c-bb9d-16b5a9d86966_serie-em.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\5b8ae2e7-fbfd-4c6c-bb9d-16b5a9d86966_serie-em.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "276772"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Rag12yzCVUdl12wgC8OIDbSs329ayRRoFhHgChKKM8U=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 08:19:08 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Rag12yzCVUdl12wgC8OIDbSs329ayRRoFhHgChKKM8U="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/603dfe61-4ac8-4e23-a714-0456d7fd6c68_serie-fmx-1.ml5ia8p4rh.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\603dfe61-4ac8-4e23-a714-0456d7fd6c68_serie-fmx-1.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "575819"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 10:28:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ml5ia8p4rh"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/603dfe61-4ac8-4e23-a714-0456d7fd6c68_serie-fmx-1.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/603dfe61-4ac8-4e23-a714-0456d7fd6c68_serie-fmx-1.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\603dfe61-4ac8-4e23-a714-0456d7fd6c68_serie-fmx-1.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "575819"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 10:28:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/61dfb3a7-3a2f-4367-89b4-c72fb1f14558_Screenshot 2024-12-01 133335.ee0d1ap9vl.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\61dfb3a7-3a2f-4367-89b4-c72fb1f14558_Screenshot 2024-12-01 133335.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "119352"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"RhzZSqadoQ1SnQRY7NsqbCU5SEdFNJfhYezGvOAprTE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Dec 2024 13:01:54 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ee0d1ap9vl"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/61dfb3a7-3a2f-4367-89b4-c72fb1f14558_Screenshot 2024-12-01 133335.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-RhzZSqadoQ1SnQRY7NsqbCU5SEdFNJfhYezGvOAprTE="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/61dfb3a7-3a2f-4367-89b4-c72fb1f14558_Screenshot 2024-12-01 133335.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\61dfb3a7-3a2f-4367-89b4-c72fb1f14558_Screenshot 2024-12-01 133335.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "119352"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"RhzZSqadoQ1SnQRY7NsqbCU5SEdFNJfhYezGvOAprTE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Dec 2024 13:01:54 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-RhzZSqadoQ1SnQRY7NsqbCU5SEdFNJfhYezGvOAprTE="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/705d0802-b762-4b70-b0fa-e21b7de6a164_serie-fms.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\705d0802-b762-4b70-b0fa-e21b7de6a164_serie-fms.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "316006"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"wUrmvBe/AS/ktjSeLiR67xxvmXpXq5GizwEea8iQB8I=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 19 Dec 2024 10:08:04 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-wUrmvBe/AS/ktjSeLiR67xxvmXpXq5GizwEea8iQB8I="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/705d0802-b762-4b70-b0fa-e21b7de6a164_serie-fms.zf0gvwx53h.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\705d0802-b762-4b70-b0fa-e21b7de6a164_serie-fms.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "316006"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"wUrmvBe/AS/ktjSeLiR67xxvmXpXq5GizwEea8iQB8I=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 19 Dec 2024 10:08:04 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "zf0gvwx53h"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/705d0802-b762-4b70-b0fa-e21b7de6a164_serie-fms.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-wUrmvBe/AS/ktjSeLiR67xxvmXpXq5GizwEea8iQB8I="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/8c392b24-37cc-4d93-be9f-d7085f1a28c4_serie-fmx-1.ml5ia8p4rh.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\8c392b24-37cc-4d93-be9f-d7085f1a28c4_serie-fmx-1.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "575819"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 10:28:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ml5ia8p4rh"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/8c392b24-37cc-4d93-be9f-d7085f1a28c4_serie-fmx-1.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/8c392b24-37cc-4d93-be9f-d7085f1a28c4_serie-fmx-1.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\8c392b24-37cc-4d93-be9f-d7085f1a28c4_serie-fmx-1.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "575819"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 10:28:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/a0d20000-800e-40e2-a1ab-ba538e53ce75_serie-fmx-1.ml5ia8p4rh.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\a0d20000-800e-40e2-a1ab-ba538e53ce75_serie-fmx-1.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "575819"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 08:19:24 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ml5ia8p4rh"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/a0d20000-800e-40e2-a1ab-ba538e53ce75_serie-fmx-1.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/a0d20000-800e-40e2-a1ab-ba538e53ce75_serie-fmx-1.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\a0d20000-800e-40e2-a1ab-ba538e53ce75_serie-fmx-1.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "575819"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 08:19:24 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/b520692a-c27c-4564-9ccb-d9dd70612d6e_serie-eg.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\b520692a-c27c-4564-9ccb-d9dd70612d6e_serie-eg.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "505424"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 10:27:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/b520692a-c27c-4564-9ccb-d9dd70612d6e_serie-eg.z0chxoqcnv.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\b520692a-c27c-4564-9ccb-d9dd70612d6e_serie-eg.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "505424"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 10:27:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "z0chxoqcnv"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/b520692a-c27c-4564-9ccb-d9dd70612d6e_serie-eg.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/c2f28b98-28cd-4b2b-837b-2d7569a66da2_serie-fmf.bi0u16rw25.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\c2f28b98-28cd-4b2b-837b-2d7569a66da2_serie-fmf.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "293822"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"E4dzmUh78ZcEleOeLJT4fsxrFfWC789yXbtlWOj29Qw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 08:20:11 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "bi0u16rw25"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/c2f28b98-28cd-4b2b-837b-2d7569a66da2_serie-fmf.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-E4dzmUh78ZcEleOeLJT4fsxrFfWC789yXbtlWOj29Qw="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/c2f28b98-28cd-4b2b-837b-2d7569a66da2_serie-fmf.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\c2f28b98-28cd-4b2b-837b-2d7569a66da2_serie-fmf.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "293822"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"E4dzmUh78ZcEleOeLJT4fsxrFfWC789yXbtlWOj29Qw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 08:20:11 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-E4dzmUh78ZcEleOeLJT4fsxrFfWC789yXbtlWOj29Qw="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/cadeeead-7770-401b-8a34-e8b86c8b3e6c_serie-fmf.bi0u16rw25.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\cadeeead-7770-401b-8a34-e8b86c8b3e6c_serie-fmf.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "293822"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"E4dzmUh78ZcEleOeLJT4fsxrFfWC789yXbtlWOj29Qw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 10:27:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "bi0u16rw25"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/cadeeead-7770-401b-8a34-e8b86c8b3e6c_serie-fmf.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-E4dzmUh78ZcEleOeLJT4fsxrFfWC789yXbtlWOj29Qw="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/cadeeead-7770-401b-8a34-e8b86c8b3e6c_serie-fmf.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\cadeeead-7770-401b-8a34-e8b86c8b3e6c_serie-fmf.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "293822"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"E4dzmUh78ZcEleOeLJT4fsxrFfWC789yXbtlWOj29Qw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 10:27:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-E4dzmUh78ZcEleOeLJT4fsxrFfWC789yXbtlWOj29Qw="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/d929cee9-7ee9-4225-aeea-b62096edd279_serie-fmf.bi0u16rw25.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\d929cee9-7ee9-4225-aeea-b62096edd279_serie-fmf.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "293822"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"E4dzmUh78ZcEleOeLJT4fsxrFfWC789yXbtlWOj29Qw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 10:27:52 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "bi0u16rw25"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/d929cee9-7ee9-4225-aeea-b62096edd279_serie-fmf.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-E4dzmUh78ZcEleOeLJT4fsxrFfWC789yXbtlWOj29Qw="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/d929cee9-7ee9-4225-aeea-b62096edd279_serie-fmf.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\d929cee9-7ee9-4225-aeea-b62096edd279_serie-fmf.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "293822"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"E4dzmUh78ZcEleOeLJT4fsxrFfWC789yXbtlWOj29Qw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 10:27:52 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-E4dzmUh78ZcEleOeLJT4fsxrFfWC789yXbtlWOj29Qw="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/da5c9976-1c76-456f-a497-2227d135eec0_serie-eg.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\da5c9976-1c76-456f-a497-2227d135eec0_serie-eg.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "505424"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 19 Dec 2024 08:40:47 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/da5c9976-1c76-456f-a497-2227d135eec0_serie-eg.z0chxoqcnv.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\da5c9976-1c76-456f-a497-2227d135eec0_serie-eg.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "505424"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 19 Dec 2024 08:40:47 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "z0chxoqcnv"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/da5c9976-1c76-456f-a497-2227d135eec0_serie-eg.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/e13c129f-a9b2-4770-b6d0-bda2583f31df_serie-fmx-1.ml5ia8p4rh.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\e13c129f-a9b2-4770-b6d0-bda2583f31df_serie-fmx-1.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "575819"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 10:28:14 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ml5ia8p4rh"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/e13c129f-a9b2-4770-b6d0-bda2583f31df_serie-fmx-1.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/e13c129f-a9b2-4770-b6d0-bda2583f31df_serie-fmx-1.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\e13c129f-a9b2-4770-b6d0-bda2583f31df_serie-fmx-1.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "575819"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 10:28:14 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/e7b1c776-8ff7-492e-97a3-e8dad107f0dd_serie-em.hduq4ysqm9.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\e7b1c776-8ff7-492e-97a3-e8dad107f0dd_serie-em.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "276772"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Rag12yzCVUdl12wgC8OIDbSs329ayRRoFhHgChKKM8U=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 19 Dec 2024 09:50:45 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "hduq4ysqm9"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/e7b1c776-8ff7-492e-97a3-e8dad107f0dd_serie-em.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Rag12yzCVUdl12wgC8OIDbSs329ayRRoFhHgChKKM8U="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/e7b1c776-8ff7-492e-97a3-e8dad107f0dd_serie-em.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\e7b1c776-8ff7-492e-97a3-e8dad107f0dd_serie-em.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "276772"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Rag12yzCVUdl12wgC8OIDbSs329ayRRoFhHgChKKM8U=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 19 Dec 2024 09:50:45 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Rag12yzCVUdl12wgC8OIDbSs329ayRRoFhHgChKKM8U="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/ff5e9d9a-2aab-41af-b0ce-b130a8186151_serie-fms.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\ff5e9d9a-2aab-41af-b0ce-b130a8186151_serie-fms.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "316006"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"wUrmvBe/AS/ktjSeLiR67xxvmXpXq5GizwEea8iQB8I=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 19 Dec 2024 09:50:58 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-wUrmvBe/AS/ktjSeLiR67xxvmXpXq5GizwEea8iQB8I="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/ff5e9d9a-2aab-41af-b0ce-b130a8186151_serie-fms.zf0gvwx53h.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\ff5e9d9a-2aab-41af-b0ce-b130a8186151_serie-fms.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "316006"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"wUrmvBe/AS/ktjSeLiR67xxvmXpXq5GizwEea8iQB8I=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 19 Dec 2024 09:50:58 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "zf0gvwx53h"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/ff5e9d9a-2aab-41af-b0ce-b130a8186151_serie-fms.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-wUrmvBe/AS/ktjSeLiR67xxvmXpXq5GizwEea8iQB8I="
+        }
+      ]
     }
   ]
 }

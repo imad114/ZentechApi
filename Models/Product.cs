@@ -15,4 +15,5 @@ public class Product
    // public Category? Category { get; set; } 
     
     public List<string>? Photos { get; set; }
+    public List<Specification>? Specifications { get; set; }
 }

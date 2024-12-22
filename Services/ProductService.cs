@@ -31,6 +31,12 @@ namespace Zentech.Services
         
         public async Task<int> AddProductAsync(ProductDto product, string createdBy)
         {
+            if (product == null || string.IsNullOrEmpty(createdBy))
+                throw new ArgumentException("Invalid product or createdBy");
+
+            if (string.IsNullOrWhiteSpace(product.Name))
+                throw new ArgumentException("Product name cannot be empty.");
+
             return await Task.Run(() => _repository.AddProduct(product, createdBy));
         }
 

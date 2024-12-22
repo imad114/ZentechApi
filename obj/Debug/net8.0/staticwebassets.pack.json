@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\uploads\\022e1059-c273-4a45-8356-1c8d1274f03a_serie-fmf.png"
     },
     {
+      "Id": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\0c739ae3-bb11-415a-af97-737df72e2772_serie-eg.png",
+      "PackagePath": "staticwebassets\\uploads\\0c739ae3-bb11-415a-af97-737df72e2772_serie-eg.png"
+    },
+    {
       "Id": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\0e6a52ba-916c-4d2a-b690-18275ee8ce8f_serie-eg.png",
       "PackagePath": "staticwebassets\\uploads\\0e6a52ba-916c-4d2a-b690-18275ee8ce8f_serie-eg.png"
     },
@@ -57,6 +61,10 @@
       "PackagePath": "staticwebassets\\uploads\\61dfb3a7-3a2f-4367-89b4-c72fb1f14558_Screenshot 2024-12-01 133335.png"
     },
     {
+      "Id": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\705d0802-b762-4b70-b0fa-e21b7de6a164_serie-fms.png",
+      "PackagePath": "staticwebassets\\uploads\\705d0802-b762-4b70-b0fa-e21b7de6a164_serie-fms.png"
+    },
+    {
       "Id": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\8c392b24-37cc-4d93-be9f-d7085f1a28c4_serie-fmx-1.png",
       "PackagePath": "staticwebassets\\uploads\\8c392b24-37cc-4d93-be9f-d7085f1a28c4_serie-fmx-1.png"
     },
@@ -81,8 +89,24 @@
       "PackagePath": "staticwebassets\\uploads\\d929cee9-7ee9-4225-aeea-b62096edd279_serie-fmf.png"
     },
     {
+      "Id": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\da5c9976-1c76-456f-a497-2227d135eec0_serie-eg.png",
+      "PackagePath": "staticwebassets\\uploads\\da5c9976-1c76-456f-a497-2227d135eec0_serie-eg.png"
+    },
+    {
       "Id": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\e13c129f-a9b2-4770-b6d0-bda2583f31df_serie-fmx-1.png",
       "PackagePath": "staticwebassets\\uploads\\e13c129f-a9b2-4770-b6d0-bda2583f31df_serie-fmx-1.png"
+    },
+    {
+      "Id": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\e7b1c776-8ff7-492e-97a3-e8dad107f0dd_serie-em.png",
+      "PackagePath": "staticwebassets\\uploads\\e7b1c776-8ff7-492e-97a3-e8dad107f0dd_serie-em.png"
+    },
+    {
+      "Id": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\ff5e9d9a-2aab-41af-b0ce-b130a8186151_serie-fms.png",
+      "PackagePath": "staticwebassets\\uploads\\ff5e9d9a-2aab-41af-b0ce-b130a8186151_serie-fms.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.ZentechAPI.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.ZentechAPI.Microsoft.AspNetCore.StaticWebAssets.props",

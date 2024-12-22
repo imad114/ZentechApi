@@ -1128,6 +1128,13 @@
           "categoryID": {
             "type": "integer",
             "format": "int32"
+          },
+          "specifications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SpecificationDto"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -1148,6 +1155,24 @@
             "items": {
               "$ref": "#/components/schemas/User"
             },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SpecificationDto": {
+        "type": "object",
+        "properties": {
+          "specificationID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "key": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
             "nullable": true
           }
         },
