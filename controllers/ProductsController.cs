@@ -21,7 +21,12 @@ namespace Zentech.Controllers
         {
             _productService = productService;
         }
-
+        /// <summary>
+        /// Retrieve all products.
+        /// </summary>
+        /// <remarks>
+        /// Fetches a list of all available products in the system.
+        /// </remarks>
         // Get all products
         [HttpGet]
         [SwaggerOperation(Summary = "Get all products", Description = "Returns the complete list of products.")]
@@ -30,7 +35,10 @@ namespace Zentech.Controllers
             var products = await _productService.GetAllProductsAsync();
             return Ok(products);
         }
-
+        /// <summary>
+        /// Retrieve a specific product by its ID.
+        /// </summary>
+        /// <param name="id">The unique identifier of the product.</param>
         // Get a specific product by ID
         [HttpGet("{id}")]
         [SwaggerOperation(Summary = "Get a product by ID", Description = "Returns the details of a specific product.")]
@@ -41,7 +49,10 @@ namespace Zentech.Controllers
                 return NotFound();
             return Ok(product);
         }
-
+        /// <summary>
+        /// Add a new product to the system.
+        /// </summary>
+        /// <param name="product">The product information to add.</param>
         // Add a new product
         [Authorize(Roles = "Admin")]
         [HttpPost]
@@ -55,7 +66,11 @@ namespace Zentech.Controllers
             var ProductID = await _productService.AddProductAsync(product, createdBy);
             return CreatedAtAction(nameof(GetProductById), new { id = ProductID }, ProductID);
         }
-
+        /// <summary>
+        /// Update an existing product's information.
+        /// </summary>
+        /// <param name="id">The ID of the product to update.</param>
+        /// <param name="product">The updated product information.</param>
         // Update an existing product
         [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
@@ -73,7 +88,10 @@ namespace Zentech.Controllers
 
             return Ok(product);
         }
-
+        /// <summary>
+        /// Delete a product by its ID.
+        /// </summary>
+        /// <param name="id">The ID of the product to delete.</param>
         // Delete a product
         [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
@@ -86,6 +104,13 @@ namespace Zentech.Controllers
 
             return NoContent();
         }
+
+
+        /// <summary>
+        /// Upload a photo for a specific product.
+        /// </summary>
+        /// <param name="productId">The ID of the product to associate the photo with.</param>
+        /// <param name="file">The photo file to upload.</param>
         [HttpPost("{productId}/upload-photo")]
         [SwaggerOperation(Summary = "Upload a photo for a product", Description = "Allows uploading a photo for a specific product.")]
         [SwaggerResponse(StatusCodes.Status201Created, "Photo uploaded successfully", typeof(object))]
@@ -143,7 +168,10 @@ namespace Zentech.Controllers
         }
 
 
-
+        /// <summary>
+        /// Delete a photo from a product using its URL.
+        /// </summary>
+        /// <param name="photoUrl">The URL of the photo to delete.</param>
         // Delete a photo from a product
         [Authorize(Roles = "Admin")]
         [HttpDelete("photos")]
