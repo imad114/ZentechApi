@@ -31,7 +31,7 @@ namespace Zentech.Controllers
         /// Accessible only to users with the "Admin" role.
         /// </summary>
         /// <returns>List of all news.</returns>
-        [Authorize(Roles = "Admin")]
+
         [HttpGet]
         public IActionResult GetAllNews()
         {
@@ -45,7 +45,7 @@ namespace Zentech.Controllers
         /// </summary>
         /// <param name="id">The ID of the news item to retrieve.</param>
         /// <returns>The requested news or NotFound if not found.</returns>
-        [Authorize(Roles = "Admin")]
+
         [HttpGet("{id}")]
         public IActionResult GetNewsById(int id)
         {
@@ -146,7 +146,7 @@ namespace Zentech.Controllers
                     return BadRequest(new { Message = "File size exceeds the maximum limit of 10MB." });
                 }
 
-                var uploadFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
+                var uploadFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads/News");
                 if (!Directory.Exists(uploadFolder))
                 {
                     Directory.CreateDirectory(uploadFolder);
