@@ -57,6 +57,31 @@ namespace Zentech.Controllers
             return Ok(news);
         }
 
+
+        [HttpGet("details/{category_id}")]
+        public IActionResult GetNewsByCategoryId(int category_id)
+        {
+            var news = _newsService.GetNewsByCategoryId(category_id);
+            if (news == null)
+            {
+                return NotFound(new { Message = "News not found." });
+            }
+            return Ok(news);
+        }
+
+
+        [HttpGet("categories")]
+        public IActionResult GetGategories()
+        {
+            var news = _newsService.GetGategories();
+            if (news == null)
+            {
+                return NotFound(new { Message = "News not found." });
+            }
+            return Ok(news);
+        }
+
+
         /// <summary>
         /// Add a new news item.
         /// Accessible only to users with the "Admin" role.

@@ -71,5 +71,15 @@ namespace Zentech.Services
 
             _newsRepository.DeletePhoto(photoUrl); 
         }
+
+        public List<News> GetNewsByCategoryId(int category_id)
+        {
+            return _newsRepository.GetNewsByCategoryId(category_id);
+        }
+
+        public List<Category> GetGategories()
+        {
+            return _newsRepository.GetGategories();
+        }
     }
 }
