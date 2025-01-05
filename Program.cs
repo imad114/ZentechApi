@@ -113,6 +113,9 @@ builder.Services.AddScoped<SolutionService>();
 //CompanyInformation 
 builder.Services.AddScoped<CompanyInformationRepository>();
 builder.Services.AddScoped<CompanyInformationService>();
+//Page
+builder.Services.AddScoped<PageRepository>();
+builder.Services.AddScoped<PageService>();
 
 //......................................................................
 builder.Services.Configure<IISServerOptions>(options =>

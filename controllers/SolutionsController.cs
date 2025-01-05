@@ -85,7 +85,7 @@ namespace Zentech.Controllers
         /// </summary>
         /// <param name="solutionId">The ID of the solution to associate the photo with.</param>
         /// <param name="file">The photo file to upload.</param>
-        [HttpPost("{solutionId}/upload-photo")]
+        [HttpPost("{solutionId}/upload-photoSolution")]
         [SwaggerOperation(Summary = "Upload a photo for  solution", Description = "Allows uploading a photo for a specific solution.")]
         [SwaggerResponse(StatusCodes.Status201Created, "Photo uploaded successfully", typeof(object))]
         [SwaggerResponse(StatusCodes.Status400BadRequest, "Invalid file upload", typeof(object))]
@@ -114,7 +114,7 @@ namespace Zentech.Controllers
                     return BadRequest(new { Message = "File size exceeds the maximum limit of 10MB." });
                 }
 
-                var uploadFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
+                var uploadFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads/Solutions");
                 if (!Directory.Exists(uploadFolder))
                 {
                     Directory.CreateDirectory(uploadFolder);
@@ -128,7 +128,7 @@ namespace Zentech.Controllers
                     await file.CopyToAsync(stream);
                 }
 
-                var photoUrl = $"/uploads/{fileName}";
+                var photoUrl = $"/uploads/Solutions/{fileName}";
 
                 _solutionService.AddPhotoToSolution(solutionId, photoUrl);
 
@@ -193,7 +193,7 @@ namespace Zentech.Controllers
                 _solutionService.DeletePhotoFromSolution(photoUrl);
 
                 // Ensure the photoUrl is a relative path starting with "/uploads/"
-                var relativePath = photoUrl.StartsWith("/uploads/") ? photoUrl : $"/uploads/{Path.GetFileName(photoUrl)}";
+                var relativePath = photoUrl.StartsWith("/uploads/Solutions/") ? photoUrl : $"/uploads/Solutions/{Path.GetFileName(photoUrl)}";
 
                 // Get the physical path of the photo
                 var photoPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", relativePath.TrimStart('/').Replace("/", Path.DirectorySeparatorChar.ToString()));

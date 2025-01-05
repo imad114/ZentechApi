@@ -142,7 +142,7 @@ namespace Zentech.Controllers
 
 
 
-        [HttpPost("{newsId}/upload-photo1")]
+        [HttpPost("{newsId}/upload-photoNews")]
         [SwaggerOperation(Summary = "Upload a photo for a news", Description = "Allows uploading a photo for a specific news.")]
         [SwaggerResponse(StatusCodes.Status201Created, "Photo uploaded successfully", typeof(object))]
         [SwaggerResponse(StatusCodes.Status400BadRequest, "Invalid file upload", typeof(object))]
@@ -185,7 +185,7 @@ namespace Zentech.Controllers
                     await file.CopyToAsync(stream);
                 }
 
-                var photoUrl = $"/uploads/{fileName}";
+                var photoUrl = $"/uploads/News/{fileName}";
                 _newsService.AddPhotoToNews(newsId, photoUrl);
 
                 return CreatedAtAction("AddPhotoToNews", new { newsId, photoUrl }, new { Message = "Photo uploaded successfully.", Url = photoUrl });
@@ -209,15 +209,37 @@ namespace Zentech.Controllers
         /// <returns>OK response if the photo was deleted successfully.</returns>
         [Authorize(Roles = "Admin")]
         [HttpDelete("photos")]
-        public IActionResult DeletePhotoFromNews([FromBody] string photoUrl)
+        public IActionResult DeletePhotoFromProduct([FromBody] string photoUrl)
         {
             if (string.IsNullOrEmpty(photoUrl))
             {
                 return BadRequest(new { Message = "Invalid photo URL." });
             }
 
-            _newsService.DeletePhotoFromNews(photoUrl);
-            return Ok(new { Message = "Photo deleted successfully." });
+            try
+            {
+                // Delete the photo from the database
+                _newsService.DeletePhotoFromNews(photoUrl);
+
+                // Ensure the photoUrl is a relative path starting with "/uploads/"
+                var relativePath = photoUrl.StartsWith("/uploads/News/") ? photoUrl : $"/uploads/News/{Path.GetFileName(photoUrl)}";
+
+                // Get the physical path of the photo
+                var photoPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", relativePath.TrimStart('/').Replace("/", Path.DirectorySeparatorChar.ToString()));
+
+                // Check if the file exists and delete it
+                if (System.IO.File.Exists(photoPath))
+                {
+                    System.IO.File.Delete(photoPath);
+                }
+
+                return Ok(new { Message = "Photo deleted successfully." });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = $"Error deleting photo: {ex.Message}" });
+            }
         }
+
     }
 }

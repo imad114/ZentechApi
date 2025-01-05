@@ -111,12 +111,12 @@ namespace Zentech.Controllers
         /// </summary>
         /// <param name="productId">The ID of the product to associate the photo with.</param>
         /// <param name="file">The photo file to upload.</param>
-        [HttpPost("{productId}/upload-photo")]
+        [HttpPost("{productId}/upload-photoProduct")]
         [SwaggerOperation(Summary = "Upload a photo for a product", Description = "Allows uploading a photo for a specific product.")]
         [SwaggerResponse(StatusCodes.Status201Created, "Photo uploaded successfully", typeof(object))]
         [SwaggerResponse(StatusCodes.Status400BadRequest, "Invalid file upload", typeof(object))]
         [SwaggerResponse(StatusCodes.Status500InternalServerError, "An error occurred while uploading the photo", typeof(object))]
-       // [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UploadPhotoToProduct(int productId, IFormFile file)
         {
             try
@@ -146,7 +146,7 @@ namespace Zentech.Controllers
                     Directory.CreateDirectory(uploadFolder);
                 }
 
-                var fileName = $"{productId}_{DateTime.Now.Date}_{Guid.NewGuid()}_{file.FileName}";
+                var fileName = $"{Guid.NewGuid()}_{file.FileName}";
                 var filePath = Path.Combine(uploadFolder, fileName);
 
                 using (var stream = new FileStream(filePath, FileMode.Create))
@@ -154,8 +154,7 @@ namespace Zentech.Controllers
                     await file.CopyToAsync(stream);
                 }
 
-                var photoUrl = $"/uploads/{fileName}";
-
+                var photoUrl = $"/uploads/Products/{fileName}";
                 _productService.AddPhotoToProduct(productId, photoUrl);
 
                 return CreatedAtAction("UploadPhotoToProduct", new { productId, photoUrl }, new { Message = "Photo uploaded successfully.", Url = photoUrl });
@@ -166,6 +165,7 @@ namespace Zentech.Controllers
                 return StatusCode(500, new { Message = "An error occurred while uploading the photo.", Error = ex.Message });
             }
         }
+
 
 
         /// <summary>
@@ -188,7 +188,7 @@ namespace Zentech.Controllers
                 _productService.DeletePhotoFromProduct(photoUrl);
 
                 // Ensure the photoUrl is a relative path starting with "/uploads/"
-                var relativePath = photoUrl.StartsWith("/uploads/") ? photoUrl : $"/uploads/{Path.GetFileName(photoUrl)}";
+                var relativePath = photoUrl.StartsWith("/uploads/Products/") ? photoUrl : $"/uploads/Products/{Path.GetFileName(photoUrl)}";
 
                 // Get the physical path of the photo
                 var photoPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", relativePath.TrimStart('/').Replace("/", Path.DirectorySeparatorChar.ToString()));
