@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "xCkbRMHeF0Mn2488s7sNlUnh8pL0ndTtY9+2mEEJh3o=",
+  "Hash": "j1VnI3P4nUCVmaHMuXYt1oBqCOJRF1x/U40iAGiCBSw=",
   "Source": "ZentechAPI",
   "BasePath": "_content/ZentechAPI",
   "Mode": "Default",
@@ -416,6 +416,27 @@
       "OriginalItemSpec": "wwwroot\\uploads\\b520692a-c27c-4564-9ccb-d9dd70612d6e_serie-eg.png"
     },
     {
+      "Identity": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\ba190674-1220-41bd-9c5b-fc8ea992ae44_slide home.png",
+      "SourceId": "ZentechAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\",
+      "BasePath": "_content/ZentechAPI",
+      "RelativePath": "uploads/ba190674-1220-41bd-9c5b-fc8ea992ae44_slide home#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "d48e3hgbqh",
+      "Integrity": "nad3F8xn4mVErRr2Opx/iQmvWZcKiCIrYTtyQo6AjH4=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\ba190674-1220-41bd-9c5b-fc8ea992ae44_slide home.png"
+    },
+    {
       "Identity": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\c2f28b98-28cd-4b2b-837b-2d7569a66da2_serie-fmf.png",
       "SourceId": "ZentechAPI",
       "SourceType": "Discovered",
@@ -458,6 +479,27 @@
       "OriginalItemSpec": "wwwroot\\uploads\\cadeeead-7770-401b-8a34-e8b86c8b3e6c_serie-fmf.png"
     },
     {
+      "Identity": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\cff05ebf-7874-4ead-b80e-456f33884cea_serie-fmx-1.png",
+      "SourceId": "ZentechAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\",
+      "BasePath": "_content/ZentechAPI",
+      "RelativePath": "uploads/cff05ebf-7874-4ead-b80e-456f33884cea_serie-fmx-1#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "ml5ia8p4rh",
+      "Integrity": "Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\cff05ebf-7874-4ead-b80e-456f33884cea_serie-fmx-1.png"
+    },
+    {
       "Identity": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\d929cee9-7ee9-4225-aeea-b62096edd279_serie-fmf.png",
       "SourceId": "ZentechAPI",
       "SourceType": "Discovered",
@@ -498,6 +540,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\da5c9976-1c76-456f-a497-2227d135eec0_serie-eg.png"
+    },
+    {
+      "Identity": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\e02ae302-64a4-49c0-a7a1-d670ba8c09c1_SCHROFF-3D-N00862-LiquidCoolingSystem-EN-2-1-1.jpg",
+      "SourceId": "ZentechAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\",
+      "BasePath": "_content/ZentechAPI",
+      "RelativePath": "uploads/e02ae302-64a4-49c0-a7a1-d670ba8c09c1_SCHROFF-3D-N00862-LiquidCoolingSystem-EN-2-1-1#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "7dsg17d0ay",
+      "Integrity": "m+AFBLWQzOQ1mepCfFViVX28R5WNagErGKh9YHzJ0SA=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\e02ae302-64a4-49c0-a7a1-d670ba8c09c1_SCHROFF-3D-N00862-LiquidCoolingSystem-EN-2-1-1.jpg"
     },
     {
       "Identity": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\e13c129f-a9b2-4770-b6d0-bda2583f31df_serie-fmx-1.png",
@@ -2123,6 +2186,88 @@
       ]
     },
     {
+      "Route": "uploads/ba190674-1220-41bd-9c5b-fc8ea992ae44_slide home.d48e3hgbqh.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\ba190674-1220-41bd-9c5b-fc8ea992ae44_slide home.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "696984"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"nad3F8xn4mVErRr2Opx/iQmvWZcKiCIrYTtyQo6AjH4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 29 Dec 2024 14:44:58 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "d48e3hgbqh"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/ba190674-1220-41bd-9c5b-fc8ea992ae44_slide home.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-nad3F8xn4mVErRr2Opx/iQmvWZcKiCIrYTtyQo6AjH4="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/ba190674-1220-41bd-9c5b-fc8ea992ae44_slide home.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\ba190674-1220-41bd-9c5b-fc8ea992ae44_slide home.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "696984"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"nad3F8xn4mVErRr2Opx/iQmvWZcKiCIrYTtyQo6AjH4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 29 Dec 2024 14:44:58 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-nad3F8xn4mVErRr2Opx/iQmvWZcKiCIrYTtyQo6AjH4="
+        }
+      ]
+    },
+    {
       "Route": "uploads/c2f28b98-28cd-4b2b-837b-2d7569a66da2_serie-fmf.bi0u16rw25.png",
       "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\c2f28b98-28cd-4b2b-837b-2d7569a66da2_serie-fmf.png",
       "Selectors": [],
@@ -2287,6 +2432,88 @@
       ]
     },
     {
+      "Route": "uploads/cff05ebf-7874-4ead-b80e-456f33884cea_serie-fmx-1.ml5ia8p4rh.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\cff05ebf-7874-4ead-b80e-456f33884cea_serie-fmx-1.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "575819"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 19 Dec 2024 13:31:32 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ml5ia8p4rh"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/cff05ebf-7874-4ead-b80e-456f33884cea_serie-fmx-1.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/cff05ebf-7874-4ead-b80e-456f33884cea_serie-fmx-1.png",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\cff05ebf-7874-4ead-b80e-456f33884cea_serie-fmx-1.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "575819"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 19 Dec 2024 13:31:32 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs="
+        }
+      ]
+    },
+    {
       "Route": "uploads/d929cee9-7ee9-4225-aeea-b62096edd279_serie-fmf.bi0u16rw25.png",
       "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\d929cee9-7ee9-4225-aeea-b62096edd279_serie-fmf.png",
       "Selectors": [],
@@ -2447,6 +2674,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-3edgvQw/OJPWhRqBdvJUL2G6y8nPy90zFxgQn5V3FhM="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/e02ae302-64a4-49c0-a7a1-d670ba8c09c1_SCHROFF-3D-N00862-LiquidCoolingSystem-EN-2-1-1.7dsg17d0ay.jpg",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\e02ae302-64a4-49c0-a7a1-d670ba8c09c1_SCHROFF-3D-N00862-LiquidCoolingSystem-EN-2-1-1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "325407"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"m+AFBLWQzOQ1mepCfFViVX28R5WNagErGKh9YHzJ0SA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 28 Dec 2024 09:55:52 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "7dsg17d0ay"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/e02ae302-64a4-49c0-a7a1-d670ba8c09c1_SCHROFF-3D-N00862-LiquidCoolingSystem-EN-2-1-1.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-m+AFBLWQzOQ1mepCfFViVX28R5WNagErGKh9YHzJ0SA="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/e02ae302-64a4-49c0-a7a1-d670ba8c09c1_SCHROFF-3D-N00862-LiquidCoolingSystem-EN-2-1-1.jpg",
+      "AssetFile": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\wwwroot\\uploads\\e02ae302-64a4-49c0-a7a1-d670ba8c09c1_SCHROFF-3D-N00862-LiquidCoolingSystem-EN-2-1-1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "325407"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"m+AFBLWQzOQ1mepCfFViVX28R5WNagErGKh9YHzJ0SA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 28 Dec 2024 09:55:52 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-m+AFBLWQzOQ1mepCfFViVX28R5WNagErGKh9YHzJ0SA="
         }
       ]
     },

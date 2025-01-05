@@ -172,7 +172,6 @@ namespace Zentech.Controllers
         /// Delete a photo from a product using its URL.
         /// </summary>
         /// <param name="photoUrl">The URL of the photo to delete.</param>
-        // Delete a photo from a product
         [Authorize(Roles = "Admin")]
         [HttpDelete("photos")]
         [SwaggerOperation(Summary = "Delete a photo from a product", Description = "Deletes a specific photo by its URL.")]
@@ -183,10 +182,32 @@ namespace Zentech.Controllers
                 return BadRequest(new { Message = "Invalid photo URL." });
             }
 
-            _productService.DeletePhotoFromProduct(photoUrl);
-            return Ok(new { Message = "Photo deleted successfully." });
+            try
+            {
+                // Delete the photo from the database
+                _productService.DeletePhotoFromProduct(photoUrl);
+
+                // Ensure the photoUrl is a relative path starting with "/uploads/"
+                var relativePath = photoUrl.StartsWith("/uploads/") ? photoUrl : $"/uploads/{Path.GetFileName(photoUrl)}";
+
+                // Get the physical path of the photo
+                var photoPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", relativePath.TrimStart('/').Replace("/", Path.DirectorySeparatorChar.ToString()));
+
+                // Check if the file exists and delete it
+                if (System.IO.File.Exists(photoPath))
+                {
+                    System.IO.File.Delete(photoPath);
+                }
+
+                return Ok(new { Message = "Photo deleted successfully." });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = $"Error deleting photo: {ex.Message}" });
+            }
         }
 
-    
+
+
     }
 }

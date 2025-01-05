@@ -4,6 +4,7 @@ using Zentech.Services;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.FileProviders;
+using ZentechAPI.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 // Configurer les logs (niveau 'Information' ou 'Debug' pour voir les détails)
@@ -106,6 +107,12 @@ builder.Services.AddScoped<NewsService>();
 //Category 
 builder.Services.AddScoped<CategoryRepository>();
 builder.Services.AddScoped<CategoryService>();
+//Solutions 
+builder.Services.AddScoped<SolutionRepository>();
+builder.Services.AddScoped<SolutionService>();
+//CompanyInformation 
+builder.Services.AddScoped<CompanyInformationRepository>();
+builder.Services.AddScoped<CompanyInformationService>();
 
 //......................................................................
 builder.Services.Configure<IISServerOptions>(options =>

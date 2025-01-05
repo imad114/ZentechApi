@@ -99,6 +99,135 @@
             <param name="photoUrl">The URL of the photo to delete.</param>
             <returns>OK response if the photo was deleted successfully.</returns>
         </member>
+        <member name="M:Zentech.Controllers.ProductsController.GetAllProducts">
+            <summary>
+            Retrieve all products.
+            </summary>
+            <remarks>
+            Fetches a list of all available products in the system.
+            </remarks>
+        </member>
+        <member name="M:Zentech.Controllers.ProductsController.GetProductById(System.Int32)">
+            <summary>
+            Retrieve a specific product by its ID.
+            </summary>
+            <param name="id">The unique identifier of the product.</param>
+        </member>
+        <member name="M:Zentech.Controllers.ProductsController.AddProduct(ZentechAPI.Dto.ProductDto)">
+            <summary>
+            Add a new product to the system.
+            </summary>
+            <param name="product">The product information to add.</param>
+        </member>
+        <member name="M:Zentech.Controllers.ProductsController.UpdateProduct(System.Int32,ZentechAPI.Dto.ProductDto)">
+            <summary>
+            Update an existing product's information.
+            </summary>
+            <param name="id">The ID of the product to update.</param>
+            <param name="product">The updated product information.</param>
+        </member>
+        <member name="M:Zentech.Controllers.ProductsController.DeleteProduct(System.Int32)">
+            <summary>
+            Delete a product by its ID.
+            </summary>
+            <param name="id">The ID of the product to delete.</param>
+        </member>
+        <member name="M:Zentech.Controllers.ProductsController.UploadPhotoToProduct(System.Int32,Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            Upload a photo for a specific product.
+            </summary>
+            <param name="productId">The ID of the product to associate the photo with.</param>
+            <param name="file">The photo file to upload.</param>
+        </member>
+        <member name="M:Zentech.Controllers.ProductsController.DeletePhotoFromProduct(System.String)">
+            <summary>
+            Delete a photo from a product using its URL.
+            </summary>
+            <param name="photoUrl">The URL of the photo to delete.</param>
+        </member>
+        <member name="M:Zentech.Controllers.SolutionsController.GetAllSolutions">
+            <summary>
+            Retrieve all solutions.
+            </summary>
+        </member>
+        <member name="M:Zentech.Controllers.SolutionsController.UploadPhotoToSolution(System.Int32,Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            Upload a photo for a specific solution.
+            </summary>
+            <param name="solutionId">The ID of the solution to associate the photo with.</param>
+            <param name="file">The photo file to upload.</param>
+        </member>
+        <member name="M:Zentech.Controllers.SolutionsController.UpdateSolution(System.Int32,ZentechAPI.Dto.SolutionDto)">
+            <summary>
+            Updates an existing solution.
+            </summary>
+            <param name="solutionDto">The solution data to update.</param>
+            <returns>HTTP response indicating success or failure.</returns>
+        </member>
+        <member name="M:Zentech.Controllers.SolutionsController.DeletePhotoFromProduct(System.String)">
+            <summary>
+            Delete a photo from a product using its URL.
+            </summary>
+            <param name="photoUrl">The URL of the photo to delete.</param>
+        </member>
+        <member name="M:Zentech.Controllers.SolutionsController.DeleteSolution(System.Int32)">
+            <summary>
+            Delete a solution by its ID.
+            </summary>
+        </member>
+        <member name="M:Zentech.Services.CompanyInformationService.GetAllCompaniesAsync">
+            <summary>
+            Retrieve all company information.
+            </summary>
+        </member>
+        <member name="M:Zentech.Services.CompanyInformationService.GetCompanyByIdAsync(System.Int32)">
+            <summary>
+            Retrieve a company by its ID.
+            </summary>
+        </member>
+        <member name="M:Zentech.Services.CompanyInformationService.AddCompanyAsync(ZentechAPI.Models.CompanyInformation)">
+            <summary>
+            Add a new company information.
+            </summary>
+        </member>
+        <member name="M:Zentech.Services.CompanyInformationService.UpdateCompanyAsync(ZentechAPI.Models.CompanyInformation)">
+            <summary>
+            Update an existing company information.
+            </summary>
+        </member>
+        <member name="M:ZentechAPI.Controllers.CompanyInformationController.GetAllCompanies">
+            <summary>
+            Get all company information.
+            </summary>
+            <response code="200">Returns the list of all companies</response>
+            <response code="404">No companies found</response>
+        </member>
+        <member name="M:ZentechAPI.Controllers.CompanyInformationController.GetCompanyById(System.Int32)">
+            <summary>
+            Get company information by ID.
+            </summary>
+            <param name="id">ID of the company</param>
+            <response code="200">Returns the company with the specified ID</response>
+            <response code="404">Company not found</response>
+        </member>
+        <member name="M:ZentechAPI.Controllers.CompanyInformationController.AddCompany(ZentechAPI.Models.CompanyInformation)">
+            <summary>
+            Add a new company information.
+            </summary>
+            <param name="company">The company to add</param>
+            <response code="201">Company successfully created</response>
+            <response code="400">Invalid company data</response>
+        </member>
+        <member name="M:ZentechAPI.Controllers.CompanyInformationController.UpdateCompany(System.Int32,ZentechAPI.Models.CompanyInformation)">
+            <summary>
+            Update existing company information.
+            </summary>
+            <param name="id">ID of the company</param>
+            <param name="company">The company data to update</param>
+            <response code="204">Company successfully updated</response>
+            <response code="400">Invalid company data</response>
+            <response code="404">Company not found</response>
+        </member>
         <member name="M:ContactController.GetAllContacts">
             <summary>
             Retrieve all contact requests.

@@ -1561,6 +1561,88 @@
       ]
     },
     {
+      "Route": "uploads/ba190674-1220-41bd-9c5b-fc8ea992ae44_slide home.d48e3hgbqh.png",
+      "AssetFile": "uploads/ba190674-1220-41bd-9c5b-fc8ea992ae44_slide home.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "696984"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"nad3F8xn4mVErRr2Opx/iQmvWZcKiCIrYTtyQo6AjH4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 29 Dec 2024 14:44:58 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "d48e3hgbqh"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-nad3F8xn4mVErRr2Opx/iQmvWZcKiCIrYTtyQo6AjH4="
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/ba190674-1220-41bd-9c5b-fc8ea992ae44_slide home.png"
+        }
+      ]
+    },
+    {
+      "Route": "uploads/ba190674-1220-41bd-9c5b-fc8ea992ae44_slide home.png",
+      "AssetFile": "uploads/ba190674-1220-41bd-9c5b-fc8ea992ae44_slide home.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "696984"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"nad3F8xn4mVErRr2Opx/iQmvWZcKiCIrYTtyQo6AjH4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 29 Dec 2024 14:44:58 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-nad3F8xn4mVErRr2Opx/iQmvWZcKiCIrYTtyQo6AjH4="
+        }
+      ]
+    },
+    {
       "Route": "uploads/c2f28b98-28cd-4b2b-837b-2d7569a66da2_serie-fmf.bi0u16rw25.png",
       "AssetFile": "uploads/c2f28b98-28cd-4b2b-837b-2d7569a66da2_serie-fmf.png",
       "Selectors": [],
@@ -1725,6 +1807,88 @@
       ]
     },
     {
+      "Route": "uploads/cff05ebf-7874-4ead-b80e-456f33884cea_serie-fmx-1.ml5ia8p4rh.png",
+      "AssetFile": "uploads/cff05ebf-7874-4ead-b80e-456f33884cea_serie-fmx-1.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "575819"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 19 Dec 2024 13:31:32 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ml5ia8p4rh"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs="
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/cff05ebf-7874-4ead-b80e-456f33884cea_serie-fmx-1.png"
+        }
+      ]
+    },
+    {
+      "Route": "uploads/cff05ebf-7874-4ead-b80e-456f33884cea_serie-fmx-1.png",
+      "AssetFile": "uploads/cff05ebf-7874-4ead-b80e-456f33884cea_serie-fmx-1.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "575819"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 19 Dec 2024 13:31:32 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Jhnt4LzrgVG7Ml5CRe3JAieEkn0EkyPOeak14XJtvVs="
+        }
+      ]
+    },
+    {
       "Route": "uploads/d929cee9-7ee9-4225-aeea-b62096edd279_serie-fmf.bi0u16rw25.png",
       "AssetFile": "uploads/d929cee9-7ee9-4225-aeea-b62096edd279_serie-fmf.png",
       "Selectors": [],
@@ -1885,6 +2049,88 @@
         {
           "Name": "label",
           "Value": "uploads/da5c9976-1c76-456f-a497-2227d135eec0_serie-eg.png"
+        }
+      ]
+    },
+    {
+      "Route": "uploads/e02ae302-64a4-49c0-a7a1-d670ba8c09c1_SCHROFF-3D-N00862-LiquidCoolingSystem-EN-2-1-1.7dsg17d0ay.jpg",
+      "AssetFile": "uploads/e02ae302-64a4-49c0-a7a1-d670ba8c09c1_SCHROFF-3D-N00862-LiquidCoolingSystem-EN-2-1-1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "325407"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"m+AFBLWQzOQ1mepCfFViVX28R5WNagErGKh9YHzJ0SA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 28 Dec 2024 09:55:52 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "7dsg17d0ay"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-m+AFBLWQzOQ1mepCfFViVX28R5WNagErGKh9YHzJ0SA="
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/e02ae302-64a4-49c0-a7a1-d670ba8c09c1_SCHROFF-3D-N00862-LiquidCoolingSystem-EN-2-1-1.jpg"
+        }
+      ]
+    },
+    {
+      "Route": "uploads/e02ae302-64a4-49c0-a7a1-d670ba8c09c1_SCHROFF-3D-N00862-LiquidCoolingSystem-EN-2-1-1.jpg",
+      "AssetFile": "uploads/e02ae302-64a4-49c0-a7a1-d670ba8c09c1_SCHROFF-3D-N00862-LiquidCoolingSystem-EN-2-1-1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "325407"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"m+AFBLWQzOQ1mepCfFViVX28R5WNagErGKh9YHzJ0SA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 28 Dec 2024 09:55:52 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-m+AFBLWQzOQ1mepCfFViVX28R5WNagErGKh9YHzJ0SA="
         }
       ]
     },

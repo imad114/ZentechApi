@@ -12,6 +12,7 @@ namespace Zentech.Models
         public string Message { get; set; }
         public DateTime? CreatedAt { get; set; }
         public string Country { get; set; }
+        public string? Role { get; set; }
 
     }
 }

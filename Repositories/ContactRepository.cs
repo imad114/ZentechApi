@@ -34,7 +34,8 @@ public class ContactRepository
                         PhoneNumbre = reader.GetString("PhoneNumbre"),
                         Message = reader.GetString("Message"),
                         CreatedAt = reader.GetDateTime("CreatedAt"),
-                        Country = reader.GetString("Country")
+                        Country = reader.GetString("Country"),
+                        Role = reader.IsDBNull(reader.GetOrdinal("Role")) ? null : reader.GetString("Role")
 
                     });
                 }
@@ -66,7 +67,8 @@ public class ContactRepository
                             PhoneNumbre = reader.GetString("PhoneNumbre"),
                             Message = reader.GetString("Message"),
                             CreatedAt = reader.GetDateTime("CreatedAt"),
-                            Country = reader.GetString("Country")
+                            Country = reader.GetString("Country"),
+                            Role = reader.IsDBNull(reader.GetOrdinal("Role")) ? null : reader.GetString("Role")
                         };
                     }
                 }
@@ -104,7 +106,7 @@ public class ContactRepository
         using (var connection = _context.GetConnection())
         {
             await connection.OpenAsync();
-            var query = "INSERT INTO ContactMessages (FirstName,LastName,Email,PhoneNumbre,Message,Country) VALUES (@FirstName,@LastName,@Email,@PhoneNumbre,@Message,@Country)";
+            var query = "INSERT INTO ContactMessages (FirstName,LastName,Email,PhoneNumbre,Message,Country,Role) VALUES (@FirstName,@LastName,@Email,@PhoneNumbre,@Message,@Country,@Role)";
             using (var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@FirstName", contactMessage.FirstName);
@@ -112,7 +114,8 @@ public class ContactRepository
                 command.Parameters.AddWithValue("@Email", contactMessage.Email);
                 command.Parameters.AddWithValue("@PhoneNumbre", contactMessage.PhoneNumbre);
                 command.Parameters.AddWithValue("@Message", contactMessage.Message);
-                command.Parameters.AddWithValue("@Country", contactMessage.Country);
+                command.Parameters.AddWithValue("@Country", contactMessage ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@Role", contactMessage.Role ?? (object)DBNull.Value);
                 await command.ExecuteNonQueryAsync();
                 contactMessage.ContactID = (int)command.LastInsertedId;
             }

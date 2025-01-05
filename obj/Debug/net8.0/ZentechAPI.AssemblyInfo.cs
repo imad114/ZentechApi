@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ZentechAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cf45e4b0366b6e9d1c4c4b272168c0a8fd1ac24e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ddb7cac6d4e75bf105701f7a48ce8f3a6ce70263")]
 [assembly: System.Reflection.AssemblyProductAttribute("ZentechAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ZentechAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

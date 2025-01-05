@@ -79,6 +79,69 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ZentechAPI.Controllers.CompanyInformationController",
+    "Method": "GetAllCompanies",
+    "RelativePath": "api/CompanyInformation",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ZentechAPI.Controllers.CompanyInformationController",
+    "Method": "AddCompany",
+    "RelativePath": "api/CompanyInformation",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "company",
+        "Type": "ZentechAPI.Models.CompanyInformation",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ZentechAPI.Controllers.CompanyInformationController",
+    "Method": "GetCompanyById",
+    "RelativePath": "api/CompanyInformation/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ZentechAPI.Controllers.CompanyInformationController",
+    "Method": "UpdateCompany",
+    "RelativePath": "api/CompanyInformation/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "company",
+        "Type": "ZentechAPI.Models.CompanyInformation",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ContactController",
     "Method": "GetAllContacts",
     "RelativePath": "api/Contact",
@@ -433,6 +496,166 @@
     "ContainingType": "Zentech.Controllers.ProductsController",
     "Method": "DeletePhotoFromProduct",
     "RelativePath": "api/Products/photos",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "photoUrl",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Zentech.Controllers.SolutionsController",
+    "Method": "GetAllSolutions",
+    "RelativePath": "api/Solutions",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Zentech.Controllers.SolutionsController",
+    "Method": "UpdateSolution",
+    "RelativePath": "api/Solutions/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "solutionDto",
+        "Type": "ZentechAPI.Dto.SolutionDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Zentech.Controllers.SolutionsController",
+    "Method": "DeleteSolution",
+    "RelativePath": "api/Solutions/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Zentech.Controllers.SolutionsController",
+    "Method": "UploadPhotoToSolution",
+    "RelativePath": "api/Solutions/{solutionId}/upload-photo",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "solutionId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "file",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Object",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 201
+      },
+      {
+        "Type": "System.Object",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "System.Object",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 500
+      }
+    ]
+  },
+  {
+    "ContainingType": "Zentech.Controllers.SolutionsController",
+    "Method": "AddProductsToSolution",
+    "RelativePath": "api/Solutions/AddProductsToSolution",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "ZentechAPI.Dto.AddProductsToSolutionDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Zentech.Controllers.SolutionsController",
+    "Method": "AddSolution",
+    "RelativePath": "api/Solutions/AddSolution",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "solutionDto",
+        "Type": "ZentechAPI.Dto.SolutionDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Zentech.Controllers.SolutionsController",
+    "Method": "GetSolutionById",
+    "RelativePath": "api/Solutions/GetSolutionById/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Zentech.Controllers.SolutionsController",
+    "Method": "DeletePhotoFromProduct",
+    "RelativePath": "api/Solutions/photos",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,

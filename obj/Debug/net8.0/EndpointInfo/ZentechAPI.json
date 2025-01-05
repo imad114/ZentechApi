@@ -141,6 +141,139 @@
         }
       }
     },
+    "/api/CompanyInformation": {
+      "get": {
+        "tags": [
+          "CompanyInformation"
+        ],
+        "summary": "Get all company information.",
+        "responses": {
+          "200": {
+            "description": "Returns the list of all companies"
+          },
+          "404": {
+            "description": "No companies found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "CompanyInformation"
+        ],
+        "summary": "Add a new company information.",
+        "requestBody": {
+          "description": "The company to add",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CompanyInformation"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CompanyInformation"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CompanyInformation"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Company successfully created"
+          },
+          "400": {
+            "description": "Invalid company data"
+          }
+        }
+      }
+    },
+    "/api/CompanyInformation/{id}": {
+      "get": {
+        "tags": [
+          "CompanyInformation"
+        ],
+        "summary": "Get company information by ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the company",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the company with the specified ID"
+          },
+          "404": {
+            "description": "Company not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "CompanyInformation"
+        ],
+        "summary": "Update existing company information.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the company",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The company data to update",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CompanyInformation"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CompanyInformation"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CompanyInformation"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "Company successfully updated"
+          },
+          "400": {
+            "description": "Invalid company data"
+          },
+          "404": {
+            "description": "Company not found"
+          }
+        }
+      }
+    },
     "/api/Contact": {
       "get": {
         "tags": [
@@ -533,6 +666,8 @@
         "tags": [
           "Products"
         ],
+        "summary": "Retrieve all products.",
+        "description": "Fetches a list of all available products in the system.",
         "responses": {
           "200": {
             "description": "OK"
@@ -543,7 +678,9 @@
         "tags": [
           "Products"
         ],
+        "summary": "Add a new product to the system.",
         "requestBody": {
+          "description": "The product information to add.",
           "content": {
             "application/json": {
               "schema": {
@@ -574,10 +711,12 @@
         "tags": [
           "Products"
         ],
+        "summary": "Retrieve a specific product by its ID.",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "The unique identifier of the product.",
             "required": true,
             "schema": {
               "type": "integer",
@@ -595,10 +734,12 @@
         "tags": [
           "Products"
         ],
+        "summary": "Update an existing product's information.",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "The ID of the product to update.",
             "required": true,
             "schema": {
               "type": "integer",
@@ -607,6 +748,7 @@
           }
         ],
         "requestBody": {
+          "description": "The updated product information.",
           "content": {
             "application/json": {
               "schema": {
@@ -635,10 +777,12 @@
         "tags": [
           "Products"
         ],
+        "summary": "Delete a product by its ID.",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "The ID of the product to delete.",
             "required": true,
             "schema": {
               "type": "integer",
@@ -658,10 +802,12 @@
         "tags": [
           "Products"
         ],
+        "summary": "Upload a photo for a specific product.",
         "parameters": [
           {
             "name": "productId",
             "in": "path",
+            "description": "The ID of the product to associate the photo with.",
             "required": true,
             "schema": {
               "type": "integer",
@@ -741,7 +887,291 @@
         "tags": [
           "Products"
         ],
+        "summary": "Delete a photo from a product using its URL.",
         "requestBody": {
+          "description": "The URL of the photo to delete.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Solutions": {
+      "get": {
+        "tags": [
+          "Solutions"
+        ],
+        "summary": "Retrieve all solutions.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Solutions/GetSolutionById/{id}": {
+      "get": {
+        "tags": [
+          "Solutions"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Solutions/AddSolution": {
+      "post": {
+        "tags": [
+          "Solutions"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SolutionDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SolutionDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SolutionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Solutions/AddProductsToSolution": {
+      "post": {
+        "tags": [
+          "Solutions"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddProductsToSolutionDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddProductsToSolutionDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddProductsToSolutionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Solutions/{solutionId}/upload-photo": {
+      "post": {
+        "tags": [
+          "Solutions"
+        ],
+        "summary": "Upload a photo for a specific solution.",
+        "parameters": [
+          {
+            "name": "solutionId",
+            "in": "path",
+            "description": "The ID of the solution to associate the photo with.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "description": "Upload file",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "file": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "text/plain": {
+                "schema": { }
+              },
+              "application/json": {
+                "schema": { }
+              },
+              "text/json": {
+                "schema": { }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": { }
+              },
+              "application/json": {
+                "schema": { }
+              },
+              "text/json": {
+                "schema": { }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "text/plain": {
+                "schema": { }
+              },
+              "application/json": {
+                "schema": { }
+              },
+              "text/json": {
+                "schema": { }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Solutions/{id}": {
+      "put": {
+        "tags": [
+          "Solutions"
+        ],
+        "summary": "Updates an existing solution.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The solution data to update.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SolutionDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SolutionDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SolutionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Solutions"
+        ],
+        "summary": "Delete a solution by its ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Solutions/photos": {
+      "delete": {
+        "tags": [
+          "Solutions"
+        ],
+        "summary": "Delete a photo from a product using its URL.",
+        "requestBody": {
+          "description": "The URL of the photo to delete.",
           "content": {
             "application/json": {
               "schema": {
@@ -995,6 +1425,24 @@
   },
   "components": {
     "schemas": {
+      "AddProductsToSolutionDto": {
+        "type": "object",
+        "properties": {
+          "solutionID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "productIDs": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "Category": {
         "type": "object",
         "properties": {
@@ -1027,6 +1475,92 @@
           "updatedBy": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CompanyInformation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "companyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyLogoUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "postalCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          },
+          "contactPersonName": {
+            "type": "string",
+            "nullable": true
+          },
+          "contactPersonPosition": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "faxNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessLicenseCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "facebookUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "twitterUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "linkedInUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "instagramUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "youtubeUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "additionalProperties": false
@@ -1064,6 +1598,10 @@
             "nullable": true
           },
           "country": {
+            "type": "string",
+            "nullable": true
+          },
+          "role": {
             "type": "string",
             "nullable": true
           }
@@ -1129,6 +1667,13 @@
             "type": "integer",
             "format": "int32"
           },
+          "photos": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
           "specifications": {
             "type": "array",
             "items": {
@@ -1155,6 +1700,24 @@
             "items": {
               "$ref": "#/components/schemas/User"
             },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SolutionDto": {
+        "type": "object",
+        "properties": {
+          "solutionID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
             "nullable": true
           }
         },
