@@ -77,7 +77,7 @@ namespace Zentech.Services
         }
 
 
-        // Supprimer une solution
+        // Delete Solutions 
         public async Task DeleteSolutionAsync(int solutionId)
         {
             await Task.Run(() => _repository.DeleteSolution(solutionId));

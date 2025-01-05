@@ -94,7 +94,7 @@ namespace Zentech.Repositories
         }
 
 
-        // Method to add a new product
+        // Method to add a new product s
         public int AddProduct(ProductDto product, string createdBy)
         {
             using (var connection = _context.GetConnection())

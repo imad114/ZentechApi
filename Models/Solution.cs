@@ -10,7 +10,7 @@
         public string? CreatedBy { get; set; }
         public string? UpdatedBy { get; set; }
 
-        public List<string> Photos { get; set; }  // Lien vers les photos associées
+        public List<string> Photos { get; set; } 
         public List<SolutionProduct> SolutionProducts { get; set; }  // Lien vers les produits d'application
     }
 }

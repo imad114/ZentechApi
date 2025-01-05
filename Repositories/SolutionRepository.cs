@@ -257,7 +257,7 @@ namespace Zentech.Repositories
                 insertCommand.ExecuteNonQuery();
             }
         }
-        // Method to delete a photo associated with Solution 
+        // Method to delete a photo associated with Solution s  
         public void DeletePhoto(string photoUrl)
         {
             using (var connection = _context.GetConnection())

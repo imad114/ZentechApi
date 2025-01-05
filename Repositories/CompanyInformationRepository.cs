@@ -59,7 +59,7 @@ namespace ZentechAPI.Repositories
             return company;
         }
 
-        // Method to Insert a New Company
+        // Method to Insert a New Company InformationsS
         public void Add(CompanyInformation company )
         {
             using (var connection = _context.GetConnection())

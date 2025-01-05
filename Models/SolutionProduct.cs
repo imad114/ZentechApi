@@ -8,7 +8,7 @@ namespace ZentechAPI.Models
         public int SolutionID { get; set; }  // Clé étrangère vers Solution
         public int ProductID { get; set; }  // Clé étrangère vers Product
 
-        public Solution Solution { get; set; }  // Relation avec Solution
+        public Solution Solution { get; set; }  
         public ProductDto Product { get; set; }  // Relation avec Product
     }
 }

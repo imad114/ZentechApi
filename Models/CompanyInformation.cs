@@ -12,7 +12,7 @@
         public string ContactPersonName { get; set; }       // Nom de la personne de contact
         public string ContactPersonPosition { get; set; }   // Poste de la personne de contact
         public string PhoneNumber { get; set; }             // Numéro de téléphone mobile
-        public string FaxNumber { get; set; }               // Numéro de fax
+        public string FaxNumber { get; set; }               // Numéro de fax s
         public string Email { get; set; }                   // Adresse e-mail principale
         public string BusinessLicenseCode { get; set; }     // Code de licence commerciale
         public string FacebookUrl { get; set; }             // Lien vers la page Facebook

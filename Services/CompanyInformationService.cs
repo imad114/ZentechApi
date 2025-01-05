@@ -42,9 +42,8 @@ namespace Zentech.Services
             await Task.Run(() => _repository.Add(company));
         }
 
-        /// <summary>
+      
         /// Update an existing company information.
-        /// </summary>
         public async Task UpdateCompanyAsync(CompanyInformation company)
         {
             if (company == null)
