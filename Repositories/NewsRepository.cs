@@ -191,5 +191,61 @@ namespace Zentech.Repositories
                 deleteNewsCommand.ExecuteNonQuery();
             }
         }
+
+        public List<News> GetNewsByCategoryId(int category_id)
+        {
+            List<News> news = new List<News>();
+
+            using (var connection = _context.GetConnection())
+            {
+                connection.Open();
+                var command = new MySqlCommand("SELECT NewsID, title, content, author, categoryID  FROM News WHERE categoryID = @CategoryID", connection);
+                command.Parameters.AddWithValue("@CategoryID", category_id);
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        news.Add(new News()
+                        {
+                            Author = reader.GetString("author"),
+                            Content = reader.GetString("content"),
+                            NewsID = int.Parse(reader.GetString("NewsID")),
+                            Title = reader.GetString("title"),
+                            CategoryID = reader.GetString("categoryID")
+
+
+                        });
+                    }
+                }
+            }
+            return news;
+        }
+
+        public List<Category> GetGategories()
+        {
+            List<Category> categories = new List<Category>();
+
+            using (var connection = _context.GetConnection())
+            {
+                connection.Open();
+                var command = new MySqlCommand("SELECT ID, Name, description  FROM News_categories", connection);
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        categories.Add(new Category()
+                        {
+                            ID = reader.GetString("ID"),
+                            Name = reader.GetString("Name"),
+                            Description = reader.GetString("description"),
+
+                        });
+                    }
+                }
+            }
+            return categories;
+        }
     }
 }

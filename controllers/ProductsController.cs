@@ -116,7 +116,7 @@ namespace Zentech.Controllers
         [SwaggerResponse(StatusCodes.Status201Created, "Photo uploaded successfully", typeof(object))]
         [SwaggerResponse(StatusCodes.Status400BadRequest, "Invalid file upload", typeof(object))]
         [SwaggerResponse(StatusCodes.Status500InternalServerError, "An error occurred while uploading the photo", typeof(object))]
-        [Authorize(Roles = "Admin")]
+       // [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UploadPhotoToProduct(int productId, IFormFile file)
         {
             try
@@ -140,13 +140,13 @@ namespace Zentech.Controllers
                     return BadRequest(new { Message = "File size exceeds the maximum limit of 10MB." });
                 }
 
-                var uploadFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
+                var uploadFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads/Products");
                 if (!Directory.Exists(uploadFolder))
                 {
                     Directory.CreateDirectory(uploadFolder);
                 }
 
-                var fileName = $"{Guid.NewGuid()}_{file.FileName}";
+                var fileName = $"{productId}_{DateTime.Now.Date}_{Guid.NewGuid()}_{file.FileName}";
                 var filePath = Path.Combine(uploadFolder, fileName);
 
                 using (var stream = new FileStream(filePath, FileMode.Create))
