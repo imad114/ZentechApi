@@ -74,3 +74,4 @@ TestResults/
 /appsettings.json
 /Program.cs
 /Startup.cs
+/bin/Debug/net8.0/ZentechAPI.staticwebassets.endpoints.json
