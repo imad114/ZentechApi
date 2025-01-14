@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using ZentechAPI.Models;
 using Zentech.Repositories;
+using System.Collections.Concurrent;
 
 namespace Zentech.Services
 {
@@ -16,12 +17,16 @@ namespace Zentech.Services
         }
 
         
-        public async Task<List<Category>> GetAllCategoriesAsync()
+        public async Task<ConcurrentBag<Category>> GetAllCategoriesAsync()
         {
             return await Task.Run(() => _repository.GetAllCategories());
         }
 
-       
+        public async Task<List<Category>> GetAllMainCategories()
+        {
+            return await Task.Run(() => _repository.GetAllMainCategories());
+        }
+
         public async Task<Category?> GetCategoryByIdAsync(int id)
         {
             return await Task.Run(() => _repository.GetCategoryById(id));

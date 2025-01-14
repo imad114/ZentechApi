@@ -34,6 +34,7 @@ namespace Zentech.Repositories
                             Content = reader.GetString("Content"),
                             CreatedAt = reader.GetDateTime("CreatedAt"),
                             Author = reader.GetString("Author"),
+                            mainPicture = reader.GetString("mainPicture"),
                             Photos = GetPhotosForEntity(reader.GetInt32("NewsID"), "News") // get photos
                         };
                         newsList.Add(news);
@@ -46,7 +47,7 @@ namespace Zentech.Repositories
         // Method to get a specific news item
         public News GetNewsById(int id)
         {
-            News news = null;
+            News news = new News();
 
             using (var connection = _context.GetConnection())
             {
@@ -68,6 +69,7 @@ namespace Zentech.Repositories
                         };
                     }
                 }
+                connection.Close();
             }
             return news;
         }
@@ -89,7 +91,7 @@ namespace Zentech.Repositories
                 command.Parameters.AddWithValue("@Author", news.Author);
 
                 var newsId = Convert.ToInt32(command.ExecuteScalar());
-               
+                connection.Close();
             }
 
             return news;
@@ -106,6 +108,7 @@ namespace Zentech.Repositories
                 command.Parameters.AddWithValue("@EntityType", entityType);
                 command.Parameters.AddWithValue("@Url", photoUrl);
                 command.ExecuteNonQuery();
+                connection.Close();
             }
         }
 
@@ -127,6 +130,7 @@ namespace Zentech.Repositories
                         photos.Add(reader.GetString("Url"));
                     }
                 }
+                connection.Close();
             }
 
             return photos;
@@ -141,6 +145,7 @@ namespace Zentech.Repositories
                 var command = new MySqlCommand("DELETE FROM Photos WHERE Url = @Url", connection);
                 command.Parameters.AddWithValue("@Url", photoUrl);
                 command.ExecuteNonQuery();
+                connection.Close();
             }
         }
 
@@ -151,7 +156,7 @@ namespace Zentech.Repositories
             {
                 connection.Open();
 
-                //  update a news
+                // update a news
                 var command = new MySqlCommand(
                     "UPDATE News SET Title = @Title, Content = @Content, Author = @Author WHERE NewsID = @NewsID",
                     connection
@@ -167,9 +172,10 @@ namespace Zentech.Repositories
 
                
 
-               
+               connection.Close(); 
 
                 return true;
+
             }
         }
 
@@ -189,6 +195,8 @@ namespace Zentech.Repositories
                 var deleteNewsCommand = new MySqlCommand("DELETE FROM News WHERE NewsID = @NewsID", connection);
                 deleteNewsCommand.Parameters.AddWithValue("@NewsID", newsId);
                 deleteNewsCommand.ExecuteNonQuery();
+
+                connection.Close();
             }
         }
 
@@ -199,7 +207,7 @@ namespace Zentech.Repositories
             using (var connection = _context.GetConnection())
             {
                 connection.Open();
-                var command = new MySqlCommand("SELECT NewsID, title, content, author, categoryID  FROM News WHERE categoryID = @CategoryID", connection);
+                var command = new MySqlCommand("SELECT NewsID, title, content, author, categoryID,mainPicture  FROM News WHERE categoryID = @CategoryID", connection);
                 command.Parameters.AddWithValue("@CategoryID", category_id);
 
                 using (var reader = command.ExecuteReader())
@@ -212,17 +220,19 @@ namespace Zentech.Repositories
                             Content = reader.GetString("content"),
                             NewsID = int.Parse(reader.GetString("NewsID")),
                             Title = reader.GetString("title"),
-                            CategoryID = reader.GetString("categoryID")
+                            CategoryID = reader.GetString("categoryID"),
+                            mainPicture = reader.GetString("mainPicture")
 
 
                         });
                     }
                 }
+                connection.Close();
             }
             return news;
         }
 
-        public List<Category> GetGategories()
+        public List<Category> GetNewsCategories()
         {
             List<Category> categories = new List<Category>();
 
@@ -237,13 +247,14 @@ namespace Zentech.Repositories
                     {
                         categories.Add(new Category()
                         {
-                            ID = reader.GetString("ID"),
+                            NewsID = reader.GetString("ID"),
                             Name = reader.GetString("Name"),
                             Description = reader.GetString("description"),
 
                         });
                     }
                 }
+                connection.Close();
             }
             return categories;
         }

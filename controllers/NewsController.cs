@@ -58,7 +58,7 @@ namespace Zentech.Controllers
         }
 
 
-        [HttpGet("details/{category_id}")]
+        [HttpGet("newsByCategory/{category_id}")]
         public IActionResult GetNewsByCategoryId(int category_id)
         {
             var news = _newsService.GetNewsByCategoryId(category_id);
@@ -71,9 +71,9 @@ namespace Zentech.Controllers
 
 
         [HttpGet("categories")]
-        public IActionResult GetGategories()
+        public IActionResult GetNewsCategories()
         {
-            var news = _newsService.GetGategories();
+            var news = _newsService.GetNewsCategories();
             if (news == null)
             {
                 return NotFound(new { Message = "News not found." });

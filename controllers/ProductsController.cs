@@ -35,6 +35,15 @@ namespace Zentech.Controllers
             var products = await _productService.GetAllProductsAsync();
             return Ok(products);
         }
+
+
+        [HttpGet("ByCategories/{limit}")]
+        public async Task<IActionResult> GetProductsWithCategories(int limit)
+        {
+            var products = await _productService.GetProductsWithCategories(limit);
+            return Ok(products);
+        }
+
         /// <summary>
         /// Retrieve a specific product by its ID.
         /// </summary>
