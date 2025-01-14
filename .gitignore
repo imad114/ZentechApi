@@ -75,3 +75,7 @@ TestResults/
 /Program.cs
 /Startup.cs
 /bin/Debug/net8.0/ZentechAPI.staticwebassets.endpoints.json
+/obj/Debug/net8.0/staticwebassets/msbuild.ZentechAPI.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+/obj/Debug/net8.0/staticwebassets.build.endpoints.json
+/obj/Debug/net8.0/staticwebassets.upToDateCheck.txt
+/obj/Debug/net8.0/EndpointInfo/ZentechAPI.json

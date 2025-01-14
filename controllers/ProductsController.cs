@@ -120,12 +120,12 @@ namespace Zentech.Controllers
         /// </summary>
         /// <param name="productId">The ID of the product to associate the photo with.</param>
         /// <param name="file">The photo file to upload.</param>
-        [HttpPost("{productId}/upload-photo")]
+        [HttpPost("{productId}/upload-photoProduct")]
         [SwaggerOperation(Summary = "Upload a photo for a product", Description = "Allows uploading a photo for a specific product.")]
         [SwaggerResponse(StatusCodes.Status201Created, "Photo uploaded successfully", typeof(object))]
         [SwaggerResponse(StatusCodes.Status400BadRequest, "Invalid file upload", typeof(object))]
         [SwaggerResponse(StatusCodes.Status500InternalServerError, "An error occurred while uploading the photo", typeof(object))]
-       // [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UploadPhotoToProduct(int productId, IFormFile file)
         {
             try
@@ -155,7 +155,7 @@ namespace Zentech.Controllers
                     Directory.CreateDirectory(uploadFolder);
                 }
 
-                var fileName = $"{productId}_{DateTime.Now.Date}_{Guid.NewGuid()}_{file.FileName}";
+                var fileName = $"{Guid.NewGuid()}_{file.FileName}";
                 var filePath = Path.Combine(uploadFolder, fileName);
 
                 using (var stream = new FileStream(filePath, FileMode.Create))
@@ -163,8 +163,7 @@ namespace Zentech.Controllers
                     await file.CopyToAsync(stream);
                 }
 
-                var photoUrl = $"/uploads/{fileName}";
-
+                var photoUrl = $"/uploads/Products/{fileName}";
                 _productService.AddPhotoToProduct(productId, photoUrl);
 
                 return CreatedAtAction("UploadPhotoToProduct", new { productId, photoUrl }, new { Message = "Photo uploaded successfully.", Url = photoUrl });
@@ -177,11 +176,11 @@ namespace Zentech.Controllers
         }
 
 
+
         /// <summary>
         /// Delete a photo from a product using its URL.
         /// </summary>
         /// <param name="photoUrl">The URL of the photo to delete.</param>
-        // Delete a photo from a product
         [Authorize(Roles = "Admin")]
         [HttpDelete("photos")]
         [SwaggerOperation(Summary = "Delete a photo from a product", Description = "Deletes a specific photo by its URL.")]
@@ -192,10 +191,32 @@ namespace Zentech.Controllers
                 return BadRequest(new { Message = "Invalid photo URL." });
             }
 
-            _productService.DeletePhotoFromProduct(photoUrl);
-            return Ok(new { Message = "Photo deleted successfully." });
+            try
+            {
+                // Delete the photo from the database
+                _productService.DeletePhotoFromProduct(photoUrl);
+
+                // Ensure the photoUrl is a relative path starting with "/uploads/"
+                var relativePath = photoUrl.StartsWith("/uploads/Products/") ? photoUrl : $"/uploads/Products/{Path.GetFileName(photoUrl)}";
+
+                // Get the physical path of the photo
+                var photoPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", relativePath.TrimStart('/').Replace("/", Path.DirectorySeparatorChar.ToString()));
+
+                // Check if the file exists and delete it
+                if (System.IO.File.Exists(photoPath))
+                {
+                    System.IO.File.Delete(photoPath);
+                }
+
+                return Ok(new { Message = "Photo deleted successfully." });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = $"Error deleting photo: {ex.Message}" });
+            }
         }
 
-    
+
+
     }
 }

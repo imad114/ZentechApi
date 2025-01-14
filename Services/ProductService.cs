@@ -16,7 +16,7 @@ namespace Zentech.Services
             _repository = repository;
         }
 
-      
+        // get all Products
         public async Task<List<Product>> GetAllProductsAsync()
         {
             return await Task.Run(() => _repository.GetAllProducts());
