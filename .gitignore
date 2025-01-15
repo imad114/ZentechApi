@@ -23,3 +23,5 @@
 /obj/Debug/net8.0/ZentechAPI.dll
 /obj/Debug/net8.0/ZentechAPI.pdb
 /obj/Debug/net8.0/ZentechAPI.sourcelink.json
+/obj/Debug/net8.0/staticwebassets/msbuild.ZentechAPI.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+/obj/Debug/net8.0/staticwebassets/msbuild.ZentechAPI.Microsoft.AspNetCore.StaticWebAssets.props
