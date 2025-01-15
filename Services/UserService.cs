@@ -8,6 +8,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Text.RegularExpressions;
+using ZentechAPI.Dto;
 
 
 namespace Zentech.Services
@@ -24,7 +25,7 @@ namespace Zentech.Services
         }
 
         // Register a new user with password encryption
-        public async Task<User> RegisterUserAsync(User user, string createdBy)
+        public async Task<UserDto> RegisterUserAsync(UserDto user, string createdBy)
         {
             // Check if the email is already in use
             var existingUser = await _userRepository.GetByEmailAsync(user.Email);
@@ -123,7 +124,7 @@ namespace Zentech.Services
         }
 
         // Update a user
-        public async Task<User?> UpdateUserAsync(User user, string updatedBy)
+        public async Task<UserDto?> UpdateUserAsync(UserDto user, string updatedBy)
         {
             // Retrieve the current user
             var existingUser = await _userRepository.GetByIdAsync(user.UserID);
@@ -145,7 +146,7 @@ namespace Zentech.Services
             existingUser.RoleID = user.RoleID;
 
             // Update the user in the database
-            return await _userRepository.UpdateAsync(existingUser, updatedBy);
+            return await _userRepository.UpdateAsync(user, updatedBy);
         }
 
         // Delete a user by ID

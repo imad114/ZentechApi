@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Zentech.Services;
 using Microsoft.AspNetCore.Authorization;
 using Swashbuckle.AspNetCore.Annotations;
+using ZentechAPI.Dto;
 
 
 [ApiController]
@@ -30,7 +31,7 @@ public class UserController : ControllerBase
     /// <param name="user">The information of the user to register.</param>
     /// <returns>Returns the created user with an HTTP 201 status code.</returns>
     [HttpPost("register")]
-    public async Task<IActionResult> Register([FromBody] User user)
+    public async Task<IActionResult> Register([FromBody] UserDto user)
     {
         if (!ModelState.IsValid)
         {
@@ -138,7 +139,7 @@ public class UserController : ControllerBase
     [HttpPut("{id}")]
     [SwaggerOperation(Summary = "Update a user", Description = "Modifies the information of an existing user.")]
 
-    public async Task<IActionResult> UpdateUser(int id, [FromBody] User user)
+    public async Task<IActionResult> UpdateUser(int id, [FromBody] UserDto user)
     {
         if (!ModelState.IsValid)
         {

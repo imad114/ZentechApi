@@ -3,6 +3,8 @@ using Zentech.Models;
 using System.Data;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ZentechAPI.Dto;
+using System.Text;
 namespace Zentech.Repositories
 {
     public class UserRepository
@@ -16,7 +18,7 @@ namespace Zentech.Repositories
 
         // Add a new user
 
-        public async Task<User> AddAsync(User user, string createdBy)
+        public async Task<UserDto> AddAsync(UserDto user, string createdBy)
         {
             using (var connection = _context.GetConnection())
             {
@@ -58,6 +60,10 @@ namespace Zentech.Repositories
                                 FullName = reader.GetString("FullName"),
                                 Email = reader.GetString("Email"),
                                 Password = reader.GetString("Password"),
+                                CreatedAt = reader.IsDBNull(reader.GetOrdinal("CreatedAt")) ? (DateTime?)null : reader.GetDateTime("CreatedAt"),
+                                UpdatedAt = reader.IsDBNull(reader.GetOrdinal("UpdatedAt")) ? (DateTime?)null : reader.GetDateTime("UpdatedAt"),
+                                CreatedBy = reader.IsDBNull(reader.GetOrdinal("CreatedBy")) ? null : reader.GetString("CreatedBy"),
+                                UpdatedBy = reader.IsDBNull(reader.GetOrdinal("UpdatedBy")) ? null : reader.GetString("UpdatedBy"),
                                 RoleID = reader.GetInt32("RoleID"),
                                 Role = new Role
                                 {
@@ -128,6 +134,10 @@ namespace Zentech.Repositories
                                 FullName = reader.GetString("FullName"),
                                 Email = reader.GetString("Email"),
                                 Password = reader.GetString("Password"),
+                                CreatedAt = reader.IsDBNull(reader.GetOrdinal("CreatedAt")) ? (DateTime?)null : reader.GetDateTime("CreatedAt"),
+                                UpdatedAt = reader.IsDBNull(reader.GetOrdinal("UpdatedAt")) ? (DateTime?)null : reader.GetDateTime("UpdatedAt"),
+                                CreatedBy = reader.IsDBNull(reader.GetOrdinal("CreatedBy")) ? null : reader.GetString("CreatedBy"),
+                                UpdatedBy = reader.IsDBNull(reader.GetOrdinal("UpdatedBy")) ? null : reader.GetString("UpdatedBy"),
                                 RoleID = reader.GetInt32("RoleID"),
                                 Role = new Role
                                 {
@@ -144,29 +154,42 @@ namespace Zentech.Repositories
 
         // Update  user
 
-        public async Task<User?> UpdateAsync(User user, string updatedBy)
+        public async Task<UserDto?> UpdateAsync(UserDto user, string updatedBy)
         {
             using (var connection = _context.GetConnection())
             {
                 await connection.OpenAsync();
-                var query = "UPDATE Users SET FullName = @FullName, Email = @Email, Password = @Password, RoleID = @RoleID, UpdatedAt = @UpdatedAt, UpdatedBy = @UpdatedBy WHERE UserID = @UserID";
-                using (var command = new MySqlCommand(query, connection))
+
+                // Construire la requête conditionnellement
+                var query = new StringBuilder("UPDATE Users SET FullName = @FullName, Email = @Email, RoleID = @RoleID, UpdatedAt = @UpdatedAt, UpdatedBy = @UpdatedBy");
+                if (!string.IsNullOrWhiteSpace(user.Password))
                 {
+                    query.Append(", Password = @Password");
+                }
+                query.Append(" WHERE UserID = @UserID");
+
+                using (var command = new MySqlCommand(query.ToString(), connection))
+                {
+                    // Ajouter les paramètres communs
                     command.Parameters.AddWithValue("@FullName", user.FullName);
                     command.Parameters.AddWithValue("@Email", user.Email);
-                    command.Parameters.AddWithValue("@Password", user.Password);
                     command.Parameters.AddWithValue("@RoleID", user.RoleID);
                     command.Parameters.AddWithValue("@UserID", user.UserID);
                     command.Parameters.AddWithValue("@UpdatedAt", DateTime.Now);
                     command.Parameters.AddWithValue("@UpdatedBy", updatedBy);
 
-
+                    // Ajouter le mot de passe uniquement s'il est fourni
+                    if (!string.IsNullOrWhiteSpace(user.Password))
+                    {
+                        command.Parameters.AddWithValue("@Password", user.Password);
+                    }
 
                     var rowsAffected = await command.ExecuteNonQueryAsync();
                     return rowsAffected > 0 ? user : null;
                 }
             }
         }
+
 
         // Delete User
         public async Task<bool> DeleteAsync(int userId)

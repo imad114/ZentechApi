@@ -48,13 +48,15 @@ namespace Zentech.Controllers
         }
 
 
-
+        [Authorize(Roles = "Admin")]
         [HttpPost("AddSolution")]
+        [SwaggerOperation(Summary = "Add a Solution", Description = "Adds a new Solution to the system.")]
         public IActionResult AddSolution([FromBody] SolutionDto solutionDto)
         {
             try
             {
-                int solutionId = _solutionService.AddSolution(solutionDto, User.Identity.Name); // Assuming User.Identity.Name gives the creator's username.
+                var createdBy = User.Identity?.Name;
+                int solutionId = _solutionService.AddSolution(solutionDto, createdBy); // Assuming User.Identity.Name gives the creator's username.
                 return Ok(new { SolutionID = solutionId });
             }
             catch (Exception ex)

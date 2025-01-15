@@ -82,14 +82,14 @@ namespace Zentech.Repositories
                     "INSERT INTO News (Title, Content, CreatedAt, Author) VALUES (@Title, @Content, @CreatedAt, @Author); SELECT LAST_INSERT_ID();",
                     connection
                 );
-
+               
                 command.Parameters.AddWithValue("@Title", news.Title);
                 command.Parameters.AddWithValue("@Content", news.Content);
                 command.Parameters.AddWithValue("@CreatedAt", DateTime.Now);
                 command.Parameters.AddWithValue("@Author", news.Author);
 
                 var newsId = Convert.ToInt32(command.ExecuteScalar());
-               
+                news.NewsID = newsId;
             }
 
             return news;
