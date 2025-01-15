@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using ZentechAPI.Models;
 
@@ -16,9 +17,9 @@ namespace Zentech.Repositories
 
         // Method to get all categories
 
-        public List<Category> GetAllCategories()
+        public ConcurrentBag<Category> GetAllCategories()
         {
-            var categoryList = new List<Category>();
+            var categoryList = new ConcurrentBag<Category>();
 
             using (var connection = _context.GetConnection())
             {
@@ -41,9 +42,42 @@ namespace Zentech.Repositories
                         categoryList.Add(category);
                     }
                 }
+                connection.Close();
+            }
+
+            return categoryList;
+        }
+
+
+        public List<Category> GetAllMainCategories()
+        {
+            var categoryList = new List<Category>();
+
+            using (var connection = _context.GetConnection())
+            {
+                connection.Open();
+                var command = new MySqlCommand("SELECT * FROM main_prod_categories", connection);
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var category = new Category
+                        {
+                            CategoryID = reader.GetInt32("CategoryID"),
+                            Name = reader.GetString("Name"),
+                            Description = reader.GetString("Description"),
+                            CreatedDate = reader.IsDBNull(reader.GetOrdinal("CreatedDate")) ? (DateTime?)null : reader.GetDateTime("CreatedDate"),
+                            UpdatedDate = reader.IsDBNull(reader.GetOrdinal("UpdatedDate")) ? (DateTime?)null : reader.GetDateTime("UpdatedDate"),
+                            CreatedBy = reader.IsDBNull(reader.GetOrdinal("CreatedBy")) ? null : reader.GetString("CreatedBy"),
+                            UpdatedBy = reader.IsDBNull(reader.GetOrdinal("UpdatedBy")) ? null : reader.GetString("UpdatedBy")
+                        };
+                        categoryList.Add(category);
+                    }
+                }
             }
             return categoryList;
         }
+
 
         // Method to get a category by ID
 

@@ -31,6 +31,14 @@ namespace Zentech.Controllers
             return Ok(categories);
         }
 
+        [HttpGet("Main")]
+        [SwaggerOperation(Summary = "Get main categories")]
+        public async Task<IActionResult> GetAllMainCategories()
+        {
+            var categories = await _categoryService.GetAllMainCategories();
+            return Ok(categories);
+        }
+
         // Get a category by ID
         /// <summary>
         /// Retrieve a category by its ID.

@@ -54,6 +54,70 @@ namespace Zentech.Repositories
             return productList;
         }
 
+        public List<Product> GetProductsWithCategories(int limit)
+        {
+            var productList = new List<Product>();
+
+            using (var connection = _context.GetConnection())
+            {
+                connection.Open();
+                var command = new MySqlCommand(@$"
+                WITH RankedProducts AS (
+                    SELECT 
+                        p.ProductID,             
+                        p.Name as ProductName,
+                        p.Price,
+                        p.CreatedDate,
+                        p.CreatedBy,
+                        p.UpdatedBy,
+                        p.UpdatedAt,
+                        c.CategoryID AS SubCategoryID,
+                        c.Name AS CategoryName,
+                        c.Description AS CategoryDescription,
+                        mc.CategoryID AS MainCategoryID,
+                        mc.Name AS MainCategoryName,
+                        ROW_NUMBER() OVER (PARTITION BY c.CategoryID ORDER BY p.CreatedDate DESC) AS RowNum
+                    FROM Products p
+                    LEFT JOIN Categories c ON p.CategoryID = c.CategoryID
+                    LEFT JOIN main_prod_categories mc ON mc.CategoryID = c.mainCategoryID
+                )
+                SELECT *
+                FROM RankedProducts
+                WHERE RowNum <= @Limit
+                ORDER BY RankedProducts.ProductName;", connection);
+
+                command.Parameters.AddWithValue("@Limit", limit);
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var product = new Product
+                        {
+                            ProductID = reader.GetInt32("ProductID"),
+                            Name = reader.GetString("ProductName"),
+                            Description = reader.IsDBNull(reader.GetOrdinal("CategoryDescription")) ? "null" : reader.GetString("CategoryDescription"),
+                            Price = reader.IsDBNull(reader.GetOrdinal("Price"))?0: reader.GetDecimal("Price"),
+                            CreatedAt = reader.IsDBNull(reader.GetOrdinal("CreatedDate")) ? (DateTime?) null : reader.GetDateTime("CreatedDate"),
+                            UpdatedAt = reader.IsDBNull(reader.GetOrdinal("UpdatedAt")) ? (DateTime?)null : reader.GetDateTime("UpdatedAt"),
+                            CategoryID = reader.IsDBNull(reader.GetOrdinal("SubCategoryID")) ? 0 : reader.GetInt32("SubCategoryID"),
+                            CategoryName = reader.IsDBNull(reader.GetOrdinal("CategoryName")) ? "null": reader.GetString("CategoryName"),
+                            MainCategoryID = reader.IsDBNull(reader.GetOrdinal("MainCategoryID")) ? 0 : reader.GetInt32("MainCategoryID"),
+                            MainCategoryName = reader.IsDBNull(reader.GetOrdinal("MainCategoryName")) ? "" : reader.GetString("MainCategoryName"),
+                            CreatedBy = reader.IsDBNull(reader.GetOrdinal("CreatedBy")) ? null : reader.GetString("CreatedBy"),
+                            UpdatedBy = reader.IsDBNull(reader.GetOrdinal("UpdatedBy")) ? null : reader.GetString("UpdatedBy"),
+                            Photos = GetPhotosForEntity(reader.GetInt32("ProductID"), "Products"),
+                            Specifications = GetSpecificationsForProduct(reader.GetInt32("ProductID"))
+                        };
+
+                        productList.Add(product);
+                    }
+                }
+
+            }
+
+            return productList;
+        }
         // Method to retrieve a specific product with its category and specifications
         public Product GetProductById(int id)
         {
@@ -79,7 +143,7 @@ namespace Zentech.Repositories
                             ProductID = reader.GetInt32("ProductID"),
                             Name = reader.GetString("Name"),
                             Description = reader.GetString("Description"),
-                            Price = reader.GetDecimal("Price"),
+                            Price = reader.IsDBNull(reader.GetOrdinal("Price"))?0: reader.GetDecimal("Price"),
                             CreatedAt = reader.IsDBNull(reader.GetOrdinal("CreatedDate")) ? (DateTime?)null : reader.GetDateTime("CreatedDate"),
                             UpdatedAt = reader.IsDBNull(reader.GetOrdinal("UpdatedAt")) ? (DateTime?)null : reader.GetDateTime("UpdatedAt"),
                             CategoryID = reader.GetInt32("CategoryID"),

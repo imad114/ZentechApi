@@ -74,6 +74,8 @@ namespace Zentech.Services
         public async Task<string> AuthenticateUserAsync(string email, string password)
         {
             var user = await _userRepository.GetByEmailAsync(email);
+
+
             if (user == null || !BCrypt.Net.BCrypt.Verify(password, user.Password))
             {
                 return null;

@@ -77,9 +77,9 @@ namespace Zentech.Services
             return _newsRepository.GetNewsByCategoryId(category_id);
         }
 
-        public List<Category> GetGategories()
+        public List<Category> GetNewsCategories()
         {
-            return _newsRepository.GetGategories();
+            return _newsRepository.GetNewsCategories();
         }
     }
 }
