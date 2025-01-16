@@ -24,7 +24,10 @@ public class Startup
         services.AddScoped<UserRepository>();
         services.AddScoped<UserService>();
 
-       
+        services.AddScoped<SlidesRepository>();
+        services.AddScoped<SlidesService>();
+
+
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
