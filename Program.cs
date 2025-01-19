@@ -5,6 +5,7 @@ using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.FileProviders;
 using ZentechAPI.Repositories;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 var builder = WebApplication.CreateBuilder(args);
 // Configurer les logs (niveau 'Information' ou 'Debug' pour voir les détails)
@@ -117,6 +118,11 @@ builder.Services.AddScoped<CompanyInformationService>();
 builder.Services.AddScoped<PageRepository>();
 builder.Services.AddScoped<PageService>();
 
+builder.Services.AddScoped<SlidesRepository>();
+builder.Services.AddScoped<SlidesService>();
+
+
+
 //......................................................................
 builder.Services.Configure<IISServerOptions>(options =>
 {
@@ -202,3 +208,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
