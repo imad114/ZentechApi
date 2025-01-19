@@ -11,7 +11,8 @@ namespace Zentech.Models
         public string PhoneNumbre { get; set; }
         public string Message { get; set; }
         public DateTime? CreatedAt { get; set; }
-        public string Country { get; set; }
+        public string? Country { get; set; }
+        public string? Topic { get; set; }
         public string? Role { get; set; }
 
     }

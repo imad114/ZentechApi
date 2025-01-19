@@ -22,20 +22,20 @@ namespace Zentech.Repositories
             using (var connection = _context.GetConnection())
             {
                 connection.Open();
-                var command = new MySqlCommand("SELECT * FROM News", connection);
+                var command = new MySqlCommand("SELECT * FROM news", connection);
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                         var news = new News
                         {
-                            NewsID = reader.GetInt32("NewsID"),
-                            Title = reader.GetString("Title"),
-                            Content = reader.GetString("Content"),
+                            NewsID = reader.IsDBNull(reader.GetOrdinal("NewsID"))?0: reader.GetInt32("NewsID"),
+                            Title = reader.IsDBNull(reader.GetOrdinal("Title")) ? "": reader.GetString("Title"),
+                            Content = reader.IsDBNull(reader.GetOrdinal("Content")) ? "" : reader.GetString("Content"),
                             CreatedAt = reader.GetDateTime("CreatedAt"),
-                            Author = reader.GetString("Author"),
-                            mainPicture = reader.GetString("mainPicture"),
-                            Photos = GetPhotosForEntity(reader.GetInt32("NewsID"), "News") // get photos
+                            Author = reader.IsDBNull(reader.GetOrdinal("Author")) ? "" : reader.GetString("Author"),
+                            mainPicture = reader.IsDBNull(reader.GetOrdinal("mainPicture")) ? "" : reader.GetString("mainPicture"),
+                            Photos = GetPhotosForEntity(reader.IsDBNull(reader.GetOrdinal("NewsID")) ? 0 : reader.GetInt32("NewsID"), "News") // get photos
                         };
                         newsList.Add(news);
                     }
