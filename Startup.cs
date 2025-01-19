@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.FileProviders;
-using Zentech.Repositories;
+﻿using Zentech.Repositories;
 using Zentech.Services;
 
 public class Startup
@@ -42,17 +41,7 @@ public class Startup
         }
 
 
-        app.UseStaticFiles(); // For wwwroot folder
-
-        var imagePath = Path.Combine(Directory.GetCurrentDirectory(), "uploads");
-        app.UseStaticFiles(new StaticFileOptions
-        {
-            FileProvider = new PhysicalFileProvider(imagePath),
-            RequestPath = "/uploads"
-        });
-
-
-        //  app.UseHttpsRedirection();
+      //  app.UseHttpsRedirection();
         app.UseRouting();
         app.UseAuthorization();
         app.UseEndpoints(endpoints =>
