@@ -32,8 +32,8 @@ namespace Zentech.Repositories
                         {
                             SlideID = reader.GetInt32("SlideID"),
                             Description = reader.GetString("Description"),
-/*                            Picture = reader.IsDBNull(reader.GetOrdinal("Picture")) ?  "./images/zentech-logo.svg" : reader.GetString("Picture"),
-*/                            EntityType = reader.GetString("EntityType"),
+                            PicturePath = reader.IsDBNull(reader.GetOrdinal("Picture")) ? "./images/zentech-logo.svg" : reader.GetString("Picture"),
+                            EntityType = reader.GetString("EntityType"),
                             EntityID = reader.GetInt32("EntityID"),
                             CreatedBy = reader.GetString("CreatedBy"),
                             CreatedAt = reader.GetDateTime("CreatedAt"),
@@ -68,8 +68,8 @@ namespace Zentech.Repositories
                         {
                             SlideID = reader.GetInt32("SlideID"),
                             Description = reader.GetString("Description"),
-/*                            Picture = reader.IsDBNull(reader.GetOrdinal("Picture")) ? "./images/zentech-logo.svg" : reader.GetString("Picture"),
-*/                            EntityType = reader.GetString("EntityType"),
+                            PicturePath = reader.IsDBNull(reader.GetOrdinal("Picture")) ? "./images/zentech-logo.svg" : reader.GetString("Picture"),
+                            EntityType = reader.GetString("EntityType"),
                             EntityID = reader.GetInt32("EntityID"),
                             CreatedBy = reader.GetString("CreatedBy"),
                             CreatedAt = reader.GetDateTime("CreatedAt"),
