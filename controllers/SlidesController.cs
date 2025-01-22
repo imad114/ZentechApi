@@ -102,13 +102,10 @@ namespace ZentechAPI.Controllers
 
                 if (slide.Picture != null && slide.Picture.Length > 0)
                 {
-<<<<<<< HEAD
-                    await UploadSlidePhoto(slide.SlideID, slide.Picture);
-=======
+
 
                     slide.PicturePath =  await UploadSlidePhoto(slide.SlideID, slide.Picture);
-                    _slideService.UpdateSlide(slide);
->>>>>>> 1ca43b2d3661a2d5b5dd1ea81f955e0a6e43c300
+                    _slideService.UpdateSlide(slide,slide.UpdatedBy);
                 }
 
                 return CreatedAtAction(nameof(GetSlideById), new { id = slideId }, slide);
@@ -124,35 +121,17 @@ namespace ZentechAPI.Controllers
         /// Updates an existing slide.
         /// </summary>
         /// <param name="slide">The updated slide data.</param>
-<<<<<<< HEAD
-        [HttpPut("{id}")]
-        [SwaggerResponse(StatusCodes.Status204NoContent, "Slide updated successfully")]
-        [SwaggerResponse(StatusCodes.Status400BadRequest, "Invalid slide data")]
-        [SwaggerResponse(StatusCodes.Status404NotFound, "Slide not found")]
-        [SwaggerResponse(StatusCodes.Status500InternalServerError, "Internal server error")]
-        public async Task<IActionResult> UpdateSlide(int id, [FromBody] Slide slide)
-=======
+
         [HttpPut]
         public async Task<IActionResult> UpdateSlide([FromForm] Slide slide)
->>>>>>> 1ca43b2d3661a2d5b5dd1ea81f955e0a6e43c300
         {
             try
             {
-                if (slide == null || id != slide.SlideID)
-                {
-                    return BadRequest("Invalid slide data or ID mismatch.");
-                }
-
-<<<<<<< HEAD
-                slide.UpdatedBy = "admin"; // Replace with dynamic user context
-                var success = _slideService.UpdateSlide(slide, slide.UpdatedBy);
-=======
 
                 var updatedBy = "admin";
                 slide.UpdatedBy = updatedBy;
                 slide.PicturePath = await UploadSlidePhoto(slide.SlideID,slide.Picture);
-                _slideService.UpdateSlide(slide);
->>>>>>> 1ca43b2d3661a2d5b5dd1ea81f955e0a6e43c300
+                _slideService.UpdateSlide(slide,slide.UpdatedBy);
 
                 if (string.IsNullOrEmpty(slide.PicturePath))
                 {
@@ -168,24 +147,11 @@ namespace ZentechAPI.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Error updating slide with ID {id}.");
                 return StatusCode(500, "Internal server error.");
             }
         }
 
-<<<<<<< HEAD
-        /// <summary>
-        /// Uploads a photo for a slide.
-        /// </summary>
-        /// <param name="slideID">The ID of the slide.</param>
-        /// <param name="file">The photo file.</param>
-        [HttpPost("{slideID}/upload-photo")]
-        //[Authorize(Roles = "Admin")]
-        [SwaggerResponse(StatusCodes.Status201Created, "Photo uploaded successfully")]
-        [SwaggerResponse(StatusCodes.Status400BadRequest, "Invalid file upload")]
-        [SwaggerResponse(StatusCodes.Status500InternalServerError, "Internal server error")]
-        public async Task<IActionResult> UploadSlidePhoto(int slideID, IFormFile file)
-=======
+
 
         [HttpPost("{productId}/upload-photoSlide")]
         [SwaggerResponse(StatusCodes.Status201Created, "Photo uploaded successfully", typeof(object))]
@@ -193,41 +159,28 @@ namespace ZentechAPI.Controllers
         [SwaggerResponse(StatusCodes.Status500InternalServerError, "An error occurred while uploading the photo", typeof(object))]
         [Authorize(Roles = "Admin")]
         public async Task<string> UploadSlidePhoto(int slideID, IFormFile file)
->>>>>>> 1ca43b2d3661a2d5b5dd1ea81f955e0a6e43c300
         {
             try
             {
                 if (file == null || file.Length == 0)
                 {
-<<<<<<< HEAD
-                    return BadRequest("Invalid file upload.");
-                }
 
-=======
                     throw new Exception("File is empty");
                 }
 
 
->>>>>>> 1ca43b2d3661a2d5b5dd1ea81f955e0a6e43c300
                 var allowedExtensions = new[] { ".jpg", ".jpeg", ".png" };
                 var fileExtension = Path.GetExtension(file.FileName).ToLower();
                 if (!allowedExtensions.Contains(fileExtension))
                 {
-<<<<<<< HEAD
-                    return BadRequest("Invalid file type. Only JPG and PNG files are allowed.");
-=======
+
                     throw new Exception("Invalid file type. Only JPG and PNG files are allowed.");
->>>>>>> 1ca43b2d3661a2d5b5dd1ea81f955e0a6e43c300
                 }
 
                 if (file.Length > 10 * 1024 * 1024)
                 {
-<<<<<<< HEAD
-                    return BadRequest("File size exceeds the maximum limit of 10MB.");
-=======
                     throw new Exception("File size exceeds the maximum limit of 10MB.");
 
->>>>>>> 1ca43b2d3661a2d5b5dd1ea81f955e0a6e43c300
                 }
 
                 var uploadFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads/Slides");
@@ -245,22 +198,15 @@ namespace ZentechAPI.Controllers
                 }
 
                 var photoUrl = $"/uploads/Slides/{fileName}";
-<<<<<<< HEAD
                 _slideService.UpdateSlidePicture(slideID, photoUrl);
 
-                return CreatedAtAction(nameof(UploadSlidePhoto), new { slideID, photoUrl }, new { Message = "Photo uploaded successfully.", Url = photoUrl });
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Error uploading photo for slide ID {slideID}.");
-                return StatusCode(500, "Internal server error.");
-=======
                 return photoUrl;
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error saving file: {ex.Message}");
->>>>>>> 1ca43b2d3661a2d5b5dd1ea81f955e0a6e43c300
+                _logger.LogError(ex, $"Error uploading photo for slide ID {slideID}.");
+                throw new Exception("File not uploaded !"+ex.Message);
+
             }
         }
 
