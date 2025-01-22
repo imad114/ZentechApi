@@ -121,6 +121,9 @@ builder.Services.AddScoped<PageService>();
 builder.Services.AddScoped<SlidesRepository>();
 builder.Services.AddScoped<SlidesService>();
 
+builder.Services.AddScoped<TechincalDocRepository>();
+builder.Services.AddScoped<TechnicalDocService>();
+
 
 
 //......................................................................

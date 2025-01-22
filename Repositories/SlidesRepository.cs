@@ -109,12 +109,23 @@ namespace Zentech.Repositories
                     VALUES (@Description, @EntityType, @EntityID, @CreatedBy, @CreatedAt, @Picture); 
                     SELECT LAST_INSERT_ID();", connection);
 
+<<<<<<< HEAD
                 command.Parameters.AddWithValue("@Description", slide.Description ?? string.Empty);
                 command.Parameters.AddWithValue("@EntityType", slide.EntityType ?? string.Empty);
                 command.Parameters.AddWithValue("@EntityID", slide.EntityID ?? (object)DBNull.Value);
                 command.Parameters.AddWithValue("@CreatedBy", createdBy);
                 command.Parameters.AddWithValue("@CreatedAt", DateTime.Now);
                 command.Parameters.AddWithValue("@Picture", slide.Picture?.FileName ?? "./images/zentech-logo.svg");
+=======
+                command.Parameters.AddWithValue("@Description", Slide.Description);
+                command.Parameters.AddWithValue("@Picture", Slide.PicturePath ?? "./images/zentech-logo.svg");
+                command.Parameters.AddWithValue("@EntityType", Slide.EntityType);
+                command.Parameters.AddWithValue("@EntityID", Slide.EntityID);
+                command.Parameters.AddWithValue("@CreatedBy", Slide.CreatedBy);
+                command.Parameters.AddWithValue("@CreatedAt", Slide.CreatedAt); 
+                command.Parameters.AddWithValue("@UpdatedBy", Slide.UpdatedBy);
+                command.Parameters.AddWithValue("@UpdatedAt", Slide.UpdatedAt); 
+>>>>>>> 1ca43b2d3661a2d5b5dd1ea81f955e0a6e43c300
 
                 return Convert.ToInt32(command.ExecuteScalar());
             }
@@ -176,6 +187,33 @@ namespace Zentech.Repositories
                     SET Picture = @Picture 
                     WHERE SlideID = @SlideID", connection);
 
+<<<<<<< HEAD
+=======
+                command.Parameters.AddWithValue("@Description", Slide.Description);
+                command.Parameters.AddWithValue("@Picture", Slide.PicturePath ?? "./images/zentech-logo.svg");
+               command.Parameters.AddWithValue("@EntityType", Slide.EntityType);
+                command.Parameters.AddWithValue("@EntityID", Slide.EntityID);
+                command.Parameters.AddWithValue("@UpdatedBy", Slide.UpdatedBy);
+                command.Parameters.AddWithValue("@UpdatedAt", Slide.UpdatedAt); 
+                command.Parameters.AddWithValue("@SlideID", Slide.SlideID);
+
+                var rowsAffected = command.ExecuteNonQuery();
+                return rowsAffected > 0;
+            }
+        }
+
+        public bool UpdateSlidePicture(int SlideID, string path)
+        {
+            using (var connection = _context.GetConnection())
+            {
+                connection.Open();
+
+                var command = new MySqlCommand(@"
+                    UPDATE slides 
+                    SET Picture = @Picture where slideID =  @SlideID", connection);
+
+
+>>>>>>> 1ca43b2d3661a2d5b5dd1ea81f955e0a6e43c300
                 command.Parameters.AddWithValue("@Picture", path ?? "./images/zentech-logo.svg");
                 command.Parameters.AddWithValue("@SlideID", slideID);
 

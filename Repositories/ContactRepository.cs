@@ -108,7 +108,7 @@ public class ContactRepository
         using (var connection = _context.GetConnection())
         {
             await connection.OpenAsync();
-            var query = "INSERT INTO ContactMessages (FirstName,LastName,Email,PhoneNumbre,Message,Country,Topic, Role) VALUES (@FirstName,@LastName,@Email,@PhoneNumbre,@Message,@Country,@Topic,@Role)";
+            var query = "INSERT INTO ContactMessages (FirstName,LastName,Email,PhoneNumbre,Message,Country,Topic, _Role) VALUES (@FirstName,@LastName,@Email,@PhoneNumbre,@Message,@Country,@Topic,@Role)";
             using (var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@FirstName", contactMessage.FirstName);

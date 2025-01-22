@@ -70,18 +70,6 @@ namespace Zentech.Controllers
         }
 
 
-        [HttpGet("categories")]
-        public IActionResult GetNewsCategories()
-        {
-            var news = _newsService.GetNewsCategories();
-            if (news == null)
-            {
-                return NotFound(new { Message = "News not found." });
-            }
-            return Ok(news);
-        }
-
-
         /// <summary>
         /// Add a new news item.
         /// Accessible only to users with the "Admin" role.
@@ -240,6 +228,88 @@ namespace Zentech.Controllers
                 return StatusCode(500, new { Message = $"Error deleting photo: {ex.Message}" });
             }
         }
+
+
+        #region Categories methods
+
+        [HttpGet("Categories")]
+        public IActionResult GetAllCategories()
+        {
+            try
+            {
+                var categories = _newsService.GetNewsCategories();
+                if (categories == null || !categories.Any())
+                {
+                    return NotFound("No categories found.");
+                }
+                return Ok(categories);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+        [HttpPost("Categories")]
+        public IActionResult AddNewsCategory([FromForm] Other_Category category)
+        {
+            if (category == null)
+            {
+                return BadRequest("Category is null.");
+            }
+
+            try
+            {
+                string createdBy = User.Identity?.Name;
+                category.CreatedBy = createdBy ?? "null";
+                var createdCategory = _newsService.AddNewsCategory(category);
+                return CreatedAtAction(nameof(GetAllCategories), new { id = createdCategory.CategoryID }, createdCategory);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+        [HttpPut("Categories")]
+        public IActionResult UpdateNewsCategory([FromForm] Other_Category category)
+        {
+
+            try
+            {
+                string updatedBy = User.Identity?.Name;
+                category.UpdatedBy = updatedBy ?? "null";
+                var updatedCategory = _newsService.UpdateNewsCategory(category);
+                if (updatedCategory == null)
+                {
+                    return NotFound($"Category with ID {category.CategoryID} not found.");
+                }
+                return Ok(updatedCategory);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+        [HttpDelete("Categories/{id}")]
+        public IActionResult DeleteNewsCategory([FromRoute] int id)
+        {
+            try
+            {
+                _newsService.DeleteNewsCategory(id);
+                return NoContent();
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound($"Category with ID {id} not found.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+        #endregion
 
     }
 }

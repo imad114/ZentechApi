@@ -78,9 +78,32 @@ namespace Zentech.Services
             return _newsRepository.GetNewsByCategoryId(category_id);
         }
 
-        public List<Category> GetNewsCategories()
+
+
+        #region TD_Category Methods
+
+        public List<Other_Category> GetNewsCategories()
         {
             return _newsRepository.GetNewsCategories();
         }
+
+        public Other_Category AddNewsCategory(Other_Category category)
+        {
+            return _newsRepository.AddNewsCategory(category);
+        }
+
+        public Other_Category UpdateNewsCategory(Other_Category category)
+        {
+            return _newsRepository.UpdateNewsCategory(category);
+        }
+
+        public void DeleteNewsCategory(int categoryId)
+        {
+            _newsRepository.DeleteNewsCategory(categoryId.ToString());
+        }
+
+
+
+        #endregion
     }
 }
