@@ -95,8 +95,8 @@ namespace Zentech.Repositories
                     SELECT LAST_INSERT_ID();", connection);
 
                 command.Parameters.AddWithValue("@Description", Slide.Description);
-/*                command.Parameters.AddWithValue("@Picture", Slide.Picture ?? "./images/zentech-logo.svg");
-*/                command.Parameters.AddWithValue("@EntityType", Slide.EntityType);
+                command.Parameters.AddWithValue("@Picture", Slide.PicturePath ?? "./images/zentech-logo.svg");
+                command.Parameters.AddWithValue("@EntityType", Slide.EntityType);
                 command.Parameters.AddWithValue("@EntityID", Slide.EntityID);
                 command.Parameters.AddWithValue("@CreatedBy", Slide.CreatedBy);
                 command.Parameters.AddWithValue("@CreatedAt", Slide.CreatedAt); 
@@ -122,7 +122,7 @@ namespace Zentech.Repositories
                     WHERE SlideID = @SlideID", connection);
 
                 command.Parameters.AddWithValue("@Description", Slide.Description);
-                command.Parameters.AddWithValue("@Picture", Path.Combine("uploads","Slides",Slide.Picture.FileName) ?? "./images/zentech-logo.svg");
+                command.Parameters.AddWithValue("@Picture", Slide.PicturePath ?? "./images/zentech-logo.svg");
                command.Parameters.AddWithValue("@EntityType", Slide.EntityType);
                 command.Parameters.AddWithValue("@EntityID", Slide.EntityID);
                 command.Parameters.AddWithValue("@UpdatedBy", Slide.UpdatedBy);

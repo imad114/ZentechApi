@@ -86,8 +86,8 @@ namespace ZentechAPI.controllers
                 if (slide.Picture!= null && slide.Picture.Length > 0)
                 {
 
-                     await UploadSlidePhoto(slide.SlideID, slide.Picture);
-
+                    slide.PicturePath =  await UploadSlidePhoto(slide.SlideID, slide.Picture);
+                    _slideService.UpdateSlide(slide);
                 }
 
                    
@@ -103,10 +103,9 @@ namespace ZentechAPI.controllers
         /// <summary>
         /// Updates an existing slide.
         /// </summary>
-        /// <param name="id">The ID of the slide to update.</param>
         /// <param name="slide">The updated slide data.</param>
-        [HttpPut("{id}")]
-        public IActionResult UpdateSlide(int id, [FromBody] Slide slide)
+        [HttpPut]
+        public async Task<IActionResult> UpdateSlide([FromForm] Slide slide)
         {
             try
             {
@@ -115,16 +114,13 @@ namespace ZentechAPI.controllers
                     return BadRequest("Slide data is null.");
                 }
 
-                if (id != slide.SlideID)
-                {
-                    return BadRequest("Slide ID mismatch.");
-                }
 
                 var updatedBy = "admin";
                 slide.UpdatedBy = updatedBy;
-                var success = _slideService.UpdateSlide(slide);
+                slide.PicturePath = await UploadSlidePhoto(slide.SlideID,slide.Picture);
+                _slideService.UpdateSlide(slide);
 
-                if (!success)
+                if (string.IsNullOrEmpty(slide.PicturePath))
                 {
                     return NotFound("Slide not found.");
                 }
@@ -143,26 +139,27 @@ namespace ZentechAPI.controllers
         [SwaggerResponse(StatusCodes.Status400BadRequest, "Invalid file upload", typeof(object))]
         [SwaggerResponse(StatusCodes.Status500InternalServerError, "An error occurred while uploading the photo", typeof(object))]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> UploadSlidePhoto(int slideID, IFormFile file)
+        public async Task<string> UploadSlidePhoto(int slideID, IFormFile file)
         {
             try
             {
                 if (file == null || file.Length == 0)
                 {
-                    return BadRequest(new { Message = "Invalid file upload." });
+                    throw new Exception("File is empty");
                 }
 
-             
+
                 var allowedExtensions = new[] { ".jpg", ".jpeg", ".png" };
                 var fileExtension = Path.GetExtension(file.FileName).ToLower();
                 if (!allowedExtensions.Contains(fileExtension))
                 {
-                    return BadRequest(new { Message = "Invalid file type. Only JPG and PNG files are allowed." });
+                    throw new Exception("Invalid file type. Only JPG and PNG files are allowed.");
                 }
 
                 if (file.Length > 10 * 1024 * 1024)
                 {
-                    return BadRequest(new { Message = "File size exceeds the maximum limit of 10MB." });
+                    throw new Exception("File size exceeds the maximum limit of 10MB.");
+
                 }
 
                 var uploadFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads/Slides");
@@ -180,14 +177,11 @@ namespace ZentechAPI.controllers
                 }
 
                 var photoUrl = $"/uploads/Slides/{fileName}";
-                _slideService.UpdateSlidePicture(slideID, photoUrl);
-
-                return CreatedAtAction("UploadSlidePhoto", new { slideID, photoUrl }, new { Message = "Photo uploaded successfully.", Url = photoUrl });
+                return photoUrl;
             }
             catch (Exception ex)
             {
-                // Log the exception (you can use a logger here)
-                return StatusCode(500, new { Message = "An error occurred while uploading the photo.", Error = ex.Message });
+                throw new Exception($"Error saving file: {ex.Message}");
             }
         }
 

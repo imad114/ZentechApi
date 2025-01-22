@@ -63,7 +63,6 @@ namespace Zentech.Controllers
         /// </summary>
         /// <param name="product">The product information to add.</param>
         // Add a new product
-        [Authorize(Roles = "Admin")]
         [HttpPost]
         [SwaggerOperation(Summary = "Add a product", Description = "Adds a new product to the system.")]
         public async Task<IActionResult> AddProduct([FromBody] ProductDto product)
@@ -71,7 +70,7 @@ namespace Zentech.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var createdBy = User.Identity?.Name;
+            var createdBy = User.Identity?.Name??"admin";
             var ProductID = await _productService.AddProductAsync(product, createdBy);
             return CreatedAtAction(nameof(GetProductById), new { id = ProductID }, ProductID);
         }
