@@ -89,8 +89,8 @@ namespace Zentech.Controllers
             if (id != product.ProductID)
                 return BadRequest("Product ID mismatch.");
 
-            var createdBy = User.Identity?.Name;
-            var isUpdated = await _productService.UpdateProductAsync(product, createdBy);
+            var updatedBy = User.Identity?.Name;
+            var isUpdated = await _productService.UpdateProductAsync(product, updatedBy);
 
             if (!isUpdated)
                 return NotFound();

@@ -126,7 +126,7 @@ namespace Zentech.Services
         }
 
         // Update a user
-        public async Task<UserDto?> UpdateUserAsync(UserDto user, string updatedBy)
+        public async Task<User?> UpdateUserAsync(User user, string updatedBy)
         {
             // Retrieve the current user
             var existingUser = await _userRepository.GetByIdAsync(user.UserID);
@@ -148,7 +148,7 @@ namespace Zentech.Services
             existingUser.RoleID = user.RoleID;
 
             // Update the user in the database
-            return await _userRepository.UpdateAsync(user, updatedBy);
+            return await _userRepository.UpdateAsync(existingUser, updatedBy);
         }
 
         // Delete a user by ID

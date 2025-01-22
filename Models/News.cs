@@ -8,6 +8,9 @@
         public string Title { get; set; }
         public string Content { get; set; }
         public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
+        public string? CreatedBy { get; set; }
+        public string? UpdatedBy { get; set; }
         public string? Author { get; set; }
         public List<String> Photos { get; set; }
         public string? CategoryID { get; set; }

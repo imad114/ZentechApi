@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using ZentechAPI.Dto;
@@ -33,6 +34,9 @@ namespace Zentech.Repositories
                             Title = reader.IsDBNull(reader.GetOrdinal("Title")) ? "": reader.GetString("Title"),
                             Content = reader.IsDBNull(reader.GetOrdinal("Content")) ? "" : reader.GetString("Content"),
                             CreatedAt = reader.GetDateTime("CreatedAt"),
+                            UpdatedAt = reader.IsDBNull(reader.GetOrdinal("UpdatedAt")) ? (DateTime?)null : reader.GetDateTime("UpdatedAt"),
+                            CreatedBy = reader.IsDBNull(reader.GetOrdinal("CreatedBy")) ? null : reader.GetString("CreatedBy"),
+                            UpdatedBy = reader.IsDBNull(reader.GetOrdinal("UpdatedBy")) ? null : reader.GetString("UpdatedBy"),
                             Author = reader.IsDBNull(reader.GetOrdinal("Author")) ? "" : reader.GetString("Author"),
                             mainPicture = reader.IsDBNull(reader.GetOrdinal("mainPicture")) ? "" : reader.GetString("mainPicture"),
                             Photos = GetPhotosForEntity(reader.IsDBNull(reader.GetOrdinal("NewsID")) ? 0 : reader.GetInt32("NewsID"), "News") // get photos
@@ -64,7 +68,11 @@ namespace Zentech.Repositories
                             Title = reader.GetString("Title"),
                             Content = reader.GetString("Content"),
                             CreatedAt = reader.GetDateTime("CreatedAt"),
+                            UpdatedAt = reader.IsDBNull(reader.GetOrdinal("UpdatedAt")) ? (DateTime?)null : reader.GetDateTime("UpdatedAt"),
+                            CreatedBy = reader.IsDBNull(reader.GetOrdinal("CreatedBy")) ? null : reader.GetString("CreatedBy"),
+                            UpdatedBy = reader.IsDBNull(reader.GetOrdinal("UpdatedBy")) ? null : reader.GetString("UpdatedBy"),
                             Author = reader.GetString("Author"),
+                            mainPicture = reader.IsDBNull(reader.GetOrdinal("mainPicture")) ? "" : reader.GetString("mainPicture"),
                             Photos = GetPhotosForEntity(reader.GetInt32("NewsID"), "News")
                         };
                     }
@@ -75,22 +83,25 @@ namespace Zentech.Repositories
         }
 
         // Method to add a new news item
-        public NewsDto AddNews(NewsDto news)
+        public NewsDto AddNews(NewsDto news, string createdBy)
         {
             using (var connection = _context.GetConnection())
             {
                 connection.Open();
                 var command = new MySqlCommand(
-                    "INSERT INTO News (Title, Content, CreatedAt, Author) VALUES (@Title, @Content, @CreatedAt, @Author); SELECT LAST_INSERT_ID();",
+                    "INSERT INTO News (Title, Content, CreatedAt, Author, CreatedBy, mainPicture) VALUES (@Title, @Content, @CreatedAt, @Author, @CreatedBy, @mainPicture); SELECT LAST_INSERT_ID();",
                     connection
                 );
                
                 command.Parameters.AddWithValue("@Title", news.Title);
                 command.Parameters.AddWithValue("@Content", news.Content);
                 command.Parameters.AddWithValue("@CreatedAt", DateTime.Now);
+                command.Parameters.AddWithValue("@CreatedBy", createdBy);
                 command.Parameters.AddWithValue("@Author", news.Author);
+                command.Parameters.AddWithValue("@mainPicture", news.mainPicture);
 
                 var newsId = Convert.ToInt32(command.ExecuteScalar());
+                news.NewsID = newsId;
                 connection.Close();
             }
 
@@ -150,7 +161,7 @@ namespace Zentech.Repositories
         }
 
         // Method to update a news article and its photos
-        public bool UpdateNews(NewsDto news)
+        public bool UpdateNews(NewsDto news, string updatedBy)
         {
             using (var connection = _context.GetConnection())
             {
@@ -158,13 +169,16 @@ namespace Zentech.Repositories
 
                 // update a news
                 var command = new MySqlCommand(
-                    "UPDATE News SET Title = @Title, Content = @Content, Author = @Author WHERE NewsID = @NewsID",
+                    "UPDATE News SET Title = @Title, Content = @Content, Author = @Author, UpdatedBy = @UpdatedBy, UpdatedAt = @UpdatedAt, mainPicture = @mainPicture  WHERE NewsID = @NewsID",
                     connection
                 );
                 command.Parameters.AddWithValue("@Title", news.Title);
                 command.Parameters.AddWithValue("@Content", news.Content);
                 command.Parameters.AddWithValue("@Author", news.Author);
+                command.Parameters.AddWithValue("@UpdatedBy", updatedBy);
                 command.Parameters.AddWithValue("@NewsID", news.NewsID);
+                command.Parameters.AddWithValue("@UpdatedAt", DateTime.Now);
+                command.Parameters.AddWithValue("@mainPicture", news.mainPicture);
 
                 var rowsAffected = command.ExecuteNonQuery();
                 if (rowsAffected == 0)

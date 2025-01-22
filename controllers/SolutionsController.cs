@@ -56,8 +56,8 @@ namespace Zentech.Controllers
             try
             {
                 var createdBy = User.Identity?.Name;
-                int solutionId = _solutionService.AddSolution(solutionDto, createdBy); // Assuming User.Identity.Name gives the creator's username.
-                return Ok(new { SolutionID = solutionId });
+                var createdSolution = _solutionService.AddSolution(solutionDto, createdBy); // Assuming User.Identity.Name gives the creator's username.
+                return CreatedAtAction(nameof(GetSolutionById), new { id = createdSolution.SolutionID }, createdSolution);
             }
             catch (Exception ex)
             {
@@ -69,6 +69,11 @@ namespace Zentech.Controllers
         [HttpPost("AddProductsToSolution")]
         public IActionResult AddProductsToSolution([FromBody] AddProductsToSolutionDto dto)
         {
+            if (dto == null || dto.ProductIDs == null || !dto.ProductIDs.Any())
+            {
+                return BadRequest("Invalid data: 'dto' or 'ProductIDs' is missing or empty.");
+            }
+
             try
             {
                 _solutionService.AddProductsToSolution(dto.SolutionID, dto.ProductIDs);
@@ -211,6 +216,37 @@ namespace Zentech.Controllers
             catch (Exception ex)
             {
                 return StatusCode(500, new { Message = $"Error deleting photo: {ex.Message}" });
+            }
+        }
+
+
+
+        // added by imad 20/01/25 13h30
+
+        /// <summary>
+        /// Delete a product from a solution.
+        /// </summary>
+        /// <param name="solutionId">The ID of the solution.</param>
+        /// <param name="productId">The ID of the product.</param>
+        /// <returns>HTTP 200 OK if successful, or an error message.</returns>
+        [HttpDelete("{solutionId}/products/{productId}")]
+        public IActionResult DeleteProductFromSolution(int solutionId, int productId)
+        {
+            if (solutionId <= 0 || productId <= 0)
+                return BadRequest("Invalid solution or product ID.");
+
+            try
+            {
+                _solutionService.DeleteProductFromSolution(solutionId, productId);
+                return Ok(new { message = "Product successfully removed from the solution." });
+            }
+            catch (InvalidOperationException ex)
+            {
+                return NotFound(new { error = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = "An error occurred while processing your request.", details = ex.Message });
             }
         }
 

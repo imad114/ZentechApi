@@ -154,7 +154,7 @@ namespace Zentech.Repositories
 
         // Update  user
 
-        public async Task<UserDto?> UpdateAsync(UserDto user, string updatedBy)
+        public async Task<User?> UpdateAsync(User user, string updatedBy)
         {
             using (var connection = _context.GetConnection())
             {

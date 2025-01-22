@@ -139,7 +139,7 @@ public class UserController : ControllerBase
     [HttpPut("{id}")]
     [SwaggerOperation(Summary = "Update a user", Description = "Modifies the information of an existing user.")]
 
-    public async Task<IActionResult> UpdateUser(int id, [FromBody] UserDto user)
+    public async Task<IActionResult> UpdateUser(int id, [FromBody] User user)
     {
         if (!ModelState.IsValid)
         {

@@ -9,6 +9,6 @@
         public DateTime? UpdatedDate { get; set; }
         public string? CreatedBy { get; set; }
         public string? UpdatedBy { get; set; }
-        public string? NewsID { get;  set; }
+        public string? NewsID { get; set; }
     }
 }

@@ -96,8 +96,8 @@ namespace Zentech.Controllers
             {
                 return BadRequest(new { Message = "Invalid news data. Title and content are required." });
             }
-
-            var createdNews = _newsService.AddNews(news);
+            var createdBy = User.Identity?.Name;
+            var createdNews = _newsService.AddNews(news, createdBy);
             return CreatedAtAction(nameof(GetNewsById), new { id = createdNews.NewsID }, createdNews);
         }
 
@@ -116,8 +116,8 @@ namespace Zentech.Controllers
             {
                 return BadRequest(new { Message = "Invalid news data or ID mismatch." });
             }
-
-            var updated = _newsService.UpdateNews(news);
+            var updatedBy = User.Identity?.Name;
+            var updated = _newsService.UpdateNews(news, updatedBy);
             if (!updated)
             {
                 return NotFound(new { Message = "News not found." });
@@ -209,7 +209,7 @@ namespace Zentech.Controllers
         /// <returns>OK response if the photo was deleted successfully.</returns>
         [Authorize(Roles = "Admin")]
         [HttpDelete("photos")]
-        public IActionResult DeletePhotoFromProduct([FromBody] string photoUrl)
+        public IActionResult DeletePhotoFromNews([FromBody] string photoUrl)
         {
             if (string.IsNullOrEmpty(photoUrl))
             {

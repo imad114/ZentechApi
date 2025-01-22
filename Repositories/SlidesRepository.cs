@@ -1,6 +1,9 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using Zentech.Models;
 using ZentechAPI.Models;
 
 namespace Zentech.Repositories
@@ -14,7 +17,10 @@ namespace Zentech.Repositories
             _context = context;
         }
 
-        // Method to retrieve all slides
+        /// <summary>
+        /// Retrieves all slides.
+        /// </summary>
+        /// <returns>A list of slides.</returns>
         public List<Slide> GetAllSlides()
         {
             var slideList = new List<Slide>();
@@ -37,8 +43,8 @@ namespace Zentech.Repositories
                             EntityID = reader.GetInt32("EntityID"),
                             CreatedBy = reader.GetString("CreatedBy"),
                             CreatedAt = reader.GetDateTime("CreatedAt"),
-                            UpdatedBy = reader.GetString("UpdatedBy"),
-                            UpdatedAt = reader.GetDateTime("UpdatedAt")
+                            UpdatedBy = reader.IsDBNull(reader.GetOrdinal("UpdatedBy")) ? null : reader.GetString("UpdatedBy"),
+                            UpdatedAt = reader.IsDBNull(reader.GetOrdinal("UpdatedAt")) ? null : reader.GetDateTime("UpdatedAt")
                         };
 
                         slideList.Add(slide);
@@ -49,7 +55,11 @@ namespace Zentech.Repositories
             return slideList;
         }
 
-        // Method to retrieve a specific slide by its ID
+        /// <summary>
+        /// Retrieves a slide by its ID.
+        /// </summary>
+        /// <param name="id">Slide ID.</param>
+        /// <returns>The slide object or null if not found.</returns>
         public Slide GetSlideById(int id)
         {
             Slide slide = null;
@@ -73,8 +83,8 @@ namespace Zentech.Repositories
                             EntityID = reader.GetInt32("EntityID"),
                             CreatedBy = reader.GetString("CreatedBy"),
                             CreatedAt = reader.GetDateTime("CreatedAt"),
-                            UpdatedBy = reader.GetString("UpdatedBy"),
-                            UpdatedAt = reader.GetDateTime("UpdatedAt")
+                            UpdatedBy = reader.IsDBNull(reader.GetOrdinal("UpdatedBy")) ? null : reader.GetString("UpdatedBy"),
+                            UpdatedAt = reader.IsDBNull(reader.GetOrdinal("UpdatedAt")) ? null : reader.GetDateTime("UpdatedAt")
                         };
                     }
                 }
@@ -83,32 +93,79 @@ namespace Zentech.Repositories
             return slide;
         }
 
-        // Method to add a new slide
-        public int AddSlide(Slide Slide)
+        /// <summary>
+        /// Adds a new slide.
+        /// </summary>
+        /// <param name="slide">Slide data.</param>
+        /// <param name="createdBy">User who created the slide.</param>
+        /// <returns>The ID of the newly created slide.</returns>
+        public int AddSlide(Slide slide, string createdBy)
         {
             using (var connection = _context.GetConnection())
             {
                 connection.Open();
                 var command = new MySqlCommand(@"
-                    INSERT INTO slides (Description, EntityType, EntityID, CreatedBy, CreatedAt, UpdatedBy, UpdatedAt) 
-                    VALUES (@Description, @EntityType, @EntityID, @CreatedBy, @CreatedAt, @UpdatedBy, @UpdatedAt); 
+                    INSERT INTO slides (Description, EntityType, EntityID, CreatedBy, CreatedAt, Picture) 
+                    VALUES (@Description, @EntityType, @EntityID, @CreatedBy, @CreatedAt, @Picture); 
                     SELECT LAST_INSERT_ID();", connection);
 
-                command.Parameters.AddWithValue("@Description", Slide.Description);
-/*                command.Parameters.AddWithValue("@Picture", Slide.Picture ?? "./images/zentech-logo.svg");
-*/                command.Parameters.AddWithValue("@EntityType", Slide.EntityType);
-                command.Parameters.AddWithValue("@EntityID", Slide.EntityID);
-                command.Parameters.AddWithValue("@CreatedBy", Slide.CreatedBy);
-                command.Parameters.AddWithValue("@CreatedAt", Slide.CreatedAt); 
-                command.Parameters.AddWithValue("@UpdatedBy", Slide.UpdatedBy);
-                command.Parameters.AddWithValue("@UpdatedAt", Slide.UpdatedAt); 
+                command.Parameters.AddWithValue("@Description", slide.Description ?? string.Empty);
+                command.Parameters.AddWithValue("@EntityType", slide.EntityType ?? string.Empty);
+                command.Parameters.AddWithValue("@EntityID", slide.EntityID ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@CreatedBy", createdBy);
+                command.Parameters.AddWithValue("@CreatedAt", DateTime.Now);
+                command.Parameters.AddWithValue("@Picture", slide.Picture?.FileName ?? "./images/zentech-logo.svg");
 
                 return Convert.ToInt32(command.ExecuteScalar());
             }
         }
 
-        // Method to update a slide
-        public bool UpdateSlide(Slide Slide)
+        /// <summary>
+        /// Updates a slide's details.
+        /// </summary>
+        /// <param name="slide">Slide object with updated data.</param>
+        /// <param name="updatedBy">User who updated the slide.</param>
+        /// <returns>True if the update was successful, false otherwise.</returns>
+        public bool UpdateSlide(Slide slide, string updatedBy)
+        {
+            using (var connection = _context.GetConnection())
+            {
+                connection.Open();
+                var query = new StringBuilder(@"
+                    UPDATE slides 
+                    SET Description = @Description, EntityType = @EntityType, EntityID = @EntityID, UpdatedBy = @UpdatedBy, UpdatedAt = @UpdatedAt");
+
+                if (slide.Picture != null)
+                {
+                    query.Append(", Picture = @Picture");
+                }
+
+                query.Append(" WHERE SlideID = @SlideID");
+
+                var command = new MySqlCommand(query.ToString(), connection);
+                command.Parameters.AddWithValue("@Description", slide.Description ?? string.Empty);
+                command.Parameters.AddWithValue("@EntityType", slide.EntityType ?? string.Empty);
+                command.Parameters.AddWithValue("@EntityID", slide.EntityID ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@UpdatedBy", updatedBy);
+                command.Parameters.AddWithValue("@UpdatedAt", DateTime.Now);
+                command.Parameters.AddWithValue("@SlideID", slide.SlideID);
+
+                if (slide.Picture != null)
+                {
+                    command.Parameters.AddWithValue("@Picture", Path.Combine("uploads", "Slides", slide.Picture.FileName));
+                }
+
+                return command.ExecuteNonQuery() > 0;
+            }
+        }
+
+        /// <summary>
+        /// Updates the picture path of a slide.
+        /// </summary>
+        /// <param name="slideID">Slide ID.</param>
+        /// <param name="path">New picture path.</param>
+        /// <returns>True if successful, false otherwise.</returns>
+        public bool UpdateSlidePicture(int slideID, string path)
         {
             using (var connection = _context.GetConnection())
             {
@@ -116,45 +173,21 @@ namespace Zentech.Repositories
 
                 var command = new MySqlCommand(@"
                     UPDATE slides 
-                    SET Description = @Description, Picture = @Picture, 
-                        EntityType = @EntityType, EntityID = @EntityID,
-                        UpdatedBy = @UpdatedBy, UpdatedAt = @UpdatedAt
+                    SET Picture = @Picture 
                     WHERE SlideID = @SlideID", connection);
 
-                command.Parameters.AddWithValue("@Description", Slide.Description);
-                command.Parameters.AddWithValue("@Picture", Path.Combine("uploads","Slides",Slide.Picture.FileName) ?? "./images/zentech-logo.svg");
-               command.Parameters.AddWithValue("@EntityType", Slide.EntityType);
-                command.Parameters.AddWithValue("@EntityID", Slide.EntityID);
-                command.Parameters.AddWithValue("@UpdatedBy", Slide.UpdatedBy);
-                command.Parameters.AddWithValue("@UpdatedAt", Slide.UpdatedAt); 
-                command.Parameters.AddWithValue("@SlideID", Slide.SlideID);
-
-                var rowsAffected = command.ExecuteNonQuery();
-                return rowsAffected > 0;
-            }
-        }
-
-        public bool UpdateSlidePicture(int SlideID, string path)
-        {
-            using (var connection = _context.GetConnection())
-            {
-                connection.Open();
-
-                var command = new MySqlCommand(@"
-                    UPDATE slides 
-                    SET Picture = @Picture where slideID =  @SlideID", connection);
-
-
                 command.Parameters.AddWithValue("@Picture", path ?? "./images/zentech-logo.svg");
-      
-                command.Parameters.AddWithValue("@SlideID", SlideID);
+                command.Parameters.AddWithValue("@SlideID", slideID);
 
-                var rowsAffected = command.ExecuteNonQuery();
-                return rowsAffected > 0;
+                return command.ExecuteNonQuery() > 0;
             }
         }
 
-        // Method to remove a slide
+        /// <summary>
+        /// Deletes a slide by ID.
+        /// </summary>
+        /// <param name="slideID">Slide ID.</param>
+        /// <returns>True if successful, false otherwise.</returns>
         public bool RemoveSlide(int slideID)
         {
             using (var connection = _context.GetConnection())
@@ -163,13 +196,8 @@ namespace Zentech.Repositories
                 var command = new MySqlCommand("DELETE FROM slides WHERE SlideID = @SlideID", connection);
                 command.Parameters.AddWithValue("@SlideID", slideID);
 
-                var rowsAffected = command.ExecuteNonQuery();
-                return rowsAffected > 0;
+                return command.ExecuteNonQuery() > 0;
             }
-        }
-
-        public void DeleteSlide(int slideId)
-        {
         }
     }
 }

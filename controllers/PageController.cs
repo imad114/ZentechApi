@@ -5,6 +5,8 @@ using Zentech.Services;
 using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Authorization;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace ZentechAPI.Controllers
 {
@@ -111,9 +113,10 @@ namespace ZentechAPI.Controllers
         {
             try
             {
-                if (pageDto == null)
+               
+                if (pageDto == null || string.IsNullOrEmpty(pageDto.Title) || string.IsNullOrEmpty(pageDto.Content))
                 {
-                    return BadRequest("Page data is null.");
+                    return BadRequest(new { Message = "Invalid news data. Title and content are required." });
                 }
 
                 var createdBy = "admin"; // In a real application, you'd fetch this from the authenticated user
@@ -208,5 +211,104 @@ namespace ZentechAPI.Controllers
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
+
+        [HttpPost("{pageId}/upload-photoPage")]
+        [SwaggerOperation(Summary = "Upload a photo for a page", Description = "Allows uploading a photo for a specific Page.")]
+        [SwaggerResponse(StatusCodes.Status201Created, "Photo uploaded successfully", typeof(object))]
+        [SwaggerResponse(StatusCodes.Status400BadRequest, "Invalid file upload", typeof(object))]
+        [SwaggerResponse(StatusCodes.Status500InternalServerError, "An error occurred while uploading the photo", typeof(object))]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> AddPhotoToPage(int pageId, IFormFile file)
+        {
+            try
+            {
+                if (file == null || file.Length == 0)
+                {
+                    return BadRequest(new { Message = "Invalid file upload." });
+                }
+
+                // Validation du type de fichier
+                var allowedExtensions = new[] { ".jpg", ".jpeg", ".png" };
+                var fileExtension = Path.GetExtension(file.FileName).ToLower();
+                if (!allowedExtensions.Contains(fileExtension))
+                {
+                    return BadRequest(new { Message = "Invalid file type. Only JPG and PNG files are allowed." });
+                }
+
+                // Validation de la taille du fichier (10 Mo max)
+                if (file.Length > 10 * 1024 * 1024)
+                {
+                    return BadRequest(new { Message = "File size exceeds the maximum limit of 10MB." });
+                }
+
+                var uploadFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads/Page");
+                if (!Directory.Exists(uploadFolder))
+                {
+                    Directory.CreateDirectory(uploadFolder);
+                }
+
+                var fileName = $"{Guid.NewGuid()}_{file.FileName}";
+                var filePath = Path.Combine(uploadFolder, fileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+
+                var photoUrl = $"/uploads/Page/{fileName}";
+
+                return CreatedAtAction("AddPhotoToPage", new { pageId, photoUrl }, new { Message = "Photo uploaded successfully.", Url = photoUrl });
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (you can use a logger here)
+                return StatusCode(500, new { Message = "An error occurred while uploading the photo.", Error = ex.Message });
+            }
+        }
+
+
+
+
+
+        /// <summary>
+        /// Delete a photo from a news item.
+        /// Accessible only to users with the "Admin" role.
+        /// </summary>
+        /// <param name="photoUrl">The URL of the photo to delete.</param>
+        /// <returns>OK response if the photo was deleted successfully.</returns>
+        [Authorize(Roles = "Admin")]
+        [HttpDelete("photos")]
+        public IActionResult DeletePhotoFromPage([FromBody] string photoUrl)
+        {
+            if (string.IsNullOrEmpty(photoUrl))
+            {
+                return BadRequest(new { Message = "Invalid photo URL." });
+            }
+
+            try
+            {
+               
+               
+
+                // Ensure the photoUrl is a relative path starting with "/uploads/"
+                var relativePath = photoUrl.StartsWith("/uploads/Page/") ? photoUrl : $"/uploads/Page/{Path.GetFileName(photoUrl)}";
+
+                // Get the physical path of the photo
+                var photoPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", relativePath.TrimStart('/').Replace("/", Path.DirectorySeparatorChar.ToString()));
+
+                // Check if the file exists and delete it
+                if (System.IO.File.Exists(photoPath))
+                {
+                    System.IO.File.Delete(photoPath);
+                }
+
+                return Ok(new { Message = "Photo deleted successfully." });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = $"Error deleting photo: {ex.Message}" });
+            }
+        }
+
     }
 }

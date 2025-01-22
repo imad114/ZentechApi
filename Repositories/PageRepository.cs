@@ -164,6 +164,7 @@ namespace Zentech.Repositories
                 command.Parameters.AddWithValue("@CreatedBy", createdBy);
 
                 var pageId = Convert.ToInt32(command.ExecuteScalar());
+                pageDto.Id = pageId;
                 return pageId;
             }
         }

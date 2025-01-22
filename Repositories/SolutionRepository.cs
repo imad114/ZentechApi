@@ -16,6 +16,9 @@ namespace Zentech.Repositories
             _context = context;
         }
 
+
+            // Update  by imad 20/01/25 11h30 add UpdatedAt UpdatedBy CreatedBy
+
         // Method to retrieve all solutions with their photos and associated products (including product photos and specifications)
         public List<Solution> GetAllSolutions()
         {
@@ -37,6 +40,7 @@ namespace Zentech.Repositories
                             SolutionID = reader.GetInt32("SolutionID"),
                             Title = reader.GetString("Title"),
                             Description = reader.GetString("Description"),
+                            MainPicture = reader.IsDBNull(reader.GetOrdinal("mainPicture")) ? null : reader.GetString("mainPicture"),
                             CreatedAt = reader.IsDBNull(reader.GetOrdinal("CreatedAt")) ? (DateTime?)null : reader.GetDateTime("CreatedAt"),
                             UpdatedAt = reader.IsDBNull(reader.GetOrdinal("UpdatedAt")) ? (DateTime?)null : reader.GetDateTime("UpdatedAt"),
                             CreatedBy = reader.IsDBNull(reader.GetOrdinal("CreatedBy")) ? null : reader.GetString("CreatedBy"),
@@ -77,6 +81,7 @@ namespace Zentech.Repositories
                             SolutionID = reader.GetInt32("SolutionID"),
                             Title = reader.GetString("Title"),
                             Description = reader.GetString("Description"),
+                            MainPicture = reader.IsDBNull(reader.GetOrdinal("mainPicture")) ? null : reader.GetString("mainPicture"),
                             CreatedAt = reader.IsDBNull(reader.GetOrdinal("CreatedAt")) ? (DateTime?)null : reader.GetDateTime("CreatedAt"),
                             UpdatedAt = reader.IsDBNull(reader.GetOrdinal("UpdatedAt")) ? (DateTime?)null : reader.GetDateTime("UpdatedAt"),
                             CreatedBy = reader.IsDBNull(reader.GetOrdinal("CreatedBy")) ? null : reader.GetString("CreatedBy"),
@@ -122,6 +127,7 @@ namespace Zentech.Repositories
                             Description = reader.GetString("Description"),
                             Price = reader.GetDecimal("Price"),
                             CategoryID = reader.GetInt32("CategoryID"),
+                            CategoryName = reader.GetString("CategoryName"),
                             Photos = GetPhotosForEntity(reader.GetInt32("ProductID"), "Products"),
                             Specifications = GetSpecificationsForProduct(reader.GetInt32("ProductID"))
                         };
@@ -197,25 +203,27 @@ namespace Zentech.Repositories
 
         // Method to add a new solution (including photos and associated products)
 
-        public int AddSolution(SolutionDto solutionDto, string createdBy)
+        public SolutionDto AddSolution(SolutionDto solutionDto, string createdBy)
         {
             using (var connection = _context.GetConnection())
             {
                 connection.Open();
 
                 var command = new MySqlCommand(@"
-                    INSERT INTO Solutions (Title, Description, CreatedAt, CreatedBy) 
-                    VALUES (@Title, @Description, @CreatedAt, @CreatedBy); 
+                    INSERT INTO Solutions (Title, Description, mainPicture ,CreatedAt, CreatedBy) 
+                    VALUES (@Title, @Description, @mainPicture, @CreatedAt, @CreatedBy); 
                     SELECT LAST_INSERT_ID();", connection);
 
                 command.Parameters.AddWithValue("@Title", solutionDto.Title);
                 command.Parameters.AddWithValue("@Description", solutionDto.Description);
+                command.Parameters.AddWithValue("@mainPicture", solutionDto.MainPicture);
                 command.Parameters.AddWithValue("@CreatedAt", DateTime.Now);
                 command.Parameters.AddWithValue("@CreatedBy", createdBy);
 
                 var solutionId = Convert.ToInt32(command.ExecuteScalar());
+                solutionDto.SolutionID = solutionId;
 
-                return solutionId;
+                return solutionDto;
             }
         }
 
@@ -282,12 +290,14 @@ namespace Zentech.Repositories
             UPDATE Solutions 
             SET Title = @Title, 
                 Description = @Description, 
+                mainPicture = @mainPicture,
                 UpdatedAt = @UpdatedAt, 
                 UpdatedBy = @UpdatedBy
             WHERE SolutionID = @SolutionID", connection);
 
                 command.Parameters.AddWithValue("@Title", solutionDto.Title);
                 command.Parameters.AddWithValue("@Description", solutionDto.Description);
+                command.Parameters.AddWithValue("@mainPicture", solutionDto.MainPicture);
                 command.Parameters.AddWithValue("@UpdatedAt", DateTime.Now);
                 command.Parameters.AddWithValue("@UpdatedBy", updatedBy);
                 command.Parameters.AddWithValue("@SolutionID", solutionDto.SolutionID);
@@ -295,6 +305,46 @@ namespace Zentech.Repositories
                 command.ExecuteNonQuery();
             }
         }
+        // added by imad 20/01/25 13h30
+        // Method to delete a product from a solution
+        public void DeleteProductFromSolution(int solutionId, int productId)
+        {
+            using (var connection = _context.GetConnection())
+            {
+                connection.Open();
+
+                using (var transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        // Check if the product is associated with the solution
+                        var checkCommand = new MySqlCommand(@"SELECT COUNT(*) FROM SolutionProduct WHERE SolutionID = @SolutionID AND ProductID = @ProductID", connection, transaction);
+                        checkCommand.Parameters.AddWithValue("@SolutionID", solutionId);
+                        checkCommand.Parameters.AddWithValue("@ProductID", productId);
+
+                        var existingCount = Convert.ToInt32(checkCommand.ExecuteScalar());
+
+                        if (existingCount == 0)
+                            throw new InvalidOperationException("This product is not associated with the solution.");
+
+                        // Delete the product from the solution
+                        var deleteCommand = new MySqlCommand(@"DELETE FROM SolutionProduct WHERE SolutionID = @SolutionID AND ProductID = @ProductID", connection, transaction);
+                        deleteCommand.Parameters.AddWithValue("@SolutionID", solutionId);
+                        deleteCommand.Parameters.AddWithValue("@ProductID", productId);
+
+                        deleteCommand.ExecuteNonQuery();
+
+                        transaction.Commit();
+                    }
+                    catch
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
+                }
+            }
+        }
+
 
 
         // Method to delete a solution

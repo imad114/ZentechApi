@@ -4,6 +4,7 @@ using Zentech.Repositories;
 using Zentech.Models;
 using ZentechAPI.Models;
 using ZentechAPI.Dto;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Zentech.Services
 {
@@ -29,21 +30,21 @@ namespace Zentech.Services
         }
 
         
-        public NewsDto AddNews(NewsDto news)
+        public NewsDto AddNews(NewsDto news, string createdBy)
         {
             if (news == null) throw new ArgumentNullException(nameof(news));
             if (string.IsNullOrEmpty(news.Title) || string.IsNullOrEmpty(news.Content))
                 throw new ArgumentException("Title and content are required for the news.");
 
-            return _newsRepository.AddNews(news);
+            return _newsRepository.AddNews(news, createdBy);
         }
 
       
-        public bool UpdateNews(NewsDto news)
+        public bool UpdateNews(NewsDto news, string updatedBy)
         {
             if (news == null) throw new ArgumentNullException(nameof(news));
 
-            return _newsRepository.UpdateNews(news);
+            return _newsRepository.UpdateNews(news, updatedBy);
         }
 
         

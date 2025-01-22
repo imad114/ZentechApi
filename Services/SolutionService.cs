@@ -39,7 +39,7 @@ namespace Zentech.Services
             }
         }
 
-        public int AddSolution(SolutionDto solutionDto, string createdBy)
+        public SolutionDto AddSolution(SolutionDto solutionDto, string createdBy)
         {
             if (solutionDto == null)
                 throw new ArgumentNullException(nameof(solutionDto));
@@ -74,6 +74,27 @@ namespace Zentech.Services
                 throw new ArgumentException("Invalid photo URL.");
 
             _repository.DeletePhoto(photoUrl);
+        }
+
+
+
+        // added by imad 20/01/25 13h30
+
+        // Method to delete a product from a solution
+        public void DeleteProductFromSolution(int solutionId, int productId)
+        {
+            if (solutionId <= 0 || productId <= 0)
+                throw new ArgumentException("Invalid solution or product ID.");
+
+            try
+            {
+                _repository.DeleteProductFromSolution(solutionId, productId);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or handle it as needed
+                throw new InvalidOperationException("An error occurred while deleting the product from the solution.", ex);
+            }
         }
 
 

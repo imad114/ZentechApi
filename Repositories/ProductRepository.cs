@@ -37,6 +37,7 @@ namespace Zentech.Repositories
                             Name = reader.GetString("Name"),
                             Description = reader.GetString("Description"),
                             Price = reader.GetDecimal("Price"),
+                            CategoryName = reader.IsDBNull(reader.GetOrdinal("CategoryName")) ? null : reader.GetString("CategoryName"),
                             CreatedAt = reader.IsDBNull(reader.GetOrdinal("CreatedDate")) ? (DateTime?)null : reader.GetDateTime("CreatedDate"),
                             UpdatedAt = reader.IsDBNull(reader.GetOrdinal("UpdatedAt")) ? (DateTime?)null : reader.GetDateTime("UpdatedAt"),
                             CategoryID = reader.IsDBNull(reader.GetOrdinal("CategoryID")) ? 0 : reader.GetInt32("CategoryID"),
