@@ -1,17 +1,21 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using Zentech.Models;
 using ZentechAPI.Dto;
 using ZentechAPI.Models;
+using ZentechAPI.Repositories;
 
 namespace Zentech.Repositories
 {
     public class NewsRepository
     {
         private readonly DatabaseContext _context;
+        private OtherCategoriesRepository _otherCategoriesRepository;
         public NewsRepository(DatabaseContext context)
         {
             _context = context;
+            _otherCategoriesRepository = new OtherCategoriesRepository(context);
         }
 
         // Method to get all news
@@ -91,6 +95,8 @@ namespace Zentech.Repositories
                 command.Parameters.AddWithValue("@Author", news.Author);
 
                 var newsId = Convert.ToInt32(command.ExecuteScalar());
+                news.NewsID = newsId;
+
                 connection.Close();
             }
 
@@ -232,31 +238,31 @@ namespace Zentech.Repositories
             return news;
         }
 
-        public List<Category> GetNewsCategories()
+        #region NewsCategories methods
+        public List<Other_Category> GetNewsCategories()
         {
-            List<Category> categories = new List<Category>();
+            return _otherCategoriesRepository.GetOtherCategories("News");
 
-            using (var connection = _context.GetConnection())
-            {
-                connection.Open();
-                var command = new MySqlCommand("SELECT ID, Name, description  FROM News_categories", connection);
-
-                using (var reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        categories.Add(new Category()
-                        {
-                            NewsID = reader.GetString("ID"),
-                            Name = reader.GetString("Name"),
-                            Description = reader.GetString("description"),
-
-                        });
-                    }
-                }
-                connection.Close();
-            }
-            return categories;
         }
+        public Other_Category AddNewsCategory(Other_Category category)
+        {
+
+
+            return _otherCategoriesRepository.AddOtherCategory(category, "News");
+
+        }
+        public Other_Category UpdateNewsCategory(Other_Category category)
+        {
+
+            return _otherCategoriesRepository.UpdateOtherCategory(category,"News");
+
+        }
+        public int DeleteNewsCategory(string id)
+        {
+           return _otherCategoriesRepository.DeleteOtherCategory(id, "News");
+        }
+        #endregion
+
+
     }
 }

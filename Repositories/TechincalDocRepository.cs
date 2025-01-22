@@ -9,9 +9,12 @@ namespace ZentechAPI.Repositories
     public class TechincalDocRepository
     {
         private readonly DatabaseContext _context;
+        private OtherCategoriesRepository _otherCategoriesRepository;
+
         public TechincalDocRepository(DatabaseContext context)
         {
             _context = context;
+            _otherCategoriesRepository = new OtherCategoriesRepository(context);
         }
 
         // Method to get all news
@@ -159,7 +162,7 @@ namespace ZentechAPI.Repositories
                 var command = new MySqlCommand($@"WITH RankedDocuments AS (
                 SELECT   t.TD_ID as TD_ID, t.Name as 'name', t.filePath as filePath, tc.CategoryID as 'CategoryID', tc.name as 'Category',
                    ROW_NUMBER() OVER(PARTITION BY tc.CategoryID ORDER BY tc.CreatedDate DESC) AS RowNum
-                   FROM technical_documentations t LEFT JOIN td_categories tc ON t.td_category_id = tc.CategoryID
+                   FROM technical_documentations t LEFT JOIN other_categories tc ON t.td_category_id = tc.CategoryID and tc.CategoryType = 'TD'
                 )SELECT* FROM RankedDocuments WHERE RowNum <= {limit} ORDER BY RankedDocuments.CategoryID ASC ;", connection);
                 using (var reader = command.ExecuteReader())
                 {
@@ -184,93 +187,29 @@ namespace ZentechAPI.Repositories
         }
 
 
-        #region TD_category methods
-        public List<TD_Category> GetTDCategories()
+        #region TDCategories methods
+        public List<Other_Category> GetTDCategories()
         {
-            List<TD_Category> categories = new List<TD_Category>();
-
-            using (var connection = _context.GetConnection())
-            {
-                connection.Open();
-                var command = new MySqlCommand("SELECT CategoryID, Name, description  FROM td_categories", connection);
-
-                using (var reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        categories.Add(new TD_Category()
-                        {
-                            TD_CategoryID = reader.GetString("CategoryID"),
-                            Name = reader.GetString("Name"),
-                            Description = reader.GetString("description"),
-
-                        });
-                    }
-                }
-                connection.Close();
-            }
-            return categories;
-        }
-        public int AddTechnicalDocCategory(TD_Category td_Category, string createdBy)
-        {
-
-            using (var connection = _context.GetConnection())
-            {
-                connection.Open();
-                var command = new MySqlCommand(
-                    "INSERT INTO td_categories (name, description) VALUES (@Name, @Description);" +
-                    " SELECT LAST_INSERT_ID();",
-                    connection
-                );
-
-                command.Parameters.AddWithValue("@Name", td_Category.Name);
-                command.Parameters.AddWithValue("@Description", td_Category.Description);
-
-                var TD_Id = Convert.ToInt32(command.ExecuteScalar());
-                connection.Close();
-                return TD_Id;
-
-            }
+            return _otherCategoriesRepository.GetOtherCategories("TD");
 
         }
-        public bool UpdateTechnicalDocCategory(TD_Category tdCategory)
+        public Other_Category AddTDCategory(Other_Category category)
         {
-            using (var connection = _context.GetConnection())
-            {
-                connection.Open();
-                var command = new MySqlCommand(
-                    "UPDATE td_categories SET name = @Name, description = @Description WHERE CategoryID = @CategoryID",
-                    connection
-                );
 
-                command.Parameters.AddWithValue("@Name", tdCategory.Name);
-                command.Parameters.AddWithValue("@Description", tdCategory.Description);
-                command.Parameters.AddWithValue("@CategoryID", tdCategory.TD_CategoryID);
 
-                var rowsAffected = command.ExecuteNonQuery();
-                connection.Close();
+            return _otherCategoriesRepository.AddOtherCategory(category, "TD");
 
-                return rowsAffected > 0; // Returns true if the update was successful
-            }
         }
-
-        public void DeleteTechnicalDocCategory(int categoryID)
+        public Other_Category UpdateTDCategory(Other_Category category)
         {
-            using (var connection = _context.GetConnection())
-            {
-                connection.Open();
-                var command = new MySqlCommand(
-                    "DELETE FROM td_categories WHERE CategoryID = @CategoryID",
-                    connection
-                );
 
-                command.Parameters.AddWithValue("@CategoryID", categoryID);
-                command.ExecuteNonQuery();
-                connection.Close();
-            }
+            return _otherCategoriesRepository.UpdateOtherCategory(category, "TD");
+
         }
-
-   
+        public int DeleteTDCategory(string id)
+        {
+            return _otherCategoriesRepository.DeleteOtherCategory(id, "TD");
+        }
         #endregion
     }
 }

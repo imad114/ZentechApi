@@ -209,5 +209,85 @@ namespace ZentechAPI.controllers
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
+
+
+        #region Categories methods
+
+        [HttpGet("Categories")]
+        public IActionResult GetAllCategories()
+        {
+            try
+            {
+                var categories = _technicalDocService.GetAllCategories();
+                if (categories == null || !categories.Any())
+                {
+                    return NotFound("No categories found.");
+                }
+                return Ok(categories);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+        [HttpPost("Categories")]
+        public IActionResult AddTechnicalDocCategory([FromForm] Other_Category category)
+        {
+            if (category == null)
+            {
+                return BadRequest("Category is null.");
+            }
+
+            try
+            {
+                string createdBy = User.Identity?.Name;
+                category.CreatedBy = createdBy ?? "null";
+                var createdCategory = _technicalDocService.AddTechnicalDocCategory(category);
+                return CreatedAtAction(nameof(GetAllCategories), new { id = createdCategory.CategoryID }, createdCategory);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+        [HttpPut("Categories")]
+        public IActionResult UpdateTechnicalDocCategory([FromForm] Other_Category category)
+        {
+
+            try
+            {
+                var updatedCategory = _technicalDocService.UpdateTechnicalDocCategory(category);
+                if (updatedCategory == null)
+                {
+                    return NotFound($"Category with ID {category.CategoryID} not found.");
+                }
+                return Ok(updatedCategory);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+        [HttpDelete("Categories/{id}")]
+        public IActionResult DeleteTechnicalDocCategory([FromRoute] int id)
+        {
+            try
+            {
+                _technicalDocService.DeleteTechnicalDocCategory(id);
+                return NoContent();
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound($"Category with ID {id} not found.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+        #endregion
     }
 }

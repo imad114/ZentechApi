@@ -1,8 +1,9 @@
 ﻿namespace ZentechAPI.Models
 {
-    public class TD_Category
+    public class Other_Category
     {
-        public string TD_CategoryID { get; set; }
+        public string CategoryID { get; set; }
+        public string  CategoryType{ get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string CreatedDate { get; set; }

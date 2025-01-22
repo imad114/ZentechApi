@@ -44,24 +44,24 @@ public class TechnicalDocService
 
     #region TD_Category Methods
 
-    public List<TD_Category> GetAllCategories()
+    public List<Other_Category> GetAllCategories()
     {
         return _repository.GetTDCategories();
     }
 
-    public int AddTechnicalDocCategory(TD_Category category, string createdBy)
+    public Other_Category AddTechnicalDocCategory(Other_Category category)
     {
-        return _repository.AddTechnicalDocCategory(category, createdBy);
+        return _repository.AddTDCategory(category);
     }
 
-    public bool UpdateTechnicalDocCategory(TD_Category category)
+    public Other_Category UpdateTechnicalDocCategory(Other_Category category)
     {
-        return _repository.UpdateTechnicalDocCategory(category);
+        return _repository.UpdateTDCategory(category);
     }
 
     public void DeleteTechnicalDocCategory(int categoryId)
     {
-        _repository.DeleteTechnicalDocCategory(categoryId);
+        _repository.DeleteTDCategory(categoryId.ToString());
     }
 
 
