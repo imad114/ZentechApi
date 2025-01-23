@@ -2,7 +2,7 @@
 {
     public class News
     {
-        public string mainPicture { get; set; }
+        public string? mainPicture { get; set; }
 
         public int NewsID { get; set; }
         public string Title { get; set; }

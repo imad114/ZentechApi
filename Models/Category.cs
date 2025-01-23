@@ -3,8 +3,8 @@
     public class Category
     {
         public int CategoryID { get; set; }
-        public int MainCategoryID { get; set; }
-        public string MainCategoryName { get; set; }
+        public int? MainCategoryID { get; set; }
+        public string? MainCategoryName { get; set; }
 
         public string Name { get; set; }
         public string Description { get; set; }
