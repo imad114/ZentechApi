@@ -125,6 +125,9 @@ builder.Services.AddScoped<TechincalDocRepository>();
 builder.Services.AddScoped<TechnicalDocService>();
 
 
+builder.Services.AddScoped<ProductModelRepository>();
+builder.Services.AddScoped<ProductModelService>();
+
 
 //......................................................................
 builder.Services.Configure<IISServerOptions>(options =>
