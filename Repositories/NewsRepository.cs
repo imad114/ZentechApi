@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
 using MySql.Data.MySqlClient;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using Zentech.Models;
 using ZentechAPI.Dto;
@@ -42,6 +43,7 @@ namespace Zentech.Repositories
                             CreatedBy = reader.IsDBNull(reader.GetOrdinal("CreatedBy")) ? null : reader.GetString("CreatedBy"),
                             UpdatedBy = reader.IsDBNull(reader.GetOrdinal("UpdatedBy")) ? null : reader.GetString("UpdatedBy"),
                             Author = reader.IsDBNull(reader.GetOrdinal("Author")) ? "" : reader.GetString("Author"),
+                            categoryId = reader.GetInt32("categoryId"),
                             mainPicture = reader.IsDBNull(reader.GetOrdinal("mainPicture")) ? "" : reader.GetString("mainPicture"),
                             Photos = GetPhotosForEntity(reader.IsDBNull(reader.GetOrdinal("NewsID")) ? 0 : reader.GetInt32("NewsID"), "News") // get photos
                         };
@@ -76,6 +78,7 @@ namespace Zentech.Repositories
                             CreatedBy = reader.IsDBNull(reader.GetOrdinal("CreatedBy")) ? null : reader.GetString("CreatedBy"),
                             UpdatedBy = reader.IsDBNull(reader.GetOrdinal("UpdatedBy")) ? null : reader.GetString("UpdatedBy"),
                             Author = reader.GetString("Author"),
+                            categoryId = reader.GetInt32("categoryId"),
                             mainPicture = reader.IsDBNull(reader.GetOrdinal("mainPicture")) ? "" : reader.GetString("mainPicture"),
                             Photos = GetPhotosForEntity(reader.GetInt32("NewsID"), "News")
                         };
@@ -93,7 +96,7 @@ namespace Zentech.Repositories
             {
                 connection.Open();
                 var command = new MySqlCommand(
-                    "INSERT INTO News (Title, Content, CreatedAt, Author, CreatedBy, mainPicture) VALUES (@Title, @Content, @CreatedAt, @Author, @CreatedBy, @mainPicture); SELECT LAST_INSERT_ID();",
+                    "INSERT INTO News (Title, Content, CreatedAt, Author, CreatedBy,categoryId, mainPicture) VALUES (@Title, @Content, @CreatedAt, @Author, @CreatedBy,@categoryId, @mainPicture); SELECT LAST_INSERT_ID();",
                     connection
                 );
                
@@ -103,6 +106,7 @@ namespace Zentech.Repositories
                 command.Parameters.AddWithValue("@CreatedBy", createdBy);
                 command.Parameters.AddWithValue("@Author", news.Author);
                 command.Parameters.AddWithValue("@mainPicture", news.mainPicture);
+                command.Parameters.AddWithValue("@categoryId", news.categoryId);
 
                 var newsId = Convert.ToInt32(command.ExecuteScalar());
                 news.NewsID = newsId;
@@ -174,7 +178,7 @@ namespace Zentech.Repositories
 
                 // update a news
                 var command = new MySqlCommand(
-                    "UPDATE News SET Title = @Title, Content = @Content, Author = @Author, UpdatedBy = @UpdatedBy, UpdatedAt = @UpdatedAt, mainPicture = @mainPicture  WHERE NewsID = @NewsID",
+                    "UPDATE News SET Title = @Title, Content = @Content, Author = @Author, UpdatedBy = @UpdatedBy, categoryId = @categoryId, UpdatedAt = @UpdatedAt, mainPicture = @mainPicture  WHERE NewsID = @NewsID",
                     connection
                 );
                 command.Parameters.AddWithValue("@Title", news.Title);
@@ -184,6 +188,7 @@ namespace Zentech.Repositories
                 command.Parameters.AddWithValue("@NewsID", news.NewsID);
                 command.Parameters.AddWithValue("@UpdatedAt", DateTime.Now);
                 command.Parameters.AddWithValue("@mainPicture", news.mainPicture);
+                command.Parameters.AddWithValue("@categoryId", news.categoryId);
 
                 var rowsAffected = command.ExecuteNonQuery();
                 if (rowsAffected == 0)
@@ -226,8 +231,8 @@ namespace Zentech.Repositories
             using (var connection = _context.GetConnection())
             {
                 connection.Open();
-                var command = new MySqlCommand("SELECT NewsID, title, content, author, categoryID,mainPicture  FROM News WHERE categoryID = @CategoryID", connection);
-                command.Parameters.AddWithValue("@CategoryID", category_id);
+                var command = new MySqlCommand("SELECT NewsID, title, content, author, categoryId,mainPicture  FROM News WHERE categoryId = @categoryId", connection);
+                command.Parameters.AddWithValue("@categoryId", category_id);
 
                 using (var reader = command.ExecuteReader())
                 {
@@ -239,7 +244,7 @@ namespace Zentech.Repositories
                             Content = reader.GetString("content"),
                             NewsID = int.Parse(reader.GetString("NewsID")),
                             Title = reader.GetString("title"),
-                            CategoryID = reader.GetString("categoryID"),
+                            categoryId = reader.GetInt32("categoryId"),
                             mainPicture = reader.GetString("mainPicture")
 
 
@@ -252,28 +257,38 @@ namespace Zentech.Repositories
         }
 
         #region NewsCategories methods
-        public List<Other_Category> GetNewsCategories()
+        public async Task<ConcurrentBag<Other_Category>> GetNewsCategoriesAsync()
         {
-            return _otherCategoriesRepository.GetOtherCategories("News");
+            return await Task.Run(() => _otherCategoriesRepository.GetOtherCategories("News"));
 
         }
-        public Other_Category AddNewsCategory(Other_Category category)
+
+        public async Task<Other_Category> AddNewsCategoryAsync(Other_Category category)
         {
 
-
-            return _otherCategoriesRepository.AddOtherCategory(category, "News");
-
+            return await Task.Run(() => _otherCategoriesRepository.AddOtherCategory(category, "News"));
         }
-        public Other_Category UpdateNewsCategory(Other_Category category)
+
+        public async Task<Other_Category> UpdateNewsCategoryAsync(Other_Category category)
         {
 
-            return _otherCategoriesRepository.UpdateOtherCategory(category,"News");
+            return await Task.Run(() => _otherCategoriesRepository.UpdateOtherCategory(category, "News"));
 
         }
-        public int DeleteNewsCategory(string id)
+        public async Task<bool> DeleteNewsCategoryAsync(string id)
         {
-           return _otherCategoriesRepository.DeleteOtherCategory(id, "News");
+            try
+            {
+                await Task.Run(() => _otherCategoriesRepository.DeleteOtherCategory(id, "News"));
+                return true;
+
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
+            
         #endregion
 
 

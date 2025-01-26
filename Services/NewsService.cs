@@ -5,6 +5,7 @@ using Zentech.Models;
 using ZentechAPI.Models;
 using ZentechAPI.Dto;
 using Microsoft.AspNetCore.Http.HttpResults;
+using System.Collections.Concurrent;
 
 namespace Zentech.Services
 {
@@ -81,25 +82,30 @@ namespace Zentech.Services
 
 
         #region TD_Category Methods
-
-        public List<Other_Category> GetNewsCategories()
+       
+        // Get all news categories
+      public async Task<ConcurrentBag<Other_Category>> GetNewsCategoriesAsync()
         {
-            return _newsRepository.GetNewsCategories();
+            return await _newsRepository.GetNewsCategoriesAsync();
+        }
+       
+
+        // Add a news category
+        public async Task<Other_Category> AddNewsCategoryAsync(Other_Category category)
+        {
+            return await _newsRepository.AddNewsCategoryAsync(category);
         }
 
-        public Other_Category AddNewsCategory(Other_Category category)
+        // Update a news category
+        public async Task<Other_Category> UpdateNewsCategoryAsync(Other_Category category)
         {
-            return _newsRepository.AddNewsCategory(category);
+            return await _newsRepository.UpdateNewsCategoryAsync(category);
         }
 
-        public Other_Category UpdateNewsCategory(Other_Category category)
+        // Delete a news category
+        public async Task<bool> DeleteNewsCategoryAsync(int categoryId)
         {
-            return _newsRepository.UpdateNewsCategory(category);
-        }
-
-        public void DeleteNewsCategory(int categoryId)
-        {
-            _newsRepository.DeleteNewsCategory(categoryId.ToString());
+            return await _newsRepository.DeleteNewsCategoryAsync(categoryId.ToString());
         }
 
 

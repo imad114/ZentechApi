@@ -37,6 +37,17 @@ namespace Zentech.Services
         }
 
         /// <summary>
+        /// Récupère une catégorie par ID.
+        /// </summary>
+        /// <param name="id">ID de la catégorie.</param>
+        /// <returns>Catégorie correspondante ou null si non trouvée.</returns>
+        public async Task<ConcurrentBag<Category>> GetCategoryByMainCategoryAsync(int id)
+        {
+            return await Task.Run(() => _repository.GetCategoryByMainCategory(id));
+        }
+        
+
+        /// <summary>
         /// Ajoute une nouvelle catégorie.
         /// </summary>
         /// <param name="category">Catégorie à ajouter.</param>

@@ -188,11 +188,12 @@ namespace ZentechAPI.Repositories
 
 
         #region TDCategories methods
-        public List<Other_Category> GetTDCategories()
+        public async Task<ConcurrentBag<Other_Category>> GetTDCategories()
         {
-            return _otherCategoriesRepository.GetOtherCategories("TD");
+            return await Task.Run(() => _otherCategoriesRepository.GetOtherCategories("TD"));
 
         }
+        
         public Other_Category AddTDCategory(Other_Category category)
         {
 

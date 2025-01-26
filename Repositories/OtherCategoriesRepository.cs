@@ -1,4 +1,6 @@
-﻿using MySql.Data.MySqlClient;
+﻿using System.Collections.Concurrent;
+using Microsoft.AspNetCore.Mvc;
+using MySql.Data.MySqlClient;
 using ZentechAPI.Models;
 
 namespace ZentechAPI.Repositories
@@ -13,14 +15,15 @@ namespace ZentechAPI.Repositories
 
 
         #region NewsCategories methods
-        public List<Other_Category> GetOtherCategories(string _Type)
+        public ConcurrentBag<Other_Category> GetOtherCategories(string _Type)
         {
-            List<Other_Category> categories = new List<Other_Category>();
+           
+            var categoryList = new ConcurrentBag<Other_Category>();
 
             using (var connection = _context.GetConnection())
             {
                 connection.Open();
-                var command = new MySqlCommand("SELECT CategoryID, Name, description  FROM other_categories where CategoryType = @CategoryType ", connection);
+                var command = new MySqlCommand("SELECT * FROM other_categories where CategoryType = @CategoryType ", connection);
                 command.Parameters.AddWithValue("@CategoryType", _Type);
 
 
@@ -28,19 +31,26 @@ namespace ZentechAPI.Repositories
                 {
                     while (reader.Read())
                     {
-                        categories.Add(new Other_Category()
+                        var categorie = new Other_Category
                         {
-                            CategoryID = reader.GetString("CategoryID"),
+                            CategoryID = reader.GetInt32("CategoryID"),
                             Name = reader.GetString("Name"),
                             Description = reader.GetString("description"),
+                            CreatedDate = reader.IsDBNull(reader.GetOrdinal("CreatedDate")) ? (DateTime?)null : reader.GetDateTime("CreatedDate"),
+                            UpdatedDate = reader.IsDBNull(reader.GetOrdinal("UpdatedDate")) ? (DateTime?)null : reader.GetDateTime("UpdatedDate"),
+                            CreatedBy = reader.IsDBNull(reader.GetOrdinal("CreatedBy")) ? null : reader.GetString("CreatedBy"),
+                            UpdatedBy = reader.IsDBNull(reader.GetOrdinal("UpdatedBy")) ? null : reader.GetString("UpdatedBy")
 
-                        });
+                        };
+                        categoryList.Add(categorie);
                     }
                 }
-                connection.Close();
+               // connection.Close();
             }
-            return categories;
+            return categoryList;
         }
+
+        // update by imad 26/01/2025 8:37 modify id to int 
         public Other_Category AddOtherCategory(Other_Category category, string _Type)
         {
 
@@ -62,12 +72,13 @@ namespace ZentechAPI.Repositories
 
 
                 int categoryId = Convert.ToInt32(command.ExecuteScalar());
-                category.CategoryID = categoryId.ToString();
+                category.CategoryID = categoryId;
                 connection.Close();
                 return category;
 
             }
         }
+        // update by imad 26/01/2025 8:37 modify id to int 
         public Other_Category UpdateOtherCategory(Other_Category category, string _Type)
         {
 
@@ -89,7 +100,7 @@ namespace ZentechAPI.Repositories
 
 
                 int result = Convert.ToInt32(command.ExecuteScalar());
-                category.CategoryID = result.ToString();
+                category.CategoryID = result;
                 connection.Close();
 
                 return category;

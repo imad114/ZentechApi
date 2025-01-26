@@ -214,12 +214,12 @@ namespace ZentechAPI.controllers
         #region Categories methods
 
         [HttpGet("Categories")]
-        public IActionResult GetAllCategories()
+        public async Task<IActionResult> GetAllCategories()
         {
             try
             {
-                var categories = _technicalDocService.GetAllCategories();
-                if (categories == null || !categories.Any())
+                var categories = await _technicalDocService.GetAllCategories();
+                if (categories == null)
                 {
                     return NotFound("No categories found.");
                 }

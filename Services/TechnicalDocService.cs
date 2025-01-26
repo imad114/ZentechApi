@@ -1,4 +1,6 @@
-﻿using ZentechAPI.Models;
+﻿using System.Collections.Concurrent;
+using Zentech.Repositories;
+using ZentechAPI.Models;
 using ZentechAPI.Repositories;
 
 public class TechnicalDocService
@@ -44,11 +46,11 @@ public class TechnicalDocService
 
     #region TD_Category Methods
 
-    public List<Other_Category> GetAllCategories()
+    public async Task<ConcurrentBag<Other_Category>> GetAllCategories()
     {
-        return _repository.GetTDCategories();
+        return await Task.Run(() => _repository.GetTDCategories());
     }
-
+   
     public Other_Category AddTechnicalDocCategory(Other_Category category)
     {
         return _repository.AddTDCategory(category);

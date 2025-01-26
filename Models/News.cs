@@ -13,7 +13,7 @@
         public string? UpdatedBy { get; set; }
         public string? Author { get; set; }
         public List<String> Photos { get; set; }
-        public string? CategoryID { get; set; }
+        public int? categoryId { get; set; }
     }
 
 }

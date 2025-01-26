@@ -18,10 +18,6 @@ namespace Zentech.Controllers
     {
         private readonly NewsService _newsService;
 
-        /// <summary>
-        /// Constructor to inject the news management service.
-        /// </summary>
-        /// <param name="newsService">Service for managing news.</param>
         public NewsController(NewsService newsService)
         {
             _newsService = newsService;
@@ -230,28 +226,32 @@ namespace Zentech.Controllers
         }
 
 
+
         #region Categories methods
 
-        [HttpGet("Categories")]
-        public IActionResult GetAllCategories()
+        // Get all categories
+        /// <summary>
+        /// Retrieve all categories.
+        /// </summary>
+        /// <returns>Returns the complete list of categories.</returns>
+        [HttpGet("CategoriesNews")]
+        [SwaggerOperation(Summary = "Get all categories", Description = "Returns the complete list of categories.")]
+        public async Task<IActionResult> GetAllCategories()
         {
-            try
-            {
-                var categories = _newsService.GetNewsCategories();
-                if (categories == null || !categories.Any())
-                {
-                    return NotFound("No categories found.");
-                }
-                return Ok(categories);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
-            }
+            var categories = await _newsService.GetNewsCategoriesAsync();
+            return Ok(categories);
         }
 
+        // Add a new category
+        /// <summary>
+        /// Add a new category.
+        /// </summary>
+        /// <param name="category">Object containing the details of the category to add.</param>
+        /// <returns>The created category with its identifier.</returns>
+        [Authorize(Roles = "Admin")]
+        [SwaggerOperation(Summary = "Add a category", Description = "Adds a new category to the system.")]
         [HttpPost("Categories")]
-        public IActionResult AddNewsCategory([FromForm] Other_Category category)
+        public async Task<IActionResult> AddNewsCategory([FromBody] Other_Category category)
         {
             if (category == null)
             {
@@ -262,7 +262,7 @@ namespace Zentech.Controllers
             {
                 string createdBy = User.Identity?.Name;
                 category.CreatedBy = createdBy ?? "null";
-                var createdCategory = _newsService.AddNewsCategory(category);
+                var createdCategory = await _newsService.AddNewsCategoryAsync(category);
                 return CreatedAtAction(nameof(GetAllCategories), new { id = createdCategory.CategoryID }, createdCategory);
             }
             catch (Exception ex)
@@ -271,15 +271,27 @@ namespace Zentech.Controllers
             }
         }
 
+        // Update a category
+        /// <summary>
+        /// Update an existing category.
+        /// </summary>
+        /// <param name="category">Object containing the updated details of the category.</param>
+        /// <returns>The updated category.</returns>
+        [Authorize(Roles = "Admin")]
+        [SwaggerOperation(Summary = "Update a category", Description = "Updates an existing category in the system.")]
         [HttpPut("Categories")]
-        public IActionResult UpdateNewsCategory([FromForm] Other_Category category)
+        public async Task<IActionResult> UpdateNewsCategory([FromBody] Other_Category category)
         {
+            if (category == null)
+            {
+                return BadRequest("Category is null.");
+            }
 
             try
             {
                 string updatedBy = User.Identity?.Name;
                 category.UpdatedBy = updatedBy ?? "null";
-                var updatedCategory = _newsService.UpdateNewsCategory(category);
+                var updatedCategory = await _newsService.UpdateNewsCategoryAsync(category);
                 if (updatedCategory == null)
                 {
                     return NotFound($"Category with ID {category.CategoryID} not found.");
@@ -292,23 +304,32 @@ namespace Zentech.Controllers
             }
         }
 
+        // Delete a category
+        /// <summary>
+        /// Delete a category.
+        /// </summary>
+        /// <param name="id">The ID of the category to delete.</param>
+        /// <returns>Confirmation of deletion.</returns>
+        [Authorize(Roles = "Admin")]
+        [SwaggerOperation(Summary = "Delete a category", Description = "Deletes an existing category from the system.")]
         [HttpDelete("Categories/{id}")]
-        public IActionResult DeleteNewsCategory([FromRoute] int id)
+        public async Task<IActionResult> DeleteNewsCategory([FromRoute] int id)
         {
             try
             {
-                _newsService.DeleteNewsCategory(id);
+                var isDeleted = await _newsService.DeleteNewsCategoryAsync(id);
+                if (!isDeleted)
+                {
+                    return NotFound($"Category with ID {id} not found.");
+                }
                 return NoContent();
-            }
-            catch (KeyNotFoundException)
-            {
-                return NotFound($"Category with ID {id} not found.");
             }
             catch (Exception ex)
             {
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
+
         #endregion
 
     }

@@ -93,6 +93,47 @@ namespace Zentech.Repositories
             return category;
         }
 
+        // Méthode pour récupérer une catégorie par ID
+        public ConcurrentBag<Category> GetCategoryByMainCategory(int id)
+        {
+            var categoryList = new ConcurrentBag<Category>();
+
+            using (var connection = _context.GetConnection())
+            {
+                connection.Open();
+                var command = new MySqlCommand(@"
+                    SELECT c.*, mc.Name AS MainCategoryName 
+                    FROM Categories c
+                    LEFT JOIN main_prod_categories mc ON c.MainCategoryID = mc.CategoryID
+                    WHERE c.MainCategoryID = @MainCategoryID",
+                    connection);
+
+                command.Parameters.AddWithValue("@MainCategoryID", id);
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var category = new Category
+                        {
+                            CategoryID = reader.GetInt32("CategoryID"),
+                            MainCategoryID = reader.GetInt32("MainCategoryID"),
+                            MainCategoryName = reader.IsDBNull(reader.GetOrdinal("MainCategoryName")) ? null : reader.GetString("MainCategoryName"),
+                            Name = reader.GetString("Name"),
+                            Description = reader.GetString("Description"),
+                            CreatedDate = reader.IsDBNull(reader.GetOrdinal("CreatedDate")) ? (DateTime?)null : reader.GetDateTime("CreatedDate"),
+                            UpdatedDate = reader.IsDBNull(reader.GetOrdinal("UpdatedDate")) ? (DateTime?)null : reader.GetDateTime("UpdatedDate"),
+                            CreatedBy = reader.IsDBNull(reader.GetOrdinal("CreatedBy")) ? null : reader.GetString("CreatedBy"),
+                            UpdatedBy = reader.IsDBNull(reader.GetOrdinal("UpdatedBy")) ? null : reader.GetString("UpdatedBy")
+                        };
+                        categoryList.Add(category);
+                    }
+                }
+            }
+
+            return categoryList;
+        }
+
         // Méthode pour ajouter une nouvelle catégorie
         public Category AddCategory(Category category, string createdBy)
         {

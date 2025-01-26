@@ -22,10 +22,14 @@ namespace Zentech.Repositories
             using (var connection = _context.GetConnection())
             {
                 connection.Open();
+
                 var command = new MySqlCommand(@"
-                    SELECT p.*, c.CategoryID, c.Name AS CategoryName, c.Description AS CategoryDescription
-                    FROM Products p
-                    LEFT JOIN Categories c ON p.CategoryID = c.CategoryID", connection);
+            SELECT p.*, 
+                   c.CategoryID, c.Name AS CategoryName,
+                   mc.CategoryID AS MainCategoryID, mc.Name AS MainCategoryName
+            FROM Products p
+            LEFT JOIN Categories c ON p.CategoryID = c.CategoryID
+            LEFT JOIN main_prod_categories mc ON c.mainCategoryID = mc.CategoryID", connection);
 
                 using (var reader = command.ExecuteReader())
                 {
@@ -36,11 +40,13 @@ namespace Zentech.Repositories
                             ProductID = reader.GetInt32("ProductID"),
                             Name = reader.GetString("Name"),
                             Description = reader.GetString("Description"),
-                            Price = reader.GetDecimal("Price"),
-                            CategoryName = reader.IsDBNull(reader.GetOrdinal("CategoryName")) ? null : reader.GetString("CategoryName"),
+                            Price = reader.IsDBNull(reader.GetOrdinal("Price")) ? 0 : reader.GetDecimal("Price"),
                             CreatedAt = reader.IsDBNull(reader.GetOrdinal("CreatedDate")) ? (DateTime?)null : reader.GetDateTime("CreatedDate"),
                             UpdatedAt = reader.IsDBNull(reader.GetOrdinal("UpdatedAt")) ? (DateTime?)null : reader.GetDateTime("UpdatedAt"),
                             CategoryID = reader.IsDBNull(reader.GetOrdinal("CategoryID")) ? 0 : reader.GetInt32("CategoryID"),
+                            CategoryName = reader.IsDBNull(reader.GetOrdinal("CategoryName")) ? null : reader.GetString("CategoryName"),
+                            MainCategoryID = reader.IsDBNull(reader.GetOrdinal("MainCategoryID")) ? (int?)null : reader.GetInt32("MainCategoryID"),
+                            MainCategoryName = reader.IsDBNull(reader.GetOrdinal("MainCategoryName")) ? null : reader.GetString("MainCategoryName"),
                             CreatedBy = reader.IsDBNull(reader.GetOrdinal("CreatedBy")) ? null : reader.GetString("CreatedBy"),
                             UpdatedBy = reader.IsDBNull(reader.GetOrdinal("UpdatedBy")) ? null : reader.GetString("UpdatedBy"),
                             Photos = GetPhotosForEntity(reader.GetInt32("ProductID"), "Products"),
@@ -54,6 +60,7 @@ namespace Zentech.Repositories
 
             return productList;
         }
+
 
         public List<Product> GetProductsWithCategories(int limit)
         {
@@ -128,10 +135,13 @@ namespace Zentech.Repositories
             {
                 connection.Open();
                 var command = new MySqlCommand(@"
-                    SELECT p.*, c.CategoryID, c.Name AS CategoryName, c.Description AS CategoryDescription
-                    FROM Products p
-                    LEFT JOIN Categories c ON p.CategoryID = c.CategoryID
-                    WHERE p.ProductID = @ProductID", connection);
+            SELECT p.*, 
+                   c.CategoryID, c.Name AS CategoryName ,
+                   mc.CategoryID AS MainCategoryID, mc.Name AS MainCategoryName
+            FROM Products p
+            LEFT JOIN Categories c ON p.CategoryID = c.CategoryID
+            LEFT JOIN main_prod_categories mc ON c.mainCategoryID = mc.CategoryID
+            WHERE p.ProductID = @ProductID", connection);
 
                 command.Parameters.AddWithValue("@ProductID", id);
 
@@ -144,10 +154,13 @@ namespace Zentech.Repositories
                             ProductID = reader.GetInt32("ProductID"),
                             Name = reader.GetString("Name"),
                             Description = reader.GetString("Description"),
-                            Price = reader.IsDBNull(reader.GetOrdinal("Price"))?0: reader.GetDecimal("Price"),
+                            Price = reader.IsDBNull(reader.GetOrdinal("Price")) ? 0 : reader.GetDecimal("Price"),
                             CreatedAt = reader.IsDBNull(reader.GetOrdinal("CreatedDate")) ? (DateTime?)null : reader.GetDateTime("CreatedDate"),
                             UpdatedAt = reader.IsDBNull(reader.GetOrdinal("UpdatedAt")) ? (DateTime?)null : reader.GetDateTime("UpdatedAt"),
                             CategoryID = reader.GetInt32("CategoryID"),
+                            CategoryName = reader.GetString("CategoryName"), // Nom de la sous-catégorie
+                            MainCategoryID = reader.IsDBNull(reader.GetOrdinal("MainCategoryID")) ? (int?)null : reader.GetInt32("MainCategoryID"),
+                            MainCategoryName = reader.IsDBNull(reader.GetOrdinal("MainCategoryName")) ? null : reader.GetString("MainCategoryName"),
                             Photos = GetPhotosForEntity(reader.GetInt32("ProductID"), "Products"),
                             Specifications = GetSpecificationsForProduct(reader.GetInt32("ProductID")) // Récupérer les spécifications
                         };

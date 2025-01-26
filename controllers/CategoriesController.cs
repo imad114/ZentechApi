@@ -52,6 +52,23 @@ namespace Zentech.Controllers
             return Ok(category);
         }
 
+        // Get a category by MainCategoryID
+        /// <summary>
+        /// Retrieve a category by its MainCategoryID
+        /// </summary>
+        /// <param name="id"> identifier of the Main Category Id.</param>
+        /// <returns>The details of the corresponding category.</returns>
+        [HttpGet("sub/MainCategoryID/{id}")]
+        [SwaggerOperation(Summary = "Get a category by Main Category Id ", Description = "Returns the details of a specific category By Main Category .")]
+        public async Task<IActionResult> GetCategoryByMainCategory(int id)
+        {
+            var categories = await _categoryService.GetCategoryByMainCategoryAsync(id);
+            if (categories == null)
+                return NotFound();
+
+            return Ok(categories);
+        }
+
         // Add a new category
         /// <summary>
         /// Add a new category.
