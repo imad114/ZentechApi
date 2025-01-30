@@ -35,8 +35,8 @@ public class ContactRepository
                         Message = reader.GetString("Message"),
                         CreatedAt = reader.GetDateTime("CreatedAt"),
                         Country = reader.GetString("Country"),
-                        Topic = reader.IsDBNull(reader.GetOrdinal("Topic")) ? null : reader.GetString("Topic"),
-                        Role = reader.IsDBNull(reader.GetOrdinal("Role")) ? null : reader.GetString("Role")
+                        Topic = reader.IsDBNull(reader.GetOrdinal("topic")) ? null : reader.GetString("topic"),
+                        Role = reader.IsDBNull(reader.GetOrdinal("_Role")) ? null : reader.GetString("_Role")
 
                     });
                 }
@@ -69,8 +69,8 @@ public class ContactRepository
                             Message = reader.GetString("Message"),
                             CreatedAt = reader.GetDateTime("CreatedAt"),
                             Country = reader.GetString("Country"),
-                            Topic = reader.IsDBNull(reader.GetOrdinal("Topic")) ? null : reader.GetString("Topic"),
-                            Role = reader.IsDBNull(reader.GetOrdinal("Role")) ? null : reader.GetString("Role")
+                            Topic = reader.IsDBNull(reader.GetOrdinal("topic")) ? null : reader.GetString("topic"),
+                            Role = reader.IsDBNull(reader.GetOrdinal("_Role")) ? null : reader.GetString("_Role")
                         };
                     }
                 }
@@ -108,7 +108,7 @@ public class ContactRepository
         using (var connection = _context.GetConnection())
         {
             await connection.OpenAsync();
-            var query = "INSERT INTO ContactMessages (FirstName,LastName,Email,PhoneNumbre,Message,Country,Topic, _Role) VALUES (@FirstName,@LastName,@Email,@PhoneNumbre,@Message,@Country,@Topic,@Role)";
+            var query = "INSERT INTO ContactMessages (FirstName,LastName,Email,PhoneNumbre,Message,Country,topic, _Role) VALUES (@FirstName,@LastName,@Email,@PhoneNumbre,@Message,@Country,@Topic,@Role)";
             using (var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@FirstName", contactMessage.FirstName);

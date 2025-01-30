@@ -317,12 +317,19 @@ namespace Zentech.Controllers
         {
             try
             {
-                var isDeleted = await _newsService.DeleteNewsCategoryAsync(id);
-                if (!isDeleted)
+                int result = await _newsService.DeleteNewsCategoryAsync(id);
+                if (result > 0)
                 {
-                    return NotFound($"Category with ID {id} not found.");
+                    return NoContent();
                 }
-                return NoContent();
+                else
+                {
+                    return NotFound($"Category with ID {id} not found or The category used by another entity. ");
+                }
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(ex.Message);
             }
             catch (Exception ex)
             {

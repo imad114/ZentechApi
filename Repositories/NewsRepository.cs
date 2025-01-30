@@ -275,18 +275,11 @@ namespace Zentech.Repositories
             return await Task.Run(() => _otherCategoriesRepository.UpdateOtherCategory(category, "News"));
 
         }
-        public async Task<bool> DeleteNewsCategoryAsync(string id)
+        public async Task<int> DeleteNewsCategoryAsync(string id)
         {
-            try
-            {
-                await Task.Run(() => _otherCategoriesRepository.DeleteOtherCategory(id, "News"));
-                return true;
-
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+           
+                return await Task.Run(() => _otherCategoriesRepository.DeleteOtherCategory(id, "News"));
+         
         }
             
         #endregion

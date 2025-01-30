@@ -27,14 +27,14 @@ public class TechnicalDocService
     {
         return _repository.GetAllTechnicalDocsWithCategories(limit);
     }
-    public string AddTechnicalDoc(TechincalDoc technicalDoc, string createdBy)
+    public int AddTechnicalDoc(TechincalDoc technicalDoc, string createdBy)
     {
-        return _repository.AddTechnicalDoc(technicalDoc, createdBy).ToString();
+        return _repository.AddTechnicalDoc(technicalDoc, createdBy);
     }
 
-    public bool UpdateTechnicalDoc(TechincalDoc technicalDoc)
+    public bool UpdateTechnicalDoc(TechincalDoc technicalDoc, string updateBy)
     {
-        return _repository.UpdateTechnicalDoc(technicalDoc);
+        return _repository.UpdateTechnicalDoc(technicalDoc, updateBy);
     }
 
     public void DeleteTechnicalDoc(int id)
@@ -48,22 +48,24 @@ public class TechnicalDocService
 
     public async Task<ConcurrentBag<Other_Category>> GetAllCategories()
     {
-        return await Task.Run(() => _repository.GetTDCategories());
-    }
-   
-    public Other_Category AddTechnicalDocCategory(Other_Category category)
-    {
-        return _repository.AddTDCategory(category);
+        return await _repository.GetTDCategories();
     }
 
-    public Other_Category UpdateTechnicalDocCategory(Other_Category category)
+    public async Task<Other_Category> AddTechnicalDocCategory(Other_Category category)
     {
-        return _repository.UpdateTDCategory(category);
+        return await _repository.AddTDCategory(category);
     }
 
-    public void DeleteTechnicalDocCategory(int categoryId)
+    public async Task<Other_Category>  UpdateTechnicalDocCategory(Other_Category category)
     {
-        _repository.DeleteTDCategory(categoryId.ToString());
+        return await  _repository.UpdateTDCategory(category);
+    }
+
+    
+
+    public async Task<int> DeleteTechnicalDocCategory(int categoryId)
+    {
+        return await _repository.DeleteTDCategory(categoryId.ToString());
     }
 
 

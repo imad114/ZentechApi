@@ -33,12 +33,15 @@ namespace ZentechAPI.Repositories
                         
                             var technicalDoc = new TechincalDoc
                             {
-                                TD_ID =  reader.GetString("TD_ID"),
+                      
+                                TD_ID = reader.GetInt32("TD_ID"),
                                 Name = reader.IsDBNull(reader.GetOrdinal("name")) ? "NULL" : reader.GetString("name"),
                                 filePath = reader.IsDBNull(reader.GetOrdinal("filePath")) ? "NULL" : reader.GetString("filePath"),
-                                CreateDate = reader.IsDBNull(reader.GetOrdinal("CreatedDate")) ? "NULL" : reader.GetString("CreatedDate"),
-                                CreatedBy = reader.IsDBNull(reader.GetOrdinal("CreatedBy")) ? "NULL" : reader.GetString("CreatedBy"),
-
+                                TD_CategoryID = reader.IsDBNull(reader.GetOrdinal("td_category_id")) ? "NULL" : reader.GetString("td_category_id"),
+                                CreateDate = reader.GetDateTime("CreatedDate"),
+                                UpdatedDate = reader.IsDBNull(reader.GetOrdinal("UpdatedDate")) ? (DateTime?)null : reader.GetDateTime("UpdatedDate"),
+                                CreatedBy = reader.IsDBNull(reader.GetOrdinal("CreatedBy")) ? null : reader.GetString("CreatedBy"),
+                                UpdatedBy = reader.IsDBNull(reader.GetOrdinal("UpdatedBy")) ? null : reader.GetString("UpdatedBy"),
                             };
                         
                         technicalDocList.Add(technicalDoc);
@@ -64,13 +67,14 @@ namespace ZentechAPI.Repositories
                     {
                         technicalDoc = new TechincalDoc
                         {
-                            TD_ID = reader.GetString("TD_ID"),
+                            TD_ID = reader.GetInt32("TD_ID"),
                             Name = reader.GetString("name"),
                             filePath = reader.GetString("filePath"),
-                            CreateDate = reader.GetString("UpdatedDate"),
-                            CreatedBy = reader.GetString("CreatedBy"),
-                            UpdatedBy = reader.GetString("UpdatedBy"),
-                            UpdatedDate = reader.GetString("UpdatedDate"),
+                            CreateDate = reader.IsDBNull(reader.GetOrdinal("CreatedDate")) ? (DateTime?)null : reader.GetDateTime("CreatedDate"),
+                            TD_CategoryID = reader.IsDBNull(reader.GetOrdinal("td_category_id")) ? "NULL" : reader.GetString("td_category_id"),
+                            UpdatedDate = reader.IsDBNull(reader.GetOrdinal("UpdatedDate")) ? (DateTime?)null : reader.GetDateTime("UpdatedDate"),
+                            CreatedBy = reader.IsDBNull(reader.GetOrdinal("CreatedBy")) ? null : reader.GetString("CreatedBy"),
+                            UpdatedBy = reader.IsDBNull(reader.GetOrdinal("UpdatedBy")) ? null : reader.GetString("UpdatedBy"),
                         };
                     }
                 }
@@ -87,7 +91,7 @@ namespace ZentechAPI.Repositories
             {
                 connection.Open();
                 var command = new MySqlCommand(
-                    "INSERT INTO technical_documentations (name, filePath,td_category_id, createdBy) VALUES (@Name, @FilePath, @td_category_id, @CreatedBy);" +
+                    "INSERT INTO technical_documentations (name, filePath,td_category_id, createdBy, CreatedDate) VALUES (@Name, @FilePath, @td_category_id, @CreatedBy,@CreatedDate);" +
                     " SELECT LAST_INSERT_ID();",
                     connection
                 );
@@ -96,6 +100,7 @@ namespace ZentechAPI.Repositories
                 command.Parameters.AddWithValue("@FilePath", technicalDoc.filePath);
                 command.Parameters.AddWithValue("@td_category_id", technicalDoc.TD_CategoryID);
                 command.Parameters.AddWithValue("@CreatedBy", createdBy);
+                command.Parameters.AddWithValue("@CreatedDate", DateTime.Now);
 
                 var TD_Id = Convert.ToInt32(command.ExecuteScalar());
                 connection.Close();
@@ -107,7 +112,7 @@ namespace ZentechAPI.Repositories
 
 
         // Method to update a news article and its photos
-        public bool UpdateTechnicalDoc(TechincalDoc technicalDoc)
+        public bool UpdateTechnicalDoc(TechincalDoc technicalDoc , string updateBy)
         {
             using (var connection = _context.GetConnection())
             {
@@ -121,8 +126,8 @@ namespace ZentechAPI.Repositories
                 command.Parameters.AddWithValue("@Name", technicalDoc.Name);
                 command.Parameters.AddWithValue("@file", technicalDoc.filePath);
                 command.Parameters.AddWithValue("@catID", technicalDoc.TD_CategoryID);
-                command.Parameters.AddWithValue("@updateDate", technicalDoc.UpdatedDate);
-                command.Parameters.AddWithValue("@updatedBy", technicalDoc.UpdatedBy);
+                command.Parameters.AddWithValue("@updateDate", DateTime.Now);
+                command.Parameters.AddWithValue("@updatedBy", updateBy);
 
 
                 var rowsAffected = command.ExecuteNonQuery();
@@ -160,7 +165,7 @@ namespace ZentechAPI.Repositories
             {
                 connection.Open();
                 var command = new MySqlCommand($@"WITH RankedDocuments AS (
-                SELECT   t.TD_ID as TD_ID, t.Name as 'name', t.filePath as filePath, tc.CategoryID as 'CategoryID', tc.name as 'Category',
+                SELECT   t.TD_ID as TD_ID, t.Name as 'name', t.filePath as filePath, tc.CategoryID as 'CategoryID', tc.name as 'Category',t.CreatedDate,t.UpdatedDate,t.CreatedBy,t.UpdatedBy,
                    ROW_NUMBER() OVER(PARTITION BY tc.CategoryID ORDER BY tc.CreatedDate DESC) AS RowNum
                    FROM technical_documentations t LEFT JOIN other_categories tc ON t.td_category_id = tc.CategoryID and tc.CategoryType = 'TD'
                 )SELECT* FROM RankedDocuments WHERE RowNum <= {limit} ORDER BY RankedDocuments.CategoryID ASC ;", connection);
@@ -171,12 +176,15 @@ namespace ZentechAPI.Repositories
 
                         var technicalDoc = new TechincalDoc
                         {
-                            TD_ID = reader.GetString("TD_ID"),
+                            TD_ID = reader.GetInt32("TD_ID"),
                             Name = reader.IsDBNull(reader.GetOrdinal("name")) ? "NULL" : reader.GetString("name"),
                             filePath = reader.IsDBNull(reader.GetOrdinal("filePath")) ? "NULL" : reader.GetString("filePath"),
                             TD_CategoryName = reader.IsDBNull(reader.GetOrdinal("Category")) ? "NULL" : reader.GetString("Category"),
                             TD_CategoryID = reader.IsDBNull(reader.GetOrdinal("CategoryID")) ? "NULL" : reader.GetString("CategoryID"),
-
+                            CreateDate = reader.IsDBNull(reader.GetOrdinal("CreatedDate")) ? (DateTime?)null : reader.GetDateTime("CreatedDate"),
+                            UpdatedDate = reader.IsDBNull(reader.GetOrdinal("UpdatedDate")) ? (DateTime?)null : reader.GetDateTime("UpdatedDate"),
+                            CreatedBy = reader.IsDBNull(reader.GetOrdinal("CreatedBy")) ? null : reader.GetString("CreatedBy"),
+                            UpdatedBy = reader.IsDBNull(reader.GetOrdinal("UpdatedBy")) ? null : reader.GetString("UpdatedBy"),
                         };
 
                         technicalDocList.Add(technicalDoc);
@@ -193,23 +201,25 @@ namespace ZentechAPI.Repositories
             return await Task.Run(() => _otherCategoriesRepository.GetOtherCategories("TD"));
 
         }
-        
-        public Other_Category AddTDCategory(Other_Category category)
+
+        public async Task<Other_Category> AddTDCategory(Other_Category category)
         {
 
 
-            return _otherCategoriesRepository.AddOtherCategory(category, "TD");
+        return await Task.Run(() => _otherCategoriesRepository.AddOtherCategory(category, "TD"));
 
         }
-        public Other_Category UpdateTDCategory(Other_Category category)
+        public async Task<Other_Category> UpdateTDCategory(Other_Category category)
         {
 
-            return _otherCategoriesRepository.UpdateOtherCategory(category, "TD");
+            return await Task.Run(() => _otherCategoriesRepository.UpdateOtherCategory(category, "TD"));
 
         }
-        public int DeleteTDCategory(string id)
+        public async Task<int> DeleteTDCategory(string id)
         {
-            return _otherCategoriesRepository.DeleteOtherCategory(id, "TD");
+          
+                return  await Task.Run(() => _otherCategoriesRepository.DeleteOtherCategory(id, "TD"));
+               
         }
         #endregion
     }

@@ -107,26 +107,43 @@ namespace ZentechAPI.Repositories
 
             }
         }
-        public int DeleteOtherCategory(string id,string _Type)
+        public int DeleteOtherCategory(string id, string _Type)
         {
-
-
             using (var connection = _context.GetConnection())
             {
                 connection.Open();
-                var command = new MySqlCommand("delete from other_categories where CategoryID = @ID and CategoryType = @CategoryType", connection);
 
-                command.Parameters.AddWithValue("@ID", id);
-                command.Parameters.AddWithValue("@CategoryType", _Type);
+                // Vérifier si la catégorie est utilisée dans des entités associées
+                string checkUsageQuery = _Type switch
+                {
+                    "TD" => "SELECT COUNT(*) FROM technical_documentations WHERE td_category_id = @ID",
+                    "News" => "SELECT COUNT(*) FROM news WHERE CategoryID = @ID",
+                    _ => throw new ArgumentException("Type de catégorie invalide.", nameof(_Type))
+                };
+                int result;
+                var checkCommand = new MySqlCommand(checkUsageQuery, connection);
+                checkCommand.Parameters.AddWithValue("@ID", id);
 
+                int usageCount = Convert.ToInt32(checkCommand.ExecuteScalar());
+                if (usageCount > 0)
+                {
+                    result = -1;
+                    return result;
 
-                int result = command.ExecuteNonQuery();
+                }
+
+                // Si la catégorie n'est pas utilisée, exécuter la suppression
+                var deleteCommand = new MySqlCommand("DELETE FROM other_categories WHERE CategoryID = @ID AND CategoryType = @CategoryType", connection);
+                deleteCommand.Parameters.AddWithValue("@ID", id);
+                deleteCommand.Parameters.AddWithValue("@CategoryType", _Type);
+
+                result = deleteCommand.ExecuteNonQuery();
                 connection.Close();
 
                 return result;
-
             }
         }
+
         #endregion
     }
 }

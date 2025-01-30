@@ -46,7 +46,7 @@ namespace Zentech.Repositories
                             UpdatedAt = reader.GetDateTime("UpdatedAt"),
                             CreatedBy = reader.GetString("CreatedBy"),
                             UpdatedBy = reader.IsDBNull(reader.GetOrdinal("UpdatedBy")) ? null : reader.GetString("UpdatedBy"),
-                            VisitorCount = reader.GetInt32("VisitorCount"),
+                         
                         };
 
                         pageList.Add(page);
@@ -90,7 +90,7 @@ namespace Zentech.Repositories
                             UpdatedAt = reader.GetDateTime("UpdatedAt"),
                             CreatedBy = reader.GetString("CreatedBy"),
                             UpdatedBy = reader.IsDBNull(reader.GetOrdinal("UpdatedBy")) ? null : reader.GetString("UpdatedBy"),
-                            VisitorCount = reader.GetInt32("VisitorCount"),
+                            
                         };
                     }
                 }
@@ -133,7 +133,7 @@ namespace Zentech.Repositories
                             UpdatedAt = reader.GetDateTime("UpdatedAt"),
                             CreatedBy = reader.GetString("CreatedBy"),
                             UpdatedBy = reader.IsDBNull(reader.GetOrdinal("UpdatedBy")) ? null : reader.GetString("UpdatedBy"),
-                            VisitorCount = reader.GetInt32("VisitorCount"),
+                            
                         };
                     }
                 }

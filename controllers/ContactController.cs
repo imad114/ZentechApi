@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Zentech.Models;
 using Swashbuckle.AspNetCore.Annotations;
+using ZentechAPI.Services;
+using ZentechAPI.Models;
 
 
 [ApiController]
@@ -9,11 +11,58 @@ using Swashbuckle.AspNetCore.Annotations;
 public class ContactController : ControllerBase
 {
     private readonly ContactService _contactService;
+    private readonly EmailService _emailService;
 
-    public ContactController(ContactService contactService)
+    public ContactController(ContactService contactService, EmailService emailService)
     {
         _contactService = contactService;
+        _emailService = emailService;
     }
+
+
+    [HttpPost("send-auto-email")]
+    public async Task<IActionResult> CreateContacts([FromBody] ContactMessage contactMessage)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        var createdContacts = await _contactService.CreateContactAsync(contactMessage);
+
+        // Envoyer un email automatique
+        string subject = "Merci de nous avoir contactés!";
+        string body = $"Bonjour {contactMessage.FirstName},<br><br>Merci pour votre message. Notre équipe vous répondra dans les plus brefs délais.<br><br>Bien cordialement,<br>L'équipe Zentech.";
+        try
+        {
+            await _emailService.SendEmailAsync(contactMessage.Email, subject, body);
+        }
+        catch (Exception ex)
+        {
+            // Gérer l'erreur sans interrompre le processus
+            Console.WriteLine($"Erreur d'envoi email : {ex.Message}");
+        }
+
+        return CreatedAtAction(nameof(GetContactById), new { id = createdContacts.ContactID }, createdContacts);
+    }
+
+    [HttpPost("send-custom-email")]
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> SendCustomEmail([FromBody] CustomEmail customEmail)
+    {
+        if (string.IsNullOrEmpty(customEmail.RecipientEmail) || string.IsNullOrEmpty(customEmail.Subject) || string.IsNullOrEmpty(customEmail.Body))
+            return BadRequest("Tous les champs sont obligatoires.");
+
+        try
+        {
+            await _emailService.SendEmailAsync(customEmail.RecipientEmail, customEmail.Subject, customEmail.Body);
+            return Ok("Email envoyé avec succès.");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erreur d'envoi email : {ex.Message}");
+            return StatusCode(500, "Erreur lors de l'envoi de l'email.");
+        }
+    }
+
 
     // Endpoint to retrieve all contact requests
 

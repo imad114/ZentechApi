@@ -3,7 +3,7 @@
     public class ProductModel
     {
         public int ProductID { get; set; }
-        public int? ModelId { get; set; }
+        public int ModelId { get; set; }
 
         public string? Model { get; set; }
         public string? Displacement { get; set; }
@@ -15,9 +15,10 @@
         public double? CoolingCapacityKcal { get; set; }
         public double? COPWW { get; set; }
         public double? COPBTUPerWH { get; set; }
-        public string?  CreateDate { get; set; }
-        public string? UpdateDate { get; set; }
+        public DateTime?  CreateDate { get; set; }
+        public DateTime? UpdateDate { get; set; }
         public string? UpdatedBy { get; set; }
         public string? CreatedBy { get; set; }
+
     }
 }

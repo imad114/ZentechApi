@@ -103,7 +103,7 @@ namespace Zentech.Services
         }
 
         // Delete a news category
-        public async Task<bool> DeleteNewsCategoryAsync(int categoryId)
+        public async Task<int> DeleteNewsCategoryAsync(int categoryId)
         {
             return await _newsRepository.DeleteNewsCategoryAsync(categoryId.ToString());
         }

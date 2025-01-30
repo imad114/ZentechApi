@@ -44,8 +44,8 @@ namespace ZentechAPI.Repositories
                             CoolingCapacityKcal = reader.IsDBNull(reader.GetOrdinal("CoolingCapacityKcal")) ? 0 : reader.GetDouble(reader.GetOrdinal("CoolingCapacityKcal")),
                             COPWW = reader.IsDBNull(reader.GetOrdinal("COPWW")) ? 0 : reader.GetDouble(reader.GetOrdinal("COPWW")),
                             COPBTUPerWH = reader.IsDBNull(reader.GetOrdinal("COPBTUPerWH")) ? 0 : reader.GetDouble(reader.GetOrdinal("COPBTUPerWH")),
-                            CreateDate = reader.IsDBNull(reader.GetOrdinal("CreatedDate")) ? string.Empty : reader.GetString(reader.GetOrdinal("CreatedDate")),
-                            UpdateDate = reader.IsDBNull(reader.GetOrdinal("UpdatedDate")) ? string.Empty : reader.GetString(reader.GetOrdinal("UpdatedDate")),
+                            CreateDate = reader.IsDBNull(reader.GetOrdinal("CreatedDate")) ? (DateTime?)null : reader.GetDateTime("CreatedDate"),
+                            UpdateDate = reader.IsDBNull(reader.GetOrdinal("UpdatedDate")) ? (DateTime?)null : reader.GetDateTime("UpdatedDate"),
                             UpdatedBy = reader.IsDBNull(reader.GetOrdinal("UpdatedBy")) ? string.Empty : reader.GetString(reader.GetOrdinal("UpdatedBy")),
                             CreatedBy = reader.IsDBNull(reader.GetOrdinal("CreatedBy")) ? string.Empty : reader.GetString(reader.GetOrdinal("CreatedBy"))
                         };
@@ -91,8 +91,8 @@ namespace ZentechAPI.Repositories
                             CoolingCapacityKcal = reader.IsDBNull(reader.GetOrdinal("CoolingCapacityKcal")) ? 0 : reader.GetDouble(reader.GetOrdinal("CoolingCapacityKcal")),
                             COPWW = reader.IsDBNull(reader.GetOrdinal("COPWW")) ? 0 : reader.GetDouble(reader.GetOrdinal("COPWW")),
                             COPBTUPerWH = reader.IsDBNull(reader.GetOrdinal("COPBTUPerWH")) ? 0 : reader.GetDouble(reader.GetOrdinal("COPBTUPerWH")),
-                            CreateDate = reader.IsDBNull(reader.GetOrdinal("CreatedDate")) ? string.Empty : reader.GetString(reader.GetOrdinal("CreatedDate")),
-                            UpdateDate = reader.IsDBNull(reader.GetOrdinal("UpdatedDate")) ? string.Empty : reader.GetString(reader.GetOrdinal("UpdatedDate")),
+                            CreateDate = reader.IsDBNull(reader.GetOrdinal("CreatedDate")) ? (DateTime?)null : reader.GetDateTime("CreatedDate"),
+                            UpdateDate = reader.IsDBNull(reader.GetOrdinal("UpdatedDate")) ? (DateTime?)null : reader.GetDateTime("UpdatedDate"),
                             UpdatedBy = reader.IsDBNull(reader.GetOrdinal("UpdatedBy")) ? string.Empty : reader.GetString(reader.GetOrdinal("UpdatedBy")),
                             CreatedBy = reader.IsDBNull(reader.GetOrdinal("CreatedBy")) ? string.Empty : reader.GetString(reader.GetOrdinal("CreatedBy"))
                         };
@@ -131,8 +131,8 @@ namespace ZentechAPI.Repositories
                             CoolingCapacityKcal = reader.IsDBNull(reader.GetOrdinal("CoolingCapacityKcal")) ? 0 : reader.GetDouble(reader.GetOrdinal("CoolingCapacityKcal")),
                             COPWW = reader.IsDBNull(reader.GetOrdinal("COPWW")) ? 0 : reader.GetDouble(reader.GetOrdinal("COPWW")),
                             COPBTUPerWH = reader.IsDBNull(reader.GetOrdinal("COPBTUPerWH")) ? 0 : reader.GetDouble(reader.GetOrdinal("COPBTUPerWH")),
-                            CreateDate = reader.IsDBNull(reader.GetOrdinal("CreatedDate")) ? string.Empty : reader.GetString(reader.GetOrdinal("CreatedDate")),
-                            UpdateDate = reader.IsDBNull(reader.GetOrdinal("UpdatedDate")) ? string.Empty : reader.GetString(reader.GetOrdinal("UpdatedDate")),
+                            CreateDate = reader.IsDBNull(reader.GetOrdinal("CreatedDate")) ? (DateTime?)null : reader.GetDateTime("CreatedDate"),
+                            UpdateDate = reader.IsDBNull(reader.GetOrdinal("UpdatedDate")) ? (DateTime?)null : reader.GetDateTime("UpdatedDate"),
                             UpdatedBy = reader.IsDBNull(reader.GetOrdinal("UpdatedBy")) ? string.Empty : reader.GetString(reader.GetOrdinal("UpdatedBy")),
                             CreatedBy = reader.IsDBNull(reader.GetOrdinal("CreatedBy")) ? string.Empty : reader.GetString(reader.GetOrdinal("CreatedBy"))
                         };
@@ -178,6 +178,54 @@ namespace ZentechAPI.Repositories
                 return Convert.ToInt32(command.ExecuteScalar());
             }
         }
+
+
+        /// <summary>
+        /// Adds multiple models to the database.
+        /// </summary>
+        /// <param name="models">List of models to add.</param>
+        /// <returns>The number of models successfully added.</returns>
+        public async Task<int> AddMultipleProducts(List<ProductModel> models)
+        {
+            int recordsInserted = 0;
+
+            using (var connection = _context.GetConnection())
+            {
+                await connection.OpenAsync();
+
+                foreach (var model in models)
+                {
+                    var command = new MySqlCommand(@"
+                INSERT INTO productmodel (Model, Displacement, CoolingType, MotorType, VoltageFrequency, CoolingCapacityW, CoolingCapacityBTUPerHour, CoolingCapacityKcal, COPWW, COPBTUPerWH, CreatedBy, CreatedDate, ProductID) 
+                VALUES (@Model, @Displacement, @CoolingType, @MotorType, @VoltageFrequency, @CoolingCapacityW, @CoolingCapacityBTUPerHour, @CoolingCapacityKcal, @COPWW, @COPBTUPerWH, @CreatedBy, @CreatedDate, @ProductID); 
+                SELECT LAST_INSERT_ID();", connection);
+
+                    command.Parameters.AddWithValue("@Model", model.Model);
+                    command.Parameters.AddWithValue("@Displacement", model.Displacement);
+                    command.Parameters.AddWithValue("@CoolingType", model.CoolingType);
+                    command.Parameters.AddWithValue("@MotorType", model.MotorType);
+                    command.Parameters.AddWithValue("@VoltageFrequency", model.VoltageFrequency);
+                    command.Parameters.AddWithValue("@CoolingCapacityW", model.CoolingCapacityW);
+                    command.Parameters.AddWithValue("@CoolingCapacityBTUPerHour", model.CoolingCapacityBTUPerHour);
+                    command.Parameters.AddWithValue("@CoolingCapacityKcal", model.CoolingCapacityKcal);
+                    command.Parameters.AddWithValue("@COPWW", model.COPWW);
+                    command.Parameters.AddWithValue("@COPBTUPerWH", model.COPBTUPerWH);
+                    command.Parameters.AddWithValue("@CreatedBy", model.CreatedBy);
+                    command.Parameters.AddWithValue("@CreatedDate", DateTime.Now);
+                    command.Parameters.AddWithValue("@ProductID", model.ProductID);
+
+                    // Execute the insert and get the last inserted ID
+                    var result = await command.ExecuteScalarAsync();
+                    if (result != null)
+                    {
+                        recordsInserted++;
+                    }
+                }
+            }
+
+            return recordsInserted;
+        }
+
 
         /// <summary>
         /// Updates a model's details.
@@ -233,6 +281,54 @@ namespace ZentechAPI.Repositories
 
                 return command.ExecuteNonQuery() > 0;
             }
+        }
+
+
+        /// <summary>
+        /// Retrieves a product model by name and product ID.
+        /// </summary>
+        /// <param name="productId">The ID of the product.</param>
+        /// <param name="modelName">The name of the model.</param>
+        /// <returns>The product model if found, otherwise null.</returns>
+        public ProductModel? GetProductModelByNameAndProductId(int productId, string modelName)
+        {
+            ProductModel? model = null;
+
+            using (var connection = _context.GetConnection())
+            {
+                connection.Open();
+                var command = new MySqlCommand("SELECT * FROM productmodel WHERE productID = @ProductId AND Model = @ModelName", connection);
+                command.Parameters.AddWithValue("@ProductId", productId);
+                command.Parameters.AddWithValue("@ModelName", modelName);
+
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        model = new ProductModel
+                        {
+                            ProductID = reader.IsDBNull(reader.GetOrdinal("productID")) ? 0 : reader.GetInt32(reader.GetOrdinal("productID")),
+                            ModelId = reader.GetInt32(reader.GetOrdinal("ID")),
+                            Model = reader.IsDBNull(reader.GetOrdinal("Model")) ? "N/A" : reader.GetString(reader.GetOrdinal("Model")),
+                            Displacement = reader.IsDBNull(reader.GetOrdinal("Displacement")) ? "N/A" : reader.GetString(reader.GetOrdinal("Displacement")),
+                            CoolingType = reader.IsDBNull(reader.GetOrdinal("CoolingType")) ? "N/A" : reader.GetString(reader.GetOrdinal("CoolingType")),
+                            MotorType = reader.IsDBNull(reader.GetOrdinal("MotorType")) ? "N/A" : reader.GetString(reader.GetOrdinal("MotorType")),
+                            VoltageFrequency = reader.IsDBNull(reader.GetOrdinal("VoltageFrequency")) ? "N/A" : reader.GetString(reader.GetOrdinal("VoltageFrequency")),
+                            CoolingCapacityW = reader.IsDBNull(reader.GetOrdinal("CoolingCapacityW")) ? 0 : reader.GetDouble(reader.GetOrdinal("CoolingCapacityW")),
+                            CoolingCapacityBTUPerHour = reader.IsDBNull(reader.GetOrdinal("CoolingCapacityBTUPerHour")) ? 0 : reader.GetDouble(reader.GetOrdinal("CoolingCapacityBTUPerHour")),
+                            CoolingCapacityKcal = reader.IsDBNull(reader.GetOrdinal("CoolingCapacityKcal")) ? 0 : reader.GetDouble(reader.GetOrdinal("CoolingCapacityKcal")),
+                            COPWW = reader.IsDBNull(reader.GetOrdinal("COPWW")) ? 0 : reader.GetDouble(reader.GetOrdinal("COPWW")),
+                            COPBTUPerWH = reader.IsDBNull(reader.GetOrdinal("COPBTUPerWH")) ? 0 : reader.GetDouble(reader.GetOrdinal("COPBTUPerWH")),
+                            CreateDate = reader.IsDBNull(reader.GetOrdinal("CreatedDate")) ? (DateTime?)null : reader.GetDateTime("CreatedDate"),
+                            UpdateDate = reader.IsDBNull(reader.GetOrdinal("UpdatedDate")) ? (DateTime?)null : reader.GetDateTime("UpdatedDate"),
+                            UpdatedBy = reader.IsDBNull(reader.GetOrdinal("UpdatedBy")) ? string.Empty : reader.GetString(reader.GetOrdinal("UpdatedBy")),
+                            CreatedBy = reader.IsDBNull(reader.GetOrdinal("CreatedBy")) ? string.Empty : reader.GetString(reader.GetOrdinal("CreatedBy"))
+                        };
+                    }
+                }
+            }
+
+            return model;
         }
 
     }

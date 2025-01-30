@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
+using Zentech.Services;
 using ZentechAPI.Models;
 
 namespace ZentechAPI.controllers
@@ -35,7 +38,7 @@ namespace ZentechAPI.controllers
                 }
 
                 technicalDoc.CreatedBy = "admin"; // Assigning a default creator
-                technicalDoc.CreateDate = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
+               
 
                 if (technicalDoc.file != null && technicalDoc.file.Length > 0)
                 {
@@ -69,8 +72,7 @@ namespace ZentechAPI.controllers
                     return BadRequest("Technical document data is null.");
                 }
 
-
-                technicalDoc.UpdatedDate = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
+                technicalDoc.UpdatedBy = "admin";
 
                 // Save file if uploaded
                 if (technicalDoc.file != null && technicalDoc.file.Length > 0)
@@ -79,7 +81,7 @@ namespace ZentechAPI.controllers
                     technicalDoc.filePath = filePath;
                 }
 
-                var success = _technicalDocService.UpdateTechnicalDoc(technicalDoc);
+                var success = _technicalDocService.UpdateTechnicalDoc(technicalDoc, technicalDoc.UpdatedBy);
 
                 if (!success)
                 {
@@ -213,26 +215,30 @@ namespace ZentechAPI.controllers
 
         #region Categories methods
 
-        [HttpGet("Categories")]
+        // Get all categories
+        /// <summary>
+        /// Retrieve all categories.
+        /// </summary>
+        /// <returns>Returns the complete list of categories.</returns>
+        [HttpGet("CategoriesDoc")]
+        [SwaggerOperation(Summary = "Get all categories", Description = "Returns the complete list of categories.")]
         public async Task<IActionResult> GetAllCategories()
         {
-            try
-            {
+           
                 var categories = await _technicalDocService.GetAllCategories();
-                if (categories == null)
-                {
-                    return NotFound("No categories found.");
-                }
                 return Ok(categories);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
-            }
         }
 
+        // Add a new category
+        /// <summary>
+        /// Add a new category.
+        /// </summary>
+        /// <param name="category">Object containing the details of the category to add.</param>
+        /// <returns>The created category with its identifier.</returns>
+        [Authorize(Roles = "Admin")]
+        [SwaggerOperation(Summary = "Add a category", Description = "Adds a new category to the system.")]
         [HttpPost("Categories")]
-        public IActionResult AddTechnicalDocCategory([FromForm] Other_Category category)
+        public async Task<IActionResult> AddTechnicalDocCategory([FromBody] Other_Category category)
         {
             if (category == null)
             {
@@ -243,7 +249,7 @@ namespace ZentechAPI.controllers
             {
                 string createdBy = User.Identity?.Name;
                 category.CreatedBy = createdBy ?? "null";
-                var createdCategory = _technicalDocService.AddTechnicalDocCategory(category);
+                var createdCategory = await _technicalDocService.AddTechnicalDocCategory(category);
                 return CreatedAtAction(nameof(GetAllCategories), new { id = createdCategory.CategoryID }, createdCategory);
             }
             catch (Exception ex)
@@ -252,13 +258,27 @@ namespace ZentechAPI.controllers
             }
         }
 
+        // Update a category
+        /// <summary>
+        /// Update an existing category.
+        /// </summary>
+        /// <param name="category">Object containing the updated details of the category.</param>
+        /// <returns>The updated category.</returns>
+        [Authorize(Roles = "Admin")]
+        [SwaggerOperation(Summary = "Update a category", Description = "Updates an existing category in the system.")]
         [HttpPut("Categories")]
-        public IActionResult UpdateTechnicalDocCategory([FromForm] Other_Category category)
+        public async Task<IActionResult> UpdateTechnicalDocCategory([FromBody] Other_Category category)
         {
+            if (category == null)
+            {
+                return BadRequest("Category is null.");
+            }
 
             try
             {
-                var updatedCategory = _technicalDocService.UpdateTechnicalDocCategory(category);
+                string updatedBy = User.Identity?.Name;
+                category.UpdatedBy = updatedBy ?? "null";
+                var updatedCategory = await _technicalDocService.UpdateTechnicalDocCategory(category);
                 if (updatedCategory == null)
                 {
                     return NotFound($"Category with ID {category.CategoryID} not found.");
@@ -271,23 +291,40 @@ namespace ZentechAPI.controllers
             }
         }
 
+
+        // Delete a category
+        /// <summary>
+        /// Delete a category.
+        /// </summary>
+        /// <param name="id">The ID of the category to delete.</param>
+        /// <returns>Confirmation of deletion.</returns>
+        [Authorize(Roles = "Admin")]
+        [SwaggerOperation(Summary = "Delete a category", Description = "Deletes an existing category from the system.")]
         [HttpDelete("Categories/{id}")]
-        public IActionResult DeleteTechnicalDocCategory([FromRoute] int id)
+        public async Task<IActionResult> DeleteTechnicalDocCategory([FromRoute] int id)
         {
             try
             {
-                _technicalDocService.DeleteTechnicalDocCategory(id);
-                return NoContent();
+                int result = await _technicalDocService.DeleteTechnicalDocCategory(id);
+                if (result > 0)
+                {
+                    return NoContent();
+                }
+                else
+                {
+                    return NotFound($"Category with ID {id} not found or The category used by another entity. ");
+                }
             }
-            catch (KeyNotFoundException)
+            catch (InvalidOperationException ex)
             {
-                return NotFound($"Category with ID {id} not found.");
+                return BadRequest(ex.Message);
             }
             catch (Exception ex)
             {
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
+
         #endregion
     }
 }

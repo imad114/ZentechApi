@@ -125,11 +125,11 @@ namespace Zentech.Repositories
                             ProductID = reader.GetInt32("ProductID"),
                             Name = reader.GetString("Name"),
                             Description = reader.GetString("Description"),
-                            Price = reader.GetDecimal("Price"),
-                            CategoryID = reader.GetInt32("CategoryID"),
+                            //Price = reader.GetDecimal("Price"),
+                           // CategoryID = reader.GetInt32("CategoryID"),
                             CategoryName = reader.GetString("CategoryName"),
-                            Photos = GetPhotosForEntity(reader.GetInt32("ProductID"), "Products"),
-                            Specifications = GetSpecificationsForProduct(reader.GetInt32("ProductID"))
+                            //Photos = GetPhotosForEntity(reader.GetInt32("ProductID"), "Products"),
+                            //Specifications = GetSpecificationsForProduct(reader.GetInt32("ProductID"))
                         };
 
                         solutionProducts.Add(new SolutionProduct
