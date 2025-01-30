@@ -74,31 +74,7 @@ namespace ZentechAPI.Controllers
             }
         }
 
-        /// <summary>
-        /// Retrieves a page by its slug.
-        /// </summary>
-        /// <param name="slug">The slug of the page.</param>
-        /// <returns>The requested page.</returns>
-        /// <response code="200">Returns the requested page.</response>
-        /// <response code="404">If the page is not found.</response>
-        /// <response code="500">If an internal server error occurs.</response>
-        [HttpGet("slug/{slug}")]
-        public IActionResult GetPageBySlug(string slug)
-        {
-            try
-            {
-                var page = _pageService.GetPageBySlug(slug);
-                if (page == null)
-                {
-                    return NotFound("Page not found.");
-                }
-                return Ok(page);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
-            }
-        }
+        
 
         /// <summary>
         /// Adds a new page.
@@ -109,20 +85,20 @@ namespace ZentechAPI.Controllers
         /// <response code="400">If the page data is invalid.</response>
         /// <response code="500">If an internal server error occurs.</response>
         [HttpPost]
-        public IActionResult AddPage([FromBody] PageDto pageDto)
+        public IActionResult AddPage([FromBody] AboutUs aboutAs)
         {
             try
             {
                
-                if (pageDto == null || string.IsNullOrEmpty(pageDto.Title) || string.IsNullOrEmpty(pageDto.Content))
+                if (aboutAs == null || string.IsNullOrEmpty(aboutAs.Title) || string.IsNullOrEmpty(aboutAs.Content))
                 {
                     return BadRequest(new { Message = "Invalid news data. Title and content are required." });
                 }
 
                 var createdBy = "admin"; // In a real application, you'd fetch this from the authenticated user
-                var pageId = _pageService.AddPage(pageDto, createdBy);
+                var pageId = _pageService.AddPage(aboutAs, createdBy);
 
-                return CreatedAtAction(nameof(GetPageById), new { id = pageId }, pageDto);
+                return CreatedAtAction(nameof(GetPageById), new { id = pageId }, aboutAs);
             }
             catch (Exception ex)
             {
@@ -140,22 +116,22 @@ namespace ZentechAPI.Controllers
         /// <response code="404">If the page is not found.</response>
         /// <response code="500">If an internal server error occurs.</response>
         [HttpPut("{id}")]
-        public IActionResult UpdatePage(int id, [FromBody] PageDto pageDto)
+        public IActionResult UpdatePage(int id, [FromBody] AboutUs aboutAs)
         {
             try
             {
-                if (pageDto == null)
+                if (aboutAs == null)
                 {
                     return BadRequest("Page data is null.");
                 }
 
-                if (id != pageDto.Id)
+                if (id != aboutAs.Id)
                 {
                     return BadRequest("Page ID mismatch.");
                 }
 
                 var updatedBy = "admin"; // In a real application, you'd fetch this from the authenticated user
-                var success = _pageService.UpdatePage(pageDto, updatedBy);
+                var success = _pageService.UpdatePage(aboutAs, updatedBy);
 
                 if (!success)
                 {
@@ -167,27 +143,6 @@ namespace ZentechAPI.Controllers
             catch (Exception ex)
             {
                 return StatusCode(500, $"Internal server error: {ex.Message}");
-            }
-        }
-
-        /// <summary>
-        /// Increments the visitor count for a specified page.
-        /// </summary>
-        /// <param name="id">The ID of the page whose visitor count is to be incremented.</param>
-        /// <returns>A success message if the operation is successful.</returns>
-        /// <response code="200">If the visitor count is incremented successfully.</response>
-        /// <response code="500">If an internal server error occurs.</response>
-        [HttpPost("/api/pages/{id}/increment-visitor-count")]
-        public IActionResult IncrementVisitorCount(int id)
-        {
-            try
-            {
-                _pageService.IncrementVisitorCount(id);
-                return Ok(new { message = "Visitor count incremented successfully." });
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { message = "An error occurred while incrementing visitor count.", error = ex.Message });
             }
         }
 

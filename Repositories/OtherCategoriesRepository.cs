@@ -45,6 +45,7 @@ namespace ZentechAPI.Repositories
                         categoryList.Add(categorie);
                     }
                 }
+                //close 
                connection.Close();
             }
             return categoryList;

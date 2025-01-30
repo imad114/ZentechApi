@@ -17,44 +17,32 @@ namespace Zentech.Services
         }
 
         // Method to retrieve all pages
-        public List<Pages> GetAllPages()
+        public List<AboutUs> GetAllPages()
         {
             return _pageRepository.GetAllPages();
         }
 
         // Method to retrieve a page by its ID
-        public Pages GetPageById(int id)
+        public AboutUs GetPageById(int id)
         {
             return _pageRepository.GetPageById(id);
         }
 
-        // Method to retrieve a page by its Slug
-        public Pages GetPageBySlug(string slug)
-        {
-            return _pageRepository.GetPageBySlug(slug);
-        }
 
         // Method to add a new page
-        public int AddPage(PageDto pageDto, string createdBy)
+        public int AddPage(AboutUs aboutAs, string createdBy)
         {
            
-            return _pageRepository.AddPage(pageDto, createdBy);
+            return _pageRepository.AddPage(aboutAs, createdBy);
         }
 
         // Method to update a page
-        public bool UpdatePage(PageDto pageDto, string updatedBy)
+        public bool UpdatePage(AboutUs aboutAs, string updatedBy)
         {
           
-            return _pageRepository.UpdatePage(pageDto, updatedBy);
+            return _pageRepository.UpdatePage(aboutAs, updatedBy);
         }
-        // Increment Visitor Count
-        public void IncrementVisitorCount(int pageId)
-        {
-            
-            _pageRepository.IncrementVisitorCount(pageId);
-        }
-
-
+       
         // Method to delete a page
         public void DeletePage(int pageId)
         {

@@ -17,39 +17,33 @@ namespace Zentech.Repositories
         }
 
         // Method to retrieve all pages
-        public List<Pages> GetAllPages()
+        public List<AboutUs> GetAllPages()
         {
-            var pageList = new List<Pages>();
+            var pageList = new List<AboutUs>();
 
             using (var connection = _context.GetConnection())
             {
                 connection.Open();
                 var command = new MySqlCommand(@"
                     SELECT * 
-                    FROM Pages", connection);
+                    FROM aboutus", connection);
 
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        var page = new Pages
+                          var aboutAs = new AboutUs
                         {
                             Id = reader.GetInt32("Id"),
                             Title = reader.GetString("Title"),
-                            Slug = reader.GetString("Slug"),
                             Content = reader.GetString("Content"),
-                            MetaTitle = reader.IsDBNull(reader.GetOrdinal("MetaTitle")) ? null : reader.GetString("MetaTitle"),
-                            MetaDescription = reader.IsDBNull(reader.GetOrdinal("MetaDescription")) ? null : reader.GetString("MetaDescription"),
-                            LanguageCode = reader.GetString("LanguageCode"),
-                            Status = reader.GetString("Status"),
                             CreatedAt = reader.GetDateTime("CreatedAt"),
                             UpdatedAt = reader.GetDateTime("UpdatedAt"),
-                            CreatedBy = reader.GetString("CreatedBy"),
                             UpdatedBy = reader.IsDBNull(reader.GetOrdinal("UpdatedBy")) ? null : reader.GetString("UpdatedBy"),
-                         
+
                         };
 
-                        pageList.Add(page);
+                        pageList.Add(aboutAs);
                     }
                 }
             }
@@ -57,60 +51,19 @@ namespace Zentech.Repositories
             return pageList;
         }
 
-        // Method to retrieve a page by Slug
-        public Pages GetPageBySlug(string slug)
-        {
-            Pages page = null;
-
-            using (var connection = _context.GetConnection())
-            {
-                connection.Open();
-                var command = new MySqlCommand(@"
-            SELECT * 
-            FROM Pages 
-            WHERE Slug = @Slug", connection);
-
-                command.Parameters.AddWithValue("@Slug", slug);
-
-                using (var reader = command.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        page = new Pages
-                        {
-                            Id = reader.GetInt32("Id"),
-                            Title = reader.GetString("Title"),
-                            Slug = reader.GetString("Slug"),
-                            Content = reader.GetString("Content"),
-                            MetaTitle = reader.IsDBNull(reader.GetOrdinal("MetaTitle")) ? null : reader.GetString("MetaTitle"),
-                            MetaDescription = reader.IsDBNull(reader.GetOrdinal("MetaDescription")) ? null : reader.GetString("MetaDescription"),
-                            LanguageCode = reader.GetString("LanguageCode"),
-                            Status = reader.GetString("Status"),
-                            CreatedAt = reader.GetDateTime("CreatedAt"),
-                            UpdatedAt = reader.GetDateTime("UpdatedAt"),
-                            CreatedBy = reader.GetString("CreatedBy"),
-                            UpdatedBy = reader.IsDBNull(reader.GetOrdinal("UpdatedBy")) ? null : reader.GetString("UpdatedBy"),
-                            
-                        };
-                    }
-                }
-            }
-
-            return page;
-        }
-
+     
 
         // Method to retrieve a specific page by ID
-        public Pages GetPageById(int id)
+        public AboutUs GetPageById(int id)
         {
-            Pages page = null;
+            AboutUs aboutAs = null;
 
             using (var connection = _context.GetConnection())
             {
                 connection.Open();
                 var command = new MySqlCommand(@"
                     SELECT * 
-                    FROM Pages 
+                    FROM aboutus 
                     WHERE Id = @Id", connection);
 
                 command.Parameters.AddWithValue("@Id", id);
@@ -119,19 +72,13 @@ namespace Zentech.Repositories
                 {
                     if (reader.Read())
                     {
-                        page = new Pages
+                        aboutAs = new AboutUs
                         {
                             Id = reader.GetInt32("Id"),
                             Title = reader.GetString("Title"),
-                            Slug = reader.GetString("Slug"),
                             Content = reader.GetString("Content"),
-                            MetaTitle = reader.IsDBNull(reader.GetOrdinal("MetaTitle")) ? null : reader.GetString("MetaTitle"),
-                            MetaDescription = reader.IsDBNull(reader.GetOrdinal("MetaDescription")) ? null : reader.GetString("MetaDescription"),
-                            LanguageCode = reader.GetString("LanguageCode"),
-                            Status = reader.GetString("Status"),
                             CreatedAt = reader.GetDateTime("CreatedAt"),
                             UpdatedAt = reader.GetDateTime("UpdatedAt"),
-                            CreatedBy = reader.GetString("CreatedBy"),
                             UpdatedBy = reader.IsDBNull(reader.GetOrdinal("UpdatedBy")) ? null : reader.GetString("UpdatedBy"),
                             
                         };
@@ -139,85 +86,59 @@ namespace Zentech.Repositories
                 }
             }
 
-            return page;
+            return aboutAs;
         }
 
         // Method to add a new page
-        public int AddPage(PageDto pageDto, string createdBy)
+        public int AddPage(AboutUs aboutAs, string createdBy)
         {
             using (var connection = _context.GetConnection())
             {
                 connection.Open();
                 var command = new MySqlCommand(@"
-                    INSERT INTO Pages (Title, Slug, Content, MetaTitle, MetaDescription, LanguageCode, Status, CreatedAt, CreatedBy) 
-                    VALUES (@Title, @Slug, @Content, @MetaTitle, @MetaDescription, @LanguageCode, @Status, @CreatedAt, @CreatedBy);
+                    INSERT INTO aboutus (Title, Content,CreatedAt) 
+                    VALUES (@Title,@Content, @CreatedAt);
                     SELECT LAST_INSERT_ID();", connection);
 
-                command.Parameters.AddWithValue("@Title", pageDto.Title);
-                command.Parameters.AddWithValue("@Slug", pageDto.Slug);
-                command.Parameters.AddWithValue("@Content", pageDto.Content);
-                command.Parameters.AddWithValue("@MetaTitle", pageDto.MetaTitle ?? (object)DBNull.Value);
-                command.Parameters.AddWithValue("@MetaDescription", pageDto.MetaDescription ?? (object)DBNull.Value);
-                command.Parameters.AddWithValue("@LanguageCode", pageDto.LanguageCode);
-                command.Parameters.AddWithValue("@Status", pageDto.Status.ToString());
+                command.Parameters.AddWithValue("@Title", aboutAs.Title);
+                command.Parameters.AddWithValue("@Content", aboutAs.Content);
                 command.Parameters.AddWithValue("@CreatedAt", DateTime.Now);
-                command.Parameters.AddWithValue("@CreatedBy", createdBy);
 
                 var pageId = Convert.ToInt32(command.ExecuteScalar());
-                pageDto.Id = pageId;
+                aboutAs.Id = pageId;
                 return pageId;
             }
         }
 
         // Method to update a page
-        public bool UpdatePage(PageDto pageDto, string updatedBy)
+        public bool UpdatePage(AboutUs aboutAs, string updatedBy)
         {
             using (var connection = _context.GetConnection())
             {
                 connection.Open();
 
-                var existingPage = GetPageById(pageDto.Id);
+                var existingPage = GetPageById(aboutAs.Id);
                 if (existingPage == null)
                 {
                     return false;
                 }
 
                 var command = new MySqlCommand(@"
-                    UPDATE Pages 
-                    SET Title = @Title, Slug = @Slug, Content = @Content, 
-                        MetaTitle = @MetaTitle, MetaDescription = @MetaDescription, 
-                        LanguageCode = @LanguageCode, Status = @Status, 
+                    UPDATE aboutus 
+                    SET Title = @Title,Content = @Content, 
                         UpdatedAt = @UpdatedAt, UpdatedBy = @UpdatedBy
                     WHERE Id = @Id", connection);
 
-                command.Parameters.AddWithValue("@Title", pageDto.Title);
-                command.Parameters.AddWithValue("@Slug", pageDto.Slug);
-                command.Parameters.AddWithValue("@Content", pageDto.Content);
-                command.Parameters.AddWithValue("@MetaTitle", pageDto.MetaTitle ?? (object)DBNull.Value);
-                command.Parameters.AddWithValue("@MetaDescription", pageDto.MetaDescription ?? (object)DBNull.Value);
-                command.Parameters.AddWithValue("@LanguageCode", pageDto.LanguageCode);
-                command.Parameters.AddWithValue("@Status", pageDto.Status.ToString());
+                command.Parameters.AddWithValue("@Title", aboutAs.Title);
+                command.Parameters.AddWithValue("@Content", aboutAs.Content);
                 command.Parameters.AddWithValue("@UpdatedAt", DateTime.Now);
                 command.Parameters.AddWithValue("@UpdatedBy", updatedBy);
-                command.Parameters.AddWithValue("@Id", pageDto.Id);
+                command.Parameters.AddWithValue("@Id", aboutAs.Id);
 
                 var rowsAffected = command.ExecuteNonQuery();
                 return rowsAffected > 0;
             }
         }
-        // Increment Visitor Count 
-        public void IncrementVisitorCount(int pageId)
-        {
-            using (var connection = _context.GetConnection())
-            {
-                connection.Open();
-                var command = new MySqlCommand(@"UPDATE Pages SET VisitorCount = VisitorCount + 1 WHERE Id = @PageId", connection);
-                command.Parameters.AddWithValue("@PageId", pageId);
-                command.ExecuteNonQuery();
-            }
-        }
-
-
         // Method to delete a page
         public void DeletePage(int pageId)
         {
@@ -225,7 +146,7 @@ namespace Zentech.Repositories
             {
                 connection.Open();
 
-                var command = new MySqlCommand("DELETE FROM Pages WHERE Id = @Id", connection);
+                var command = new MySqlCommand("DELETE FROM aboutus WHERE Id = @Id", connection);
                 command.Parameters.AddWithValue("@Id", pageId);
                 command.ExecuteNonQuery();
             }
