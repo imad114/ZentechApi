@@ -28,6 +28,8 @@
 
 	<ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="EPPlus" Version="7.5.3" />
+    <PackageReference Include="ExcelDataReader" Version="3.7.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.11" />
     <PackageReference Include="MySql.Data" Version="8.0.33" />
@@ -38,6 +40,7 @@
 
 
 	<ItemGroup>
+	  <Folder Include="wwwroot\uploads\Page\" />
 	  <Folder Include="wwwroot\uploads\Products\" />
 	</ItemGroup>
 
