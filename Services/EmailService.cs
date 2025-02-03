@@ -11,11 +11,15 @@
         public EmailService(IConfiguration configuration)
         {
             _emailSettings = configuration.GetSection("EmailSettings").Get<EmailSettings>();
+            // Vérifier si les valeurs sont bien chargées
+            Console.WriteLine($"SMTPHost: {_emailSettings?.SMTPHost}");
+            Console.WriteLine($"SMTPUsername: {_emailSettings?.SMTPUsername}");
+            Console.WriteLine($"SMTPPassword: {_emailSettings?.SMTPPassword}");
         }
 
         public async Task SendEmailAsync(string recipientEmail, string subject, string body)
         {
-            using var smtpClient = new SmtpClient(_emailSettings.SMTPServer, _emailSettings.SMTPPort)
+            using var smtpClient = new SmtpClient(_emailSettings.SMTPHost, _emailSettings.SMTPPort)
             {
                 Credentials = new NetworkCredential(_emailSettings.SMTPUsername, _emailSettings.SMTPPassword),
                 EnableSsl = true

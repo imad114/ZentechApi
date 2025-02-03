@@ -7,6 +7,7 @@ using Microsoft.Extensions.FileProviders;
 using ZentechAPI.Repositories;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using ZentechAPI.Services;
+using ZentechAPI.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 // Configurer les logs (niveau 'Information' ou 'Debug' pour voir les détails)
@@ -130,6 +131,7 @@ builder.Services.AddScoped<ProductModelRepository>();
 builder.Services.AddScoped<ProductModelService>();
 
 builder.Services.AddTransient<EmailService>();
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 
 
 

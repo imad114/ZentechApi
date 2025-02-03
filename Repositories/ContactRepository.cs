@@ -36,7 +36,10 @@ public class ContactRepository
                         CreatedAt = reader.GetDateTime("CreatedAt"),
                         Country = reader.GetString("Country"),
                         Topic = reader.IsDBNull(reader.GetOrdinal("topic")) ? null : reader.GetString("topic"),
-                        Role = reader.IsDBNull(reader.GetOrdinal("_Role")) ? null : reader.GetString("_Role")
+                        Role = reader.IsDBNull(reader.GetOrdinal("_Role")) ? null : reader.GetString("_Role"),
+                        IPAddress = reader.IsDBNull(reader.GetOrdinal("IPAddress")) ? null : reader.GetString("IPAddress"),
+                        MachineName = reader.IsDBNull(reader.GetOrdinal("MachineName")) ? null : reader.GetString("MachineName"),
+                        UserAgent = reader.IsDBNull(reader.GetOrdinal("UserAgent")) ? null : reader.GetString("UserAgent"),
 
                     });
                 }
@@ -108,7 +111,7 @@ public class ContactRepository
         using (var connection = _context.GetConnection())
         {
             await connection.OpenAsync();
-            var query = "INSERT INTO ContactMessages (FirstName,LastName,Email,PhoneNumbre,Message,Country,topic, _Role) VALUES (@FirstName,@LastName,@Email,@PhoneNumbre,@Message,@Country,@Topic,@Role)";
+            var query = "INSERT INTO ContactMessages (FirstName,LastName,Email,PhoneNumbre,Message,Country,topic, _Role,UserAgent,IPAddress,MachineName) VALUES (@FirstName,@LastName,@Email,@PhoneNumbre,@Message,@Country,@Topic,@Role,@UserAgent,@IPAddress,@MachineName)";
             using (var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@FirstName", contactMessage.FirstName);
@@ -119,6 +122,9 @@ public class ContactRepository
                 command.Parameters.AddWithValue("@Country", contactMessage.Country ?? (object)DBNull.Value);
                 command.Parameters.AddWithValue("@Topic", contactMessage.Topic ?? (object)DBNull.Value);
                 command.Parameters.AddWithValue("@Role", contactMessage.Role ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@UserAgent", contactMessage.UserAgent ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@IPAddress", contactMessage.IPAddress ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@MachineName", contactMessage.MachineName ?? (object)DBNull.Value);
                 await command.ExecuteNonQueryAsync();
                 contactMessage.ContactID = (int)command.LastInsertedId;
             }

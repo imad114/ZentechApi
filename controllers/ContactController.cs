@@ -20,29 +20,7 @@ public class ContactController : ControllerBase
     }
 
 
-    [HttpPost("send-auto-email")]
-    public async Task<IActionResult> CreateContacts([FromBody] ContactMessage contactMessage)
-    {
-        if (!ModelState.IsValid)
-            return BadRequest(ModelState);
-
-        var createdContacts = await _contactService.CreateContactAsync(contactMessage);
-
-        // Envoyer un email automatique
-        string subject = "Merci de nous avoir contactés!";
-        string body = $"Bonjour {contactMessage.FirstName},<br><br>Merci pour votre message. Notre équipe vous répondra dans les plus brefs délais.<br><br>Bien cordialement,<br>L'équipe Zentech.";
-        try
-        {
-            await _emailService.SendEmailAsync(contactMessage.Email, subject, body);
-        }
-        catch (Exception ex)
-        {
-            // Gérer l'erreur sans interrompre le processus
-            Console.WriteLine($"Erreur d'envoi email : {ex.Message}");
-        }
-
-        return CreatedAtAction(nameof(GetContactById), new { id = createdContacts.ContactID }, createdContacts);
-    }
+   
 
     [HttpPost("send-custom-email")]
     [Authorize(Roles = "Admin")]
@@ -118,7 +96,24 @@ public class ContactController : ControllerBase
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
+        // Capture the PC information
+        contactMessage.IPAddress = HttpContext.Connection.RemoteIpAddress?.ToString();
+        contactMessage.UserAgent = Request.Headers["User-Agent"];
+        contactMessage.MachineName = Environment.MachineName;  // Get the machine name from the environment
         var createdContact = await _contactService.CreateContactAsync(contactMessage);
+        // Envoyer un email automatique
+        string subject = "Merci de nous avoir contactés!";
+        string body = $"Bonjour {contactMessage.FirstName},<br><br>Merci pour votre message. Notre équipe vous répondra dans les plus brefs délais.<br><br>Bien cordialement,<br>L'équipe Zentech.";
+        try
+        {
+            await _emailService.SendEmailAsync(contactMessage.Email, subject, body);
+        }
+        catch (Exception ex)
+        {
+            // Gérer l'erreur sans interrompre le processus
+            Console.WriteLine($"Erreur d'envoi email : {ex.Message}");
+        }
+
         return CreatedAtAction(nameof(GetContactById), new { id = createdContact.ContactID }, createdContact);
     }
 

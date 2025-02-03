@@ -14,6 +14,10 @@ namespace Zentech.Models
         public string? Country { get; set; }
         public string? Topic { get; set; }
         public string? Role { get; set; }
+        public string? UserAgent { get; set; }  // For storing user agent
+        public string? IPAddress { get; set; }  // For storing the IP address
+        public string? MachineName { get; set; }  // For storing the machine name or host
+
 
     }
 }

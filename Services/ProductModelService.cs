@@ -103,34 +103,59 @@ public class ProductModelService
                             continue; // Ignore les lignes vides
                         }
                         // Vérifier si le modèle existe déjà dans la base de données
-                        var existingModel =  _repository.GetProductModelByNameAndProductId(proudctId, model);
+                        var existingModel = _repository.GetProductModelByNameAndProductId(proudctId, model);
+                        //if (existingModel != null)
+                        //{
+                        //    // Supprimer l'ancien modèle avant d'ajouter le nouveau
+                        //    continue; // Skips to the next model in the loop
+
+                        //    //_repository.UpdateModel(existingModel, createdBy);
+                        //}
+
                         if (existingModel != null)
                         {
-                            // Supprimer l'ancien modèle avant d'ajouter le nouveau
-                            continue; // Skips to the next model in the loop
+                            // Mise à jour du modèle existant
+                            existingModel.Displacement = displacement;
+                            existingModel.CoolingType = coolingType;
+                            existingModel.MotorType = motorType;
+                            existingModel.VoltageFrequency = voltageFrequency;
+                            existingModel.CoolingCapacityW = coolingCapacityW;
+                            existingModel.CoolingCapacityBTUPerHour = coolingCapacityBTUPerHour;
+                            existingModel.CoolingCapacityKcal = coolingCapacityKcal;
+                            existingModel.COPWW = copWW;
+                            existingModel.COPBTUPerWH = copBTUPerWH;
+                            existingModel.UpdateDate = DateTime.Now;
+                            existingModel.UpdatedBy = createdBy;
+                            _repository.UpdateModel(existingModel, createdBy);
                         }
-
-
-                        productModel.Add(new ProductModel
+                        else
                         {
-                            Model = model,
-                            Displacement = displacement,
-                            CoolingType = coolingType,
-                            MotorType = motorType,
-                            VoltageFrequency = voltageFrequency,
-                            CoolingCapacityW = coolingCapacityW,
-                            CoolingCapacityBTUPerHour = coolingCapacityBTUPerHour,
-                            CoolingCapacityKcal = coolingCapacityKcal,
-                            COPWW = copWW,
-                            COPBTUPerWH = copBTUPerWH,
-                            CreateDate = DateTime.Now,
-                            ProductID = proudctId,
-                            CreatedBy = createdBy
 
 
-                        });
+                            productModel.Add(new ProductModel
+                            {
+                                Model = model,
+                                Displacement = displacement,
+                                CoolingType = coolingType,
+                                MotorType = motorType,
+                                VoltageFrequency = voltageFrequency,
+                                CoolingCapacityW = coolingCapacityW,
+                                CoolingCapacityBTUPerHour = coolingCapacityBTUPerHour,
+                                CoolingCapacityKcal = coolingCapacityKcal,
+                                COPWW = copWW,
+                                COPBTUPerWH = copBTUPerWH,
+                                CreateDate = DateTime.Now,
+                                ProductID = proudctId,
+                                CreatedBy = createdBy
+
+
+                            });
+
+
+                        }
                     }
-                    recordsInserted = await _repository.AddMultipleProducts(productModel);
+                        recordsInserted = await _repository.AddMultipleProducts(productModel);
+                    
                 }
             }
         }

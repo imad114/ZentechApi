@@ -72,6 +72,7 @@ namespace ZentechAPI.controllers
         /// </summary>
         /// <param name="model">The product model to add.</param>
         /// <returns>The ID of the newly created product model.</returns>
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [SwaggerOperation(Summary = "Add a new product model", Description = "Creates a new product model and returns its ID.")]
         [SwaggerResponse(StatusCodes.Status201Created, "Product model created successfully.")]
@@ -82,8 +83,8 @@ namespace ZentechAPI.controllers
             {
                 return BadRequest("Model cannot be null.");
             }
-            model.CreatedBy = "admin";
-            var newModelId = await _productModelService.AddModel(model, model.CreatedBy);
+            var createdBy = User.Identity?.Name ?? "";
+            var newModelId = await _productModelService.AddModel(model, createdBy);
             return CreatedAtAction(nameof(GetModelById), new { id = newModelId }, newModelId);
         }
 
@@ -92,6 +93,7 @@ namespace ZentechAPI.controllers
         /// </summary>
         /// <param name="model">The product model with updated data.</param>
         /// <returns>No content.</returns>
+        [Authorize(Roles = "Admin")]
         [HttpPut]
         [SwaggerOperation(Summary = "Update an existing product model", Description = "Updates the details of an existing product model.")]
         [SwaggerResponse(StatusCodes.Status204NoContent, "Product model updated successfully.")]
@@ -108,8 +110,8 @@ namespace ZentechAPI.controllers
             {
                 return BadRequest("Model cannot be null.");
             }
-
-            var updated = await _productModelService.UpdateModel(model, model.UpdatedBy);
+            var UpdatedBy = User.Identity?.Name ?? "";
+            var updated = await _productModelService.UpdateModel(model, UpdatedBy);
             if (!updated)
             {
                 return NotFound();
