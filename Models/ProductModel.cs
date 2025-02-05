@@ -4,7 +4,7 @@
     {
         public int ProductID { get; set; }
         public int ModelId { get; set; }
-
+        public string specification { get; set; }
         public string? Model { get; set; }
         public string? Displacement { get; set; }
         public string? CoolingType { get; set; }

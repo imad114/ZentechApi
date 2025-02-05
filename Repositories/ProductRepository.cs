@@ -127,13 +127,15 @@ namespace Zentech.Repositories
             return productList;
         }
         // Method to retrieve a specific product with its category and specifications
-        public Product GetProductById(int id)
+        public async Task<Product> GetProductById(int id)
         {
             Product product = null;
 
             using (var connection = _context.GetConnection())
             {
-                connection.Open();
+              
+                    connection.Open();
+
                 var command = new MySqlCommand(@"
             SELECT p.*, 
                    c.CategoryID, c.Name AS CategoryName ,

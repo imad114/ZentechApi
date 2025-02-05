@@ -23,7 +23,7 @@ namespace ZentechAPI.Repositories
             using (var connection = _context.GetConnection())
             {
                 connection.Open();
-                var command = new MySqlCommand("SELECT * FROM other_categories where CategoryType = @CategoryType ", connection);
+                var command = new MySqlCommand("SELECT * FROM other_categories where CategoryType = @CategoryType  order by categoryID asc", connection);
                 command.Parameters.AddWithValue("@CategoryType", _Type);
 
 

@@ -177,4 +177,15 @@ public class ProductModelService
         return null;
     }
 
+    public async Task<(List<ProductModel> models, string count)> GetModelsBySpecificationFiltered(int productID,
+     string specification, string model, string displacement, string coolingType, string motorType,
+     string volFreq, string coolingCapW, string coolingCapBTU, string copWW, string copBTUWh, int limit, int offset)
+    {
+        var resultTuple = await _repository.GetModelsBySpecificationFiltered(productID,
+            specification, model, displacement, coolingType, motorType,
+            volFreq, coolingCapW, coolingCapBTU, copWW, copBTUWh, limit, offset);
+
+        return resultTuple;
+    }
+
 }
