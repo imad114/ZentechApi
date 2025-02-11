@@ -69,19 +69,16 @@ namespace ZentechAPI.controllers
 
 
         [HttpGet("productModelsBySpecification/{prodId}")]
-        [SwaggerOperation(Summary = "Get product models by product ID", Description = "Returns all product models associated with a specific product ID.")]
-        [SwaggerResponse(StatusCodes.Status200OK, "List of product models retrieved successfully.")]
-        [SwaggerResponse(StatusCodes.Status404NotFound, "No models found for the specified product ID.")]
         public async Task<IActionResult> GetModelsBySpecificationFiltered(int prodId, int offset = 0, int limit = 10,
           string specification = "", string model = "", string displacement = "",
           string coolingType = "", string motorType = "",
-          string volFreq = "", string coolingCapW = "", string coolingCapBTU = "",
+          string volFreq = "", string coolingCapW = "", string coolingCapBTU = "", string coolingCapKcal="",
           string copWW = "", string copBTUWh = "")
         {
             // Calling the service method with the parameters  
             var (models, count) = await _productModelService.GetModelsBySpecificationFiltered(prodId,
                 specification, model, displacement, coolingType, motorType,
-                volFreq, coolingCapW, coolingCapBTU, copWW, copBTUWh, limit, offset);
+                volFreq, coolingCapW, coolingCapBTU, coolingCapKcal, copWW, copBTUWh, limit, offset);
 
             // Checking if any models were found  
             if (models == null || models.Count == 0)
@@ -91,6 +88,23 @@ namespace ZentechAPI.controllers
 
             // Returning the list of models and optionally the count  
             return Ok(new { models, count });
+        }
+
+        [HttpGet("SpecificationFilterOptions/{prodId}")]
+        public async Task<IActionResult> GetSpecificationFilterOptions(int prodId,string specification)
+        {
+            // Calling the service method with the parameters  
+            var result = await _productModelService.GetSpecificationFilterOptions(prodId,
+                specification);
+
+            // Checking if any models were found  
+            if (result == null)
+            {
+                return NotFound("No filters found for this specification.");
+            }
+
+            // Returning the list of models and optionally the count  
+            return Ok(result);
         }
 
         /// <summary>

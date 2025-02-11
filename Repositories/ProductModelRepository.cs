@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
 using MySql.Data.MySqlClient;
+using System.Collections.Generic;
 using System.Data;
 using System.Text;
 using ZentechAPI.Models;
@@ -346,7 +347,7 @@ namespace ZentechAPI.Repositories
 
         public async Task<(List<ProductModel> models, string count)> GetModelsBySpecificationFiltered(int productID,
            string specification, string model, string displacement, string coolingType, string motorType,
-           string volFreq, string coolingCapW, string coolingCapBTU, string copWW, string copBTUWh, int limit, int offset)
+           string volFreq, string coolingCapW, string coolingCapBTU, string coolingCapKcal, string copWW, string copBTUWh, int limit, int offset)
         {
             List<ProductModel> models = new List<ProductModel>();
             string count = "0";
@@ -365,6 +366,7 @@ namespace ZentechAPI.Repositories
             AND VoltageFrequency LIKE @volFreq  
             AND CoolingCapacityW LIKE @coolingCapW  
             AND CoolingCapacityBTUPerHour LIKE @coolingCapBTU  
+            AND CoolingCapacityKcal Like  @CoolingCapacityKcal
             AND COPWW LIKE @copWW  
             AND COPBTUPerWH LIKE @copBTUWh   
             LIMIT @limit OFFSET @offset", connection);
@@ -378,6 +380,7 @@ namespace ZentechAPI.Repositories
                 command.Parameters.AddWithValue("@volFreq", $"%{volFreq}%");
                 command.Parameters.AddWithValue("@coolingCapW", $"%{coolingCapW}%");
                 command.Parameters.AddWithValue("@coolingCapBTU", $"%{coolingCapBTU}%");
+                command.Parameters.AddWithValue("@CoolingCapacityKcal", $"%{coolingCapKcal}%");
                 command.Parameters.AddWithValue("@copWW", $"%{copWW}%");
                 command.Parameters.AddWithValue("@copBTUWh", $"%{copBTUWh}%");
                 command.Parameters.AddWithValue("@limit", limit);
@@ -430,7 +433,7 @@ namespace ZentechAPI.Repositories
                     }
                     catch
                     {
-                        count = Math.Floor(double.Parse(count)+1).ToString();
+                        count = Math.Floor(double.Parse(count) + 1).ToString();
                     }
                     await countReader.CloseAsync();
                 }
@@ -438,6 +441,48 @@ namespace ZentechAPI.Repositories
 
             return (models, count);
         }
+
+
+        public async Task<Dictionary<string, List<string>>> GetSpecificationFilterOptions(int productID, string specification)
+        {
+            var distinctValues = new Dictionary<string, List<string>>();
+
+            using (var connection = _context.GetConnection())
+            {
+                connection.Open();
+
+                var command = new MySqlCommand(@"SELECT   
+            GROUP_CONCAT(DISTINCT Displacement) AS Displacements,  
+            GROUP_CONCAT(DISTINCT CoolingType) AS CoolingTypes,  
+            GROUP_CONCAT(DISTINCT MotorType) AS MotorTypes,  
+            GROUP_CONCAT(DISTINCT VoltageFrequency) AS VoltageFrequencies,  
+            GROUP_CONCAT(DISTINCT CoolingCapacityW) AS CoolingCapacitiesW,  
+            GROUP_CONCAT(DISTINCT CoolingCapacityBTUPerHour) AS CoolingCapacitiesBTU,  
+            GROUP_CONCAT(DISTINCT CoolingCapacityKcal) AS CoolingCapacitiesKcal,  
+            GROUP_CONCAT(DISTINCT COPWW) AS COPWW,  
+            GROUP_CONCAT(DISTINCT COPBTUPerWH) AS COPBTU  
+            FROM productmodel   
+            WHERE productID = @Id AND specification = @specification;", connection);
+
+                command.Parameters.AddWithValue("@Id", productID);
+                command.Parameters.AddWithValue("@specification", specification);
+
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    if (await reader.ReadAsync())
+                    {
+                        foreach (var columnName in new[] {"Displacements", "CoolingTypes", "MotorTypes", "VoltageFrequencies", "CoolingCapacitiesW", "CoolingCapacitiesBTU", "CoolingCapacitiesKcal", "COPWW", "COPBTU" })
+                        {
+                            var value = reader.IsDBNull(reader.GetOrdinal(columnName)) ? string.Empty : reader.GetString(columnName);
+                            distinctValues[columnName] = value.Split(',').ToList();
+                        }
+                    }
+                }
+            }
+
+            return distinctValues;
+        }
+
+
     }
-    
 }
