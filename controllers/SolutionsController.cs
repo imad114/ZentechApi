@@ -69,7 +69,7 @@ namespace Zentech.Controllers
         [HttpPost("AddProductsToSolution")]
         public IActionResult AddProductsToSolution([FromBody] AddProductsToSolutionDto dto)
         {
-            if (dto == null || dto.ProductIDs == null || !dto.ProductIDs.Any())
+            if (dto == null || dto.ProductIDs == null || dto.ProductIDs.Count == 0)
             {
                 return BadRequest("Invalid data: 'dto' or 'ProductIDs' is missing or empty.");
             }
@@ -250,6 +250,20 @@ namespace Zentech.Controllers
             }
         }
 
+        [HttpGet("{solutionId}/products")]
+        public IActionResult GetProductsBySolution(int solutionId)
+        {
+            try
+            {
+                var products = _solutionService.GetProductsBySolutionId(solutionId);
+               
+                return Ok(products);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Erreur interne du serveur", error = ex.Message });
+            }
+        }
 
 
         /// <summary>

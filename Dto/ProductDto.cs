@@ -13,5 +13,7 @@ namespace ZentechAPI.Dto
         public List<string>? Photos { get; set; }
         public List<SpecificationDto>? Specifications { get; set; }
 
+        public string? MainPicture { get; set; }
+
     }
 }

@@ -49,6 +49,7 @@ namespace Zentech.Repositories
                             MainCategoryName = reader.IsDBNull(reader.GetOrdinal("MainCategoryName")) ? null : reader.GetString("MainCategoryName"),
                             CreatedBy = reader.IsDBNull(reader.GetOrdinal("CreatedBy")) ? null : reader.GetString("CreatedBy"),
                             UpdatedBy = reader.IsDBNull(reader.GetOrdinal("UpdatedBy")) ? null : reader.GetString("UpdatedBy"),
+                            MainPicture = reader.IsDBNull(reader.GetOrdinal("mainPicture")) ? null : reader.GetString("mainPicture"),
                             Photos = GetPhotosForEntity(reader.GetInt32("ProductID"), "Products"),
                             Specifications = GetSpecificationsForProduct(reader.GetInt32("ProductID")) // Récupérer les spécifications
                         };
@@ -79,6 +80,7 @@ namespace Zentech.Repositories
                         p.CreatedBy,
                         p.UpdatedBy,
                         p.UpdatedAt,
+                        p.MainPicture
                         c.CategoryID AS SubCategoryID,
                         c.Name AS CategoryName,
                         c.Description AS CategoryDescription,
@@ -113,6 +115,7 @@ namespace Zentech.Repositories
                             MainCategoryID = reader.IsDBNull(reader.GetOrdinal("MainCategoryID")) ? 0 : reader.GetInt32("MainCategoryID"),
                             MainCategoryName = reader.IsDBNull(reader.GetOrdinal("MainCategoryName")) ? "" : reader.GetString("MainCategoryName"),
                             CreatedBy = reader.IsDBNull(reader.GetOrdinal("CreatedBy")) ? null : reader.GetString("CreatedBy"),
+                            MainPicture = reader.IsDBNull(reader.GetOrdinal("mainPicture")) ? null : reader.GetString("mainPicture"),
                             UpdatedBy = reader.IsDBNull(reader.GetOrdinal("UpdatedBy")) ? null : reader.GetString("UpdatedBy"),
                             Photos = GetPhotosForEntity(reader.GetInt32("ProductID"), "Products"),
                             Specifications = GetSpecificationsForProduct(reader.GetInt32("ProductID"))
@@ -161,6 +164,7 @@ namespace Zentech.Repositories
                             CategoryName = reader.GetString("CategoryName"), // Nom de la sous-catégorie
                             MainCategoryID = reader.IsDBNull(reader.GetOrdinal("MainCategoryID")) ? (int?)null : reader.GetInt32("MainCategoryID"),
                             MainCategoryName = reader.IsDBNull(reader.GetOrdinal("MainCategoryName")) ? null : reader.GetString("MainCategoryName"),
+                            MainPicture = reader.IsDBNull(reader.GetOrdinal("mainPicture")) ? null : reader.GetString("mainPicture"),
                             Photos = GetPhotosForEntity(reader.GetInt32("ProductID"), "Products"),
                             Specifications = GetSpecificationsForProduct(reader.GetInt32("ProductID")) // Récupérer les spécifications
                         };
@@ -179,14 +183,15 @@ namespace Zentech.Repositories
             {
                 connection.Open();
                 var command = new MySqlCommand(@"
-                    INSERT INTO Products (Name, Description, Price, CreatedDate, CreatedBy, CategoryID) 
-                    VALUES (@Name, @Description, @Price, @CreatedDate, @CreatedBy, @CategoryID); 
+                    INSERT INTO Products (Name, Description, Price, CreatedDate, CreatedBy, CategoryID, mainPicture) 
+                    VALUES (@Name, @Description, @Price, @CreatedDate, @CreatedBy, @CategoryID, @mainPicture); 
                     SELECT LAST_INSERT_ID();", connection);
 
                 command.Parameters.AddWithValue("@Name", product.Name);
                 command.Parameters.AddWithValue("@Description", product.Description);
                 command.Parameters.AddWithValue("@Price", product.Price);
                 command.Parameters.AddWithValue("@CreatedDate", DateTime.Now);
+                command.Parameters.AddWithValue("@mainPicture", product.MainPicture);
                 command.Parameters.AddWithValue("@CreatedBy", createdBy);
                 command.Parameters.AddWithValue("@CategoryID", product.CategoryID);
 
@@ -266,7 +271,7 @@ namespace Zentech.Repositories
                 
                 var command = new MySqlCommand(@"
             UPDATE Products 
-            SET Name = @Name, Description = @Description, Price = @Price, 
+            SET Name = @Name, Description = @Description, Price = @Price, mainPicture = @mainPicture,
                 UpdatedBy = @UpdatedBy, UpdatedAt = @UpdatedAt, CategoryID = @CategoryID 
             WHERE ProductID = @ProductID", connection);
 
@@ -275,6 +280,7 @@ namespace Zentech.Repositories
                 command.Parameters.AddWithValue("@Price", productDto.Price);
                 command.Parameters.AddWithValue("@UpdatedBy", updatedBy);
                 command.Parameters.AddWithValue("@UpdatedAt", DateTime.Now);
+                command.Parameters.AddWithValue("@mainPicture", productDto.MainPicture);
                 command.Parameters.AddWithValue("@ProductID", productDto.ProductID);
                 command.Parameters.AddWithValue("@CategoryID", productDto.CategoryID);
 

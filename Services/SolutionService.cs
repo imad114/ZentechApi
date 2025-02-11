@@ -97,6 +97,10 @@ namespace Zentech.Services
             }
         }
 
+        public List<Product> GetProductsBySolutionId(int solutionId)
+        {
+            return _repository.GetProductsBySolutionId(solutionId);
+        }
 
         // Delete Solutions 
         public async Task DeleteSolutionAsync(int solutionId)

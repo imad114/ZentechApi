@@ -57,8 +57,6 @@ namespace Zentech.Repositories
             return solutions;
         }
 
-
-
         // Method to retrieve a solution by its ID, including photos and associated products
         public Solution GetSolutionById(int solutionId)
         {
@@ -343,6 +341,38 @@ namespace Zentech.Repositories
                     }
                 }
             }
+        }
+
+        public List<Product> GetProductsBySolutionId(int solutionId)
+        {
+            var products = new List<Product>();
+
+            using (var connection = _context.GetConnection())
+            {
+                connection.Open();
+                var command = new MySqlCommand(@"
+            SELECT p.ProductID
+            FROM Products p
+            INNER JOIN SolutionProduct sp ON p.ProductID = sp.ProductID
+            WHERE sp.SolutionID = @SolutionID", connection);
+
+                command.Parameters.AddWithValue("@SolutionID", solutionId);
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var product = new Product
+                        {
+                            ProductID = reader.GetInt32("ProductID"),
+                        };
+
+                        products.Add(product);
+                    }
+                }
+            }
+
+            return products;
         }
 
 

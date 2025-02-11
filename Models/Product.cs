@@ -21,4 +21,5 @@ public class Product
     public List<Specification>? Specifications { get; set; }
     public string? MainCategoryName { get; set; }
     public string? CategoryName { get;  set; }
+    public string? MainPicture { get; set; }
 }
