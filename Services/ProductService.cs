@@ -29,7 +29,7 @@ namespace Zentech.Services
 
         public async Task<Product?> GetProductByIdAsync(int id)
         {
-            return await Task.Run(() => _repository.GetProductById(id));
+            return await Task.Run(async () =>  await _repository.GetProductById(id));
         }
 
         

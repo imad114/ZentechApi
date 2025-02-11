@@ -177,4 +177,20 @@ public class ProductModelService
         return null;
     }
 
+    public async Task<(List<ProductModel> models, string count)> GetModelsBySpecificationFiltered(int productID,
+     string specification, string model, string displacement, string coolingType, string motorType,
+     string volFreq, string coolingCapW, string coolingCapBTU, string coolingCapKcal, string copWW, string copBTUWh, int limit, int offset)
+    {
+        var resultTuple = await _repository.GetModelsBySpecificationFiltered(productID,
+            specification, model, displacement, coolingType, motorType,
+            volFreq, coolingCapW, coolingCapBTU, coolingCapKcal, copWW, copBTUWh, limit, offset);
+
+        return resultTuple;
+    }
+
+    public async Task<Dictionary<string, List<string>>> GetSpecificationFilterOptions(int productID, string specification)
+    {
+        return await Task<Dictionary<string, List<string>>>.Run(async () => { return await _repository.GetSpecificationFilterOptions(productID, specification); });
+    }
+
 }
