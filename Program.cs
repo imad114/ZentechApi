@@ -127,6 +127,8 @@ builder.Services.AddScoped<TechincalDocRepository>();
 builder.Services.AddScoped<TechnicalDocService>();
 
 
+builder.Services.AddTransient<OtherCategoriesRepository>();
+
 builder.Services.AddScoped<ProductModelRepository>();
 builder.Services.AddScoped<ProductModelService>();
 
