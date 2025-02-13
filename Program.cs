@@ -89,8 +89,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
 // Register DatabaseContext as a service
-
-builder.Services.AddScoped<DatabaseContext>();
+var connectionString = Environment.GetEnvironmentVariable("DATABASE_URL");
+builder.Services.AddScoped<DatabaseContext>(provider =>
+    new DatabaseContext(connectionString));
+//builder.Services.AddScoped<DatabaseContext>();
 
 // Register services and repositories
 
