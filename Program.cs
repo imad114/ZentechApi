@@ -89,8 +89,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
 // Register DatabaseContext as a service
-
-builder.Services.AddScoped<DatabaseContext>();
+var connectionString = Environment.GetEnvironmentVariable("DATABASE_URL");
+builder.Services.AddScoped<DatabaseContext>(provider =>
+    new DatabaseContext(connectionString));
+//builder.Services.AddScoped<DatabaseContext>();
 
 // Register services and repositories
 
@@ -126,6 +128,8 @@ builder.Services.AddScoped<SlidesService>();
 builder.Services.AddScoped<TechincalDocRepository>();
 builder.Services.AddScoped<TechnicalDocService>();
 
+
+builder.Services.AddTransient<OtherCategoriesRepository>();
 
 builder.Services.AddScoped<ProductModelRepository>();
 builder.Services.AddScoped<ProductModelService>();

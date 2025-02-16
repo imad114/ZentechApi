@@ -415,11 +415,31 @@ namespace ZentechAPI.Repositories
                     }
                     await reader.CloseAsync();
 
-                    command.CommandText = "SELECT COUNT(*) / @limit AS pages FROM productmodel WHERE productID = @productID AND specification = @specification";
+                    command.CommandText = @"SELECT COUNT(*) / @limit AS pages FROM productmodel WHERE productID = @productID
+                    AND specification = @specification
+                     AND Model LIKE @model  
+                    AND Displacement LIKE @displacement  
+                    AND CoolingType LIKE @coolingType  
+                    AND MotorType LIKE @motorType  
+                    AND VoltageFrequency LIKE @volFreq  
+                    AND CoolingCapacityW LIKE @coolingCapW  
+                    AND CoolingCapacityBTUPerHour LIKE @coolingCapBTU  
+                    AND CoolingCapacityKcal Like  @CoolingCapacityKcal
+                    AND COPWW LIKE @copWW  
+                    AND COPBTUPerWH LIKE @copBTUWh";
                     command.Parameters.Clear();
-                    command.Parameters.AddWithValue("@limit", limit);
                     command.Parameters.AddWithValue("@productID", productID);
                     command.Parameters.AddWithValue("@specification", specification);
+                    command.Parameters.AddWithValue("@model", $"%{model}%");
+                    command.Parameters.AddWithValue("@displacement", $"%{displacement}%");
+                    command.Parameters.AddWithValue("@coolingType", $"%{coolingType}%");
+                    command.Parameters.AddWithValue("@motorType", $"%{motorType}%");
+                    command.Parameters.AddWithValue("@volFreq", $"%{volFreq}%");
+                    command.Parameters.AddWithValue("@coolingCapW", $"%{coolingCapW}%");
+                    command.Parameters.AddWithValue("@coolingCapBTU", $"%{coolingCapBTU}%");
+                    command.Parameters.AddWithValue("@CoolingCapacityKcal", $"%{coolingCapKcal}%");
+                    command.Parameters.AddWithValue("@copWW", $"%{copWW}%");
+                    command.Parameters.AddWithValue("@copBTUWh", $"%{copBTUWh}%");
 
                     var countReader = await command.ExecuteReaderAsync();
                     if (await countReader.ReadAsync())
