@@ -22,13 +22,13 @@ namespace Zentech.Repositories
             using (var connection = _context.GetConnection())
             {
                 connection.Open();
-
+                
                 var command = new MySqlCommand(@"
             SELECT p.*, 
                    c.CategoryID, c.Name AS CategoryName,
                    mc.CategoryID AS MainCategoryID, mc.Name AS MainCategoryName
-            FROM Products p
-            LEFT JOIN Categories c ON p.CategoryID = c.CategoryID
+            FROM products p
+            LEFT JOIN categories c ON p.CategoryID = c.CategoryID
             LEFT JOIN main_prod_categories mc ON c.mainCategoryID = mc.CategoryID", connection);
 
                 using (var reader = command.ExecuteReader())
@@ -87,8 +87,8 @@ namespace Zentech.Repositories
                         mc.CategoryID AS MainCategoryID,
                         mc.Name AS MainCategoryName,
                         ROW_NUMBER() OVER (PARTITION BY c.CategoryID ORDER BY p.CreatedDate DESC) AS RowNum
-                    FROM Products p
-                    LEFT JOIN Categories c ON p.CategoryID = c.CategoryID
+                    FROM products p
+                    LEFT JOIN categories c ON p.CategoryID = c.CategoryID
                     LEFT JOIN main_prod_categories mc ON mc.CategoryID = c.mainCategoryID
                 )
                 SELECT *
@@ -143,8 +143,8 @@ namespace Zentech.Repositories
             SELECT p.*, 
                    c.CategoryID, c.Name AS CategoryName ,
                    mc.CategoryID AS MainCategoryID, mc.Name AS MainCategoryName
-            FROM Products p
-            LEFT JOIN Categories c ON p.CategoryID = c.CategoryID
+            FROM products p
+            LEFT JOIN categories c ON p.CategoryID = c.CategoryID
             LEFT JOIN main_prod_categories mc ON c.mainCategoryID = mc.CategoryID
             WHERE p.ProductID = @ProductID", connection);
 
@@ -185,7 +185,7 @@ namespace Zentech.Repositories
             {
                 connection.Open();
                 var command = new MySqlCommand(@"
-                    INSERT INTO Products (Name, Description, Price, CreatedDate, CreatedBy, CategoryID, mainPicture) 
+                    INSERT INTO products (Name, Description, Price, CreatedDate, CreatedBy, CategoryID, mainPicture) 
                     VALUES (@Name, @Description, @Price, @CreatedDate, @CreatedBy, @CategoryID, @mainPicture); 
                     SELECT LAST_INSERT_ID();", connection);
 
@@ -212,7 +212,7 @@ namespace Zentech.Repositories
             using (var connection = _context.GetConnection())
             {
                 connection.Open();
-                var command = new MySqlCommand("INSERT INTO Photos (EntityID, EntityType, Url) VALUES (@EntityID, @EntityType, @Url)", connection);
+                var command = new MySqlCommand("INSERT INTO photos (EntityID, EntityType, Url) VALUES (@EntityID, @EntityType, @Url)", connection);
                 command.Parameters.AddWithValue("@EntityID", entityId);
                 command.Parameters.AddWithValue("@EntityType", entityType);
                 command.Parameters.AddWithValue("@Url", photoUrl);
@@ -228,7 +228,7 @@ namespace Zentech.Repositories
             using (var connection = _context.GetConnection())
             {
                 connection.Open();
-                var command = new MySqlCommand("SELECT Url FROM Photos WHERE EntityID = @EntityID AND EntityType = @EntityType", connection);
+                var command = new MySqlCommand("SELECT Url FROM photos WHERE EntityID = @EntityID AND EntityType = @EntityType", connection);
                 command.Parameters.AddWithValue("@EntityID", entityId);
                 command.Parameters.AddWithValue("@EntityType", entityType);
                 using (var reader = command.ExecuteReader())
@@ -249,7 +249,7 @@ namespace Zentech.Repositories
             using (var connection = _context.GetConnection())
             {
                 connection.Open();
-                var command = new MySqlCommand("DELETE FROM Photos WHERE Url = @Url", connection);
+                var command = new MySqlCommand("DELETE FROM photos WHERE Url = @Url", connection);
                 command.Parameters.AddWithValue("@Url", photoUrl);
                 command.ExecuteNonQuery();
             }
@@ -272,7 +272,7 @@ namespace Zentech.Repositories
 
                 
                 var command = new MySqlCommand(@"
-            UPDATE Products 
+            UPDATE products 
             SET Name = @Name, Description = @Description, Price = @Price, mainPicture = @mainPicture,
                 UpdatedBy = @UpdatedBy, UpdatedAt = @UpdatedAt, CategoryID = @CategoryID 
             WHERE ProductID = @ProductID", connection);
@@ -308,7 +308,7 @@ namespace Zentech.Repositories
                 
                 foreach (var specToDelete in specificationsToDelete)
                 {
-                    var deleteCommand = new MySqlCommand("DELETE FROM Specifications WHERE SpecificationID = @SpecificationID", connection);
+                    var deleteCommand = new MySqlCommand("DELETE FROM specifications WHERE SpecificationID = @SpecificationID", connection);
                     deleteCommand.Parameters.AddWithValue("@SpecificationID", specToDelete.SpecificationID);
                     deleteCommand.ExecuteNonQuery();
                 }
@@ -316,7 +316,7 @@ namespace Zentech.Repositories
                
                 foreach (var specToAdd in specificationsToAdd)
                 {
-                    var insertCommand = new MySqlCommand("INSERT INTO Specifications (`ProductId`, `Key`, `Value`) VALUES (@ProductID, @Key, @Value)", connection);
+                    var insertCommand = new MySqlCommand("INSERT INTO specifications (`ProductId`, `Key`, `Value`) VALUES (@ProductID, @Key, @Value)", connection);
                     insertCommand.Parameters.AddWithValue("@ProductID", productDto.ProductID);
                     insertCommand.Parameters.AddWithValue("@Key", specToAdd.Key);
                     insertCommand.Parameters.AddWithValue("@Value", specToAdd.Value);
@@ -326,7 +326,7 @@ namespace Zentech.Repositories
               
                 foreach (var specToUpdate in specificationsToUpdate)
                 {
-                    var updateCommand = new MySqlCommand("UPDATE Specifications SET `Value` = @Value WHERE ProductID = @ProductID AND `Key` = @Key", connection);
+                    var updateCommand = new MySqlCommand("UPDATE specifications SET `Value` = @Value WHERE ProductID = @ProductID AND `Key` = @Key", connection);
                     updateCommand.Parameters.AddWithValue("@ProductID", productDto.ProductID);
                     updateCommand.Parameters.AddWithValue("@Key", specToUpdate.Key);
                     updateCommand.Parameters.AddWithValue("@Value", specToUpdate.Value);
@@ -345,7 +345,7 @@ namespace Zentech.Repositories
             using (var connection = _context.GetConnection())
             {
                 connection.Open();
-                var command = new MySqlCommand("SELECT SpecificationID, `Key`, `Value` FROM Specifications WHERE ProductID = @ProductID", connection);
+                var command = new MySqlCommand("SELECT SpecificationID, `Key`, `Value` FROM specifications WHERE ProductID = @ProductID", connection);
                 command.Parameters.AddWithValue("@ProductID", productId);
 
                 using (var reader = command.ExecuteReader())
@@ -374,7 +374,7 @@ namespace Zentech.Repositories
                 connection.Open();
                 foreach (var spec in specifications)
                 {
-                    var command = new MySqlCommand("INSERT INTO Specifications (`ProductId`, `Key`, `Value`) VALUES (@ProductID, @Key, @Value)", connection);
+                    var command = new MySqlCommand("INSERT INTO specifications (`ProductId`, `Key`, `Value`) VALUES (@ProductID, @Key, @Value)", connection);
                     command.Parameters.AddWithValue("@ProductID", productId);
                     command.Parameters.AddWithValue("@Key", spec.Key);
                     command.Parameters.AddWithValue("@Value", spec.Value);
@@ -391,7 +391,7 @@ namespace Zentech.Repositories
                 connection.Open();
 
                 
-                var deleteSpecsCommand = new MySqlCommand("DELETE FROM Specifications WHERE ProductID = @ProductID", connection);
+                var deleteSpecsCommand = new MySqlCommand("DELETE FROM specifications WHERE ProductID = @ProductID", connection);
                 deleteSpecsCommand.Parameters.AddWithValue("@ProductID", productId);
                 deleteSpecsCommand.ExecuteNonQuery();
 
@@ -407,17 +407,17 @@ namespace Zentech.Repositories
                 connection.Open();
 
                
-                var deleteSpecsCommand = new MySqlCommand("DELETE FROM Specifications WHERE ProductID = @ProductID", connection);
+                var deleteSpecsCommand = new MySqlCommand("DELETE FROM specifications WHERE ProductID = @ProductID", connection);
                 deleteSpecsCommand.Parameters.AddWithValue("@ProductID", productId);
                 deleteSpecsCommand.ExecuteNonQuery();
 
                
-                var deletePhotosCommand = new MySqlCommand("DELETE FROM Photos WHERE EntityID = @EntityID AND EntityType = 'Products'", connection);
+                var deletePhotosCommand = new MySqlCommand("DELETE FROM photos WHERE EntityID = @EntityID AND EntityType = 'Products'", connection);
                 deletePhotosCommand.Parameters.AddWithValue("@EntityID", productId);
                 deletePhotosCommand.ExecuteNonQuery();
 
                
-                var deleteProductCommand = new MySqlCommand("DELETE FROM Products WHERE ProductID = @ProductID", connection);
+                var deleteProductCommand = new MySqlCommand("DELETE FROM products WHERE ProductID = @ProductID", connection);
                 deleteProductCommand.Parameters.AddWithValue("@ProductID", productId);
                 deleteProductCommand.ExecuteNonQuery();
             }

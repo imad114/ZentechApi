@@ -29,7 +29,7 @@ namespace Zentech.Repositories
                 connection.Open();
 
                 // Retrieve all solutions
-                var command = new MySqlCommand(@"SELECT * FROM Solutions", connection);
+                var command = new MySqlCommand(@"SELECT * FROM solutions", connection);
 
                 using (var reader = command.ExecuteReader())
                 {
@@ -67,7 +67,7 @@ namespace Zentech.Repositories
                 connection.Open();
 
                 // Retrieve the solution
-                var command = new MySqlCommand(@"SELECT * FROM Solutions WHERE SolutionID = @SolutionID", connection);
+                var command = new MySqlCommand(@"SELECT * FROM solutions WHERE SolutionID = @SolutionID", connection);
                 command.Parameters.AddWithValue("@SolutionID", solutionId);
 
                 using (var reader = command.ExecuteReader())
@@ -107,9 +107,9 @@ namespace Zentech.Repositories
 
                 var command = new MySqlCommand(@"
                     SELECT sp.*, p.*, c.Name AS CategoryName, c.Description AS CategoryDescription
-                    FROM SolutionProduct sp
-                    INNER JOIN Products p ON sp.ProductID = p.ProductID
-                    LEFT JOIN Categories c ON p.CategoryID = c.CategoryID
+                    FROM solutionproduct sp
+                    INNER JOIN products p ON sp.ProductID = p.ProductID
+                    LEFT JOIN categories c ON p.CategoryID = c.CategoryID
                     WHERE sp.SolutionID = @SolutionID", connection);
 
                 command.Parameters.AddWithValue("@SolutionID", solutionId);
@@ -152,7 +152,7 @@ namespace Zentech.Repositories
             using (var connection = _context.GetConnection())
             {
                 connection.Open();
-                var command = new MySqlCommand("SELECT Url FROM Photos WHERE EntityID = @EntityID AND EntityType = @EntityType", connection);
+                var command = new MySqlCommand("SELECT Url FROM photos WHERE EntityID = @EntityID AND EntityType = @EntityType", connection);
                 command.Parameters.AddWithValue("@EntityID", entityId);
                 command.Parameters.AddWithValue("@EntityType", entityType);
 
@@ -176,7 +176,7 @@ namespace Zentech.Repositories
             using (var connection = _context.GetConnection())
             {
                 connection.Open();
-                var command = new MySqlCommand("SELECT SpecificationID, `Key`, `Value` FROM Specifications WHERE ProductID = @ProductID", connection);
+                var command = new MySqlCommand("SELECT SpecificationID, `Key`, `Value` FROM specifications WHERE ProductID = @ProductID", connection);
                 command.Parameters.AddWithValue("@ProductID", productId);
 
                 using (var reader = command.ExecuteReader())
@@ -208,7 +208,7 @@ namespace Zentech.Repositories
                 connection.Open();
 
                 var command = new MySqlCommand(@"
-                    INSERT INTO Solutions (Title, Description, mainPicture ,CreatedAt, CreatedBy) 
+                    INSERT INTO solutions (Title, Description, mainPicture ,CreatedAt, CreatedBy) 
                     VALUES (@Title, @Description, @mainPicture, @CreatedAt, @CreatedBy); 
                     SELECT LAST_INSERT_ID();", connection);
 
@@ -231,7 +231,7 @@ namespace Zentech.Repositories
             using (var connection = _context.GetConnection())
             {
                 connection.Open();
-                var command = new MySqlCommand("INSERT INTO Photos (EntityID, EntityType, Url) VALUES (@EntityID, @EntityType, @Url)", connection);
+                var command = new MySqlCommand("INSERT INTO photos (EntityID, EntityType, Url) VALUES (@EntityID, @EntityType, @Url)", connection);
                 command.Parameters.AddWithValue("@EntityID", entityId);
                 command.Parameters.AddWithValue("@EntityType", entityType);
                 command.Parameters.AddWithValue("@Url", photoUrl);
@@ -246,7 +246,7 @@ namespace Zentech.Repositories
                 connection.Open();
 
                 // Check if product already exists for the solution
-                var checkCommand = new MySqlCommand(@"SELECT COUNT(*) FROM SolutionProduct WHERE SolutionID = @SolutionID AND ProductID = @ProductID", connection);
+                var checkCommand = new MySqlCommand(@"SELECT COUNT(*) FROM solutionproduct WHERE SolutionID = @SolutionID AND ProductID = @ProductID", connection);
                 checkCommand.Parameters.AddWithValue("@SolutionID", solutionId);
                 checkCommand.Parameters.AddWithValue("@ProductID", productId);
 
@@ -256,7 +256,7 @@ namespace Zentech.Repositories
                     throw new InvalidOperationException("This product is already associated with the solution.");
 
                 // Add the product to the solution
-                var insertCommand = new MySqlCommand(@"INSERT INTO SolutionProduct (SolutionID, ProductID) VALUES (@SolutionID, @ProductID)", connection);
+                var insertCommand = new MySqlCommand(@"INSERT INTO solutionproduct (SolutionID, ProductID) VALUES (@SolutionID, @ProductID)", connection);
                 insertCommand.Parameters.AddWithValue("@SolutionID", solutionId);
                 insertCommand.Parameters.AddWithValue("@ProductID", productId);
 
@@ -269,7 +269,7 @@ namespace Zentech.Repositories
             using (var connection = _context.GetConnection())
             {
                 connection.Open();
-                var command = new MySqlCommand("DELETE FROM Photos WHERE Url = @Url", connection);
+                var command = new MySqlCommand("DELETE FROM photos WHERE Url = @Url", connection);
                 command.Parameters.AddWithValue("@Url", photoUrl);
                 command.ExecuteNonQuery();
             }
@@ -285,7 +285,7 @@ namespace Zentech.Repositories
                 connection.Open();
 
                 var command = new MySqlCommand(@"
-            UPDATE Solutions 
+            UPDATE solutions 
             SET Title = @Title, 
                 Description = @Description, 
                 mainPicture = @mainPicture,
@@ -316,7 +316,7 @@ namespace Zentech.Repositories
                     try
                     {
                         // Check if the product is associated with the solution
-                        var checkCommand = new MySqlCommand(@"SELECT COUNT(*) FROM SolutionProduct WHERE SolutionID = @SolutionID AND ProductID = @ProductID", connection, transaction);
+                        var checkCommand = new MySqlCommand(@"SELECT COUNT(*) FROM solutionproduct WHERE SolutionID = @SolutionID AND ProductID = @ProductID", connection, transaction);
                         checkCommand.Parameters.AddWithValue("@SolutionID", solutionId);
                         checkCommand.Parameters.AddWithValue("@ProductID", productId);
 
@@ -326,7 +326,7 @@ namespace Zentech.Repositories
                             throw new InvalidOperationException("This product is not associated with the solution.");
 
                         // Delete the product from the solution
-                        var deleteCommand = new MySqlCommand(@"DELETE FROM SolutionProduct WHERE SolutionID = @SolutionID AND ProductID = @ProductID", connection, transaction);
+                        var deleteCommand = new MySqlCommand(@"DELETE FROM solutionproduct WHERE SolutionID = @SolutionID AND ProductID = @ProductID", connection, transaction);
                         deleteCommand.Parameters.AddWithValue("@SolutionID", solutionId);
                         deleteCommand.Parameters.AddWithValue("@ProductID", productId);
 
@@ -352,8 +352,8 @@ namespace Zentech.Repositories
                 connection.Open();
                 var command = new MySqlCommand(@"
             SELECT p.ProductID
-            FROM Products p
-            INNER JOIN SolutionProduct sp ON p.ProductID = sp.ProductID
+            FROM products p
+            INNER JOIN solutionproduct sp ON p.ProductID = sp.ProductID
             WHERE sp.SolutionID = @SolutionID", connection);
 
                 command.Parameters.AddWithValue("@SolutionID", solutionId);
@@ -389,17 +389,17 @@ namespace Zentech.Repositories
                     try
                     {
                         // Delete photos associated with the solution
-                        var deletePhotosCommand = new MySqlCommand(@"DELETE FROM Photos WHERE EntityID = @EntityID AND EntityType = 'Solutions'", connection, transaction);
+                        var deletePhotosCommand = new MySqlCommand(@"DELETE FROM photos WHERE EntityID = @EntityID AND EntityType = 'Solutions'", connection, transaction);
                         deletePhotosCommand.Parameters.AddWithValue("@EntityID", solutionId);
                         deletePhotosCommand.ExecuteNonQuery();
 
                         // Delete products associated with the solution
-                        var deleteProductsCommand = new MySqlCommand(@"DELETE FROM SolutionProduct WHERE SolutionID = @SolutionID", connection, transaction);
+                        var deleteProductsCommand = new MySqlCommand(@"DELETE FROM solutionproduct WHERE SolutionID = @SolutionID", connection, transaction);
                         deleteProductsCommand.Parameters.AddWithValue("@SolutionID", solutionId);
                         deleteProductsCommand.ExecuteNonQuery();
 
                         // Delete the solution itself
-                        var deleteSolutionCommand = new MySqlCommand(@"DELETE FROM Solutions WHERE SolutionID = @SolutionID", connection, transaction);
+                        var deleteSolutionCommand = new MySqlCommand(@"DELETE FROM solutions WHERE SolutionID = @SolutionID", connection, transaction);
                         deleteSolutionCommand.Parameters.AddWithValue("@SolutionID", solutionId);
                         deleteSolutionCommand.ExecuteNonQuery();
 
