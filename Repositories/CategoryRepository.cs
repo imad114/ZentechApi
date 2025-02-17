@@ -25,7 +25,7 @@ namespace Zentech.Repositories
                 connection.Open();
                 var command = new MySqlCommand(@"
                     SELECT c.*, mc.Name AS MainCategoryName 
-                    FROM Categories c
+                    FROM categories c
                     LEFT JOIN main_prod_categories mc ON c.MainCategoryID = mc.CategoryID",
                     connection);
 
@@ -63,7 +63,7 @@ namespace Zentech.Repositories
                 connection.Open();
                 var command = new MySqlCommand(@"
                     SELECT c.*, mc.Name AS MainCategoryName 
-                    FROM Categories c
+                    FROM categories c
                     LEFT JOIN main_prod_categories mc ON c.MainCategoryID = mc.CategoryID
                     WHERE c.CategoryID = @CategoryID",
                     connection);
@@ -103,7 +103,7 @@ namespace Zentech.Repositories
                 connection.Open();
                 var command = new MySqlCommand(@"
                     SELECT c.*, mc.Name AS MainCategoryName 
-                    FROM Categories c
+                    FROM categories c
                     LEFT JOIN main_prod_categories mc ON c.MainCategoryID = mc.CategoryID
                     WHERE c.MainCategoryID = @MainCategoryID",
                     connection);
@@ -141,7 +141,7 @@ namespace Zentech.Repositories
             {
                 connection.Open();
                 var command = new MySqlCommand(@"
-                    INSERT INTO Categories (MainCategoryID, Name, Description, CreatedDate, CreatedBy) 
+                    INSERT INTO categories (MainCategoryID, Name, Description, CreatedDate, CreatedBy) 
                     VALUES (@MainCategoryID, @Name, @Description, @CreatedDate, @CreatedBy); 
                     SELECT LAST_INSERT_ID();",
                     connection);
@@ -166,7 +166,7 @@ namespace Zentech.Repositories
             {
                 connection.Open();
                 var command = new MySqlCommand(@"
-                    UPDATE Categories 
+                    UPDATE categories 
                     SET MainCategoryID = @MainCategoryID, Name = @Name, Description = @Description, 
                         UpdatedBy = @UpdatedBy, UpdatedDate = @UpdatedDate 
                     WHERE CategoryID = @CategoryID",
@@ -190,7 +190,7 @@ namespace Zentech.Repositories
             using (var connection = _context.GetConnection())
             {
                 connection.Open();
-                var command = new MySqlCommand("DELETE FROM Categories WHERE CategoryID = @CategoryID", connection);
+                var command = new MySqlCommand("DELETE FROM categories WHERE CategoryID = @CategoryID", connection);
                 command.Parameters.AddWithValue("@CategoryID", categoryId);
                 command.ExecuteNonQuery();
             }

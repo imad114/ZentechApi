@@ -3298,11 +3298,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\ZentechAPI.csproj",
+      "projectUniqueName": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\ZentechAPI\\ZentechAPI.csproj",
       "projectName": "ZentechAPI",
-      "projectPath": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\ZentechAPI.csproj",
+      "projectPath": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\ZentechAPI\\ZentechAPI.csproj",
       "packagesPath": "C:\\Users\\helpdesk-admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\v2\\ZentechAPI (2)\\ZentechAPI\\obj\\",
+      "outputPath": "C:\\Users\\helpdesk-admin\\Desktop\\ZentechWeb\\ZentechAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -1,4 +1,5 @@
-﻿using Zentech.Repositories;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Zentech.Repositories;
 using Zentech.Services;
 
 public class Startup
@@ -12,6 +13,7 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
+
         services.AddControllers();
         services.AddSwaggerGen();
         services.AddScoped<ProductService>();
@@ -44,7 +46,7 @@ public class Startup
         }
 
 
-      //  app.UseHttpsRedirection();
+        //  app.UseHttpsRedirection();
         app.UseRouting();
         app.UseAuthorization();
         app.UseEndpoints(endpoints =>
@@ -53,5 +55,5 @@ public class Startup
         });
     }
 
-   
+
 }
