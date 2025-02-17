@@ -9,16 +9,33 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using ZentechAPI.Services;
 using ZentechAPI.Models;
 
-var builder = WebApplication.CreateBuilder(args);
-// Configurer les logs (niveau 'Information' ou 'Debug' pour voir les détails)
+var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production";
+
+var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+{
+    EnvironmentName = environment
+});
+
+// Charger les fichiers de configuration
+builder.Configuration
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile($"appsettings.{environment}.json", optional: true, reloadOnChange: true)
+    .AddEnvironmentVariables();
+
+Console.WriteLine($"Starting application in {environment} mode...");
+
+// Configurer les logs
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
-builder.Logging.AddDebug();  // Utilisez le débogage pour afficher dans la console de débogage
+if (environment == "Development")
+{
+    builder.Logging.AddDebug();
+}
 
-//  services
+// Ajouter les services
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-
 
 builder.Services.AddSwaggerGen(options =>
 {
@@ -28,18 +45,21 @@ builder.Services.AddSwaggerGen(options =>
         Version = "v1",
         Description = "API documentation for Zentech application",
     });
-    // Configure Swagger to handle file uploads via IFormFile
+
     options.MapType<IFormFile>(() => new OpenApiSchema
     {
         Type = "string",
         Format = "binary",
         Description = "Upload file"
     });
+
     var xmlFile = Path.Combine(AppContext.BaseDirectory, "Zentech.xml");
-    options.IncludeXmlComments(xmlFile);
+    if (File.Exists(xmlFile))
+    {
+        options.IncludeXmlComments(xmlFile);
+    }
 
-    // Security configuration for Swagger to accept JWT
-
+    // Configuration JWT pour Swagger
     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Name = "Authorization",
@@ -49,8 +69,6 @@ builder.Services.AddSwaggerGen(options =>
         In = ParameterLocation.Header,
         Description = "Please enter JWT with Bearer in front of the token"
     });
-
-    // Apply security to all operations
 
     options.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
@@ -68,15 +86,11 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
-builder.Logging.AddConsole();
-
-
-// Add JWT authentication
-
+// Configuration JWT
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
-        options.RequireHttpsMetadata = false; //  (true in production)
+        options.RequireHttpsMetadata = environment == "Production";
         options.SaveToken = true;
         options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
         {
@@ -84,132 +98,91 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateAudience = true,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
-            ValidIssuer = builder.Configuration["Jwt:Issuer"],  // Issuer to be defined in appsettings.json
-
-            ValidAudience = builder.Configuration["Jwt:Audience"], // Audience to be defined in appsettings.json
-            IssuerSigningKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"]))  // Secret key to be defined in appsettings.json
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(
+                System.Text.Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"]))
         };
     });
 
-//builder.Services.AddScoped<DatabaseContext>();
+// Récupération dynamique de la connexion à la base de données
+var connectionString = Environment.GetEnvironmentVariable("DATABASE_URL");
 
-var connectionString = Environment.GetEnvironmentVariable("DATABASE_URL")
-                       ?? builder.Configuration.GetConnectionString("DefaultConnection");
+if (!string.IsNullOrEmpty(connectionString) && connectionString.StartsWith("mysql://"))
+{
+    var uri = new Uri(connectionString);
+    var userInfo = uri.UserInfo.Split(':');
 
-builder.Services.AddScoped<DatabaseContext>(provider =>
-    new DatabaseContext(connectionString));//builder.Services.AddScoped<DatabaseContext>();
+    connectionString = $"Server={uri.Host};Port={uri.Port};Database={uri.AbsolutePath.TrimStart('/')};User={userInfo[0]};Password={userInfo[1]};Convert Zero Datetime=True;";
+}
+else
+{
+    connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+}
+builder.Services.AddScoped<DatabaseContext>(provider => new DatabaseContext(connectionString));
 
-// Register services and repositories
-
-
-// product
+// Injection des services et repositories
 builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<ProductRepository>();
-// contact
 builder.Services.AddScoped<ContactRepository>();
 builder.Services.AddScoped<ContactService>();
-// user
 builder.Services.AddScoped<UserRepository>();
 builder.Services.AddScoped<UserService>();
-//news 
 builder.Services.AddScoped<NewsRepository>();
 builder.Services.AddScoped<NewsService>();
-//Category 
 builder.Services.AddScoped<CategoryRepository>();
 builder.Services.AddScoped<CategoryService>();
-//Solutions 
 builder.Services.AddScoped<SolutionRepository>();
 builder.Services.AddScoped<SolutionService>();
-//CompanyInformation 
 builder.Services.AddScoped<CompanyInformationRepository>();
 builder.Services.AddScoped<CompanyInformationService>();
-//Page
 builder.Services.AddScoped<PageRepository>();
 builder.Services.AddScoped<PageService>();
-
 builder.Services.AddScoped<SlidesRepository>();
 builder.Services.AddScoped<SlidesService>();
-
 builder.Services.AddScoped<TechincalDocRepository>();
 builder.Services.AddScoped<TechnicalDocService>();
-
-
 builder.Services.AddTransient<OtherCategoriesRepository>();
-
-builder.Services.AddTransient<OtherCategoriesRepository>();
-
 builder.Services.AddScoped<ProductModelRepository>();
 builder.Services.AddScoped<ProductModelService>();
-
 builder.Services.AddTransient<EmailService>();
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 
-
-
-//......................................................................
-builder.Services.Configure<IISServerOptions>(options =>
-{
-    options.MaxRequestBodySize = 10 * 1024 * 1024; // Par exemple, pour autoriser les fichiers de 10 Mo
-});
-
-
+// Configuration CORS
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll", builder =>
+    options.AddPolicy("AllowAll", policy =>
     {
-        builder.AllowAnyOrigin()
-               .AllowAnyMethod()
-               .AllowAnyHeader();
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
     });
 });
 
-
+// Configuration du port dynamique sur Render
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
 builder.WebHost.ConfigureKestrel(options =>
 {
-    options.ListenAnyIP(5033);  // Modifiez ici le port
+    options.ListenAnyIP(int.Parse(port));
 });
 
-//..................................................
-
-
+// Construire l'application
 var app = builder.Build();
 
 app.UseCors("AllowAll");
 
-
-
-
-// Configure the HTTP pipeline
-
+// Activer Swagger uniquement en développement
 if (app.Environment.IsDevelopment())
 {
-    //app.UseSwagger();
-    app.UseSwagger(c =>
-    {
-        c.PreSerializeFilters.Add((swaggerDoc, httpReq) =>
-        {
-            try
-            {
-                // Swagger generation logic
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error in Swagger generation: {ex.Message}");
-            }
-        });
-    });
-
+    app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
-        // Swagger UI will be accessible at /swagger
-
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Zentech API V1");
-        c.RoutePrefix = string.Empty; // To access Swagger UI via    http://localhost:5033/
-
+        c.RoutePrefix = string.Empty;
     });
 }
 
-// Serve static files from the 'wwwroot/uploads' folder
+// Servir les fichiers statiques depuis wwwroot/uploads
 app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider(
@@ -217,19 +190,13 @@ app.UseStaticFiles(new StaticFileOptions
     RequestPath = "/uploads"
 });
 
-
-app.UseAuthentication();
-// For HTTP to HTTPS redirection
-//app.UseHttpsRedirection();
+// Redirection HTTPS en production (Render gère déjà HTTPS)
 if (!app.Environment.IsDevelopment())
 {
     app.UseHttpsRedirection();
 }
 
+app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
-
-
