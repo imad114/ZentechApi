@@ -14,9 +14,7 @@ obj/
 *.vscode
 
 # Fichiers secrets (⚠️ Ne jamais committer les clés API en dur)
-appsettings.Development.json
-appsettings.Local.json
-secrets.json
+
 
 # Dépendances de Build
 *.dll
