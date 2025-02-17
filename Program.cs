@@ -190,10 +190,10 @@ app.UseStaticFiles(new StaticFileOptions
     RequestPath = "/uploads"
 });
 
-// Redirection HTTPS en production (Render gère déjà HTTPS)
+// Désactiver la redirection HTTPS, car Render gère HTTPS
 if (!app.Environment.IsDevelopment())
 {
-    app.UseHttpsRedirection();
+    //app.UseHttpsRedirection(); // Désactivé pour Render
 }
 
 app.UseAuthentication();
