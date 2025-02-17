@@ -20,7 +20,6 @@ obj/
 *.dll
 *.exe
 *.pdb
-*.json
 *.xml
 *.runtimeconfig.json
 *.staticwebassets.runtime.json
