@@ -80,7 +80,7 @@ namespace Zentech.Repositories
                         p.CreatedBy,
                         p.UpdatedBy,
                         p.UpdatedAt,
-                        p.MainPicture
+                        p.MainPicture,
                         c.CategoryID AS SubCategoryID,
                         c.Name AS CategoryName,
                         c.Description AS CategoryDescription,

@@ -54,7 +54,7 @@ public class ContactRepository
         using (var connection = _context.GetConnection())
         {
             await connection.OpenAsync();
-            var query = "SELECT * FROM ContactMessages WHERE ContactID = @ContactID";
+            var query = "SELECT * FROM contactmessages WHERE ContactID = @ContactID";
             using (var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@ContactID", id);
@@ -111,7 +111,7 @@ public class ContactRepository
         using (var connection = _context.GetConnection())
         {
             await connection.OpenAsync();
-            var query = "INSERT INTO ContactMessages (FirstName,LastName,Email,PhoneNumbre,Message,Country,topic, _Role,UserAgent,IPAddress,MachineName) VALUES (@FirstName,@LastName,@Email,@PhoneNumbre,@Message,@Country,@Topic,@Role,@UserAgent,@IPAddress,@MachineName)";
+            var query = "INSERT INTO contactmessages (FirstName,LastName,Email,PhoneNumbre,Message,Country,topic, _Role,UserAgent,IPAddress,MachineName) VALUES (@FirstName,@LastName,@Email,@PhoneNumbre,@Message,@Country,@Topic,@Role,@UserAgent,@IPAddress,@MachineName)";
             using (var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@FirstName", contactMessage.FirstName);
@@ -149,7 +149,7 @@ public class ContactRepository
         using (var connection = _context.GetConnection())
         {
             await connection.OpenAsync();
-            var query = "UPDATE ContactMessages SET FirstName = @FirstName ,LastName = @LastName , Email = @Email,PhoneNumbre = @PhoneNumbre, Message = @Message , Country = @Country WHERE ContactID = @ContactID";
+            var query = "UPDATE contactmessages SET FirstName = @FirstName ,LastName = @LastName , Email = @Email,PhoneNumbre = @PhoneNumbre, Message = @Message , Country = @Country WHERE ContactID = @ContactID";
             using (var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@FirstName", contactMessage.FirstName);
@@ -171,7 +171,7 @@ public class ContactRepository
         using (var connection = _context.GetConnection())
         {
             await connection.OpenAsync();
-            var query = "DELETE FROM ContactMessages WHERE ContactID = @ContactID";
+            var query = "DELETE FROM contactmessages WHERE ContactID = @ContactID";
             using (var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@ContactID", id);

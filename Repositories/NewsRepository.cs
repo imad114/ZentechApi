@@ -240,12 +240,12 @@ namespace Zentech.Repositories
                     {
                         news.Add(new News()
                         {
-                            Author = reader.GetString("author"),
-                            Content = reader.GetString("content"),
-                            NewsID = int.Parse(reader.GetString("NewsID")),
-                            Title = reader.GetString("title"),
-                            categoryId = reader.GetInt32("categoryId"),
-                            mainPicture = reader.GetString("mainPicture")
+                            Author = reader.IsDBNull(reader.GetOrdinal("author")) ? null : reader.GetString("author"),
+                            Content = reader.IsDBNull(reader.GetOrdinal("content")) ? null : reader.GetString("content"),
+                            NewsID = reader.IsDBNull(reader.GetOrdinal("NewsID")) ? 0 : reader.GetInt32("NewsID"),
+                            Title = reader.IsDBNull(reader.GetOrdinal("title")) ? "No Title" : reader.GetString("title"),
+                            categoryId = reader.IsDBNull(reader.GetOrdinal("categoryId")) ? 0 : reader.GetInt32("categoryId"),
+                            mainPicture = reader.IsDBNull(reader.GetOrdinal("mainPicture")) ? null : reader.GetString("mainPicture")
 
 
                         });
