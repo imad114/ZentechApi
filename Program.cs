@@ -68,6 +68,9 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
+builder.Logging.AddConsole();
+
+
 // Add JWT authentication
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
