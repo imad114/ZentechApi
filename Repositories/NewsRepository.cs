@@ -62,7 +62,7 @@ namespace Zentech.Repositories
             using (var connection = _context.GetConnection())
             {
                 connection.Open();
-                var command = new MySqlCommand("SELECT * FROM News WHERE NewsID = @NewsID", connection);
+                var command = new MySqlCommand("SELECT * FROM news WHERE NewsID = @NewsID", connection);
                 command.Parameters.AddWithValue("@NewsID", id);
                 using (var reader = command.ExecuteReader())
                 {
@@ -96,7 +96,7 @@ namespace Zentech.Repositories
             {
                 connection.Open();
                 var command = new MySqlCommand(
-                    "INSERT INTO News (Title, Content, CreatedAt, Author, CreatedBy,categoryId, mainPicture) VALUES (@Title, @Content, @CreatedAt, @Author, @CreatedBy,@categoryId, @mainPicture); SELECT LAST_INSERT_ID();",
+                    "INSERT INTO news (Title, Content, CreatedAt, Author, CreatedBy,categoryId, mainPicture) VALUES (@Title, @Content, @CreatedAt, @Author, @CreatedBy,@categoryId, @mainPicture); SELECT LAST_INSERT_ID();",
                     connection
                 );
                
@@ -123,7 +123,7 @@ namespace Zentech.Repositories
             using (var connection = _context.GetConnection())
             {
                 connection.Open();
-                var command = new MySqlCommand("INSERT INTO Photos (EntityID, EntityType, Url) VALUES (@EntityID, @EntityType, @Url)", connection);
+                var command = new MySqlCommand("INSERT INTO photos (EntityID, EntityType, Url) VALUES (@EntityID, @EntityType, @Url)", connection);
                 command.Parameters.AddWithValue("@EntityID", entityId);
                 command.Parameters.AddWithValue("@EntityType", entityType);
                 command.Parameters.AddWithValue("@Url", photoUrl);
@@ -140,7 +140,7 @@ namespace Zentech.Repositories
             using (var connection = _context.GetConnection())
             {
                 connection.Open();
-                var command = new MySqlCommand("SELECT Url FROM Photos WHERE EntityID = @EntityID AND EntityType = @EntityType", connection);
+                var command = new MySqlCommand("SELECT Url FROM photos WHERE EntityID = @EntityID AND EntityType = @EntityType", connection);
                 command.Parameters.AddWithValue("@EntityID", entityId);
                 command.Parameters.AddWithValue("@EntityType", entityType);
                 using (var reader = command.ExecuteReader())
@@ -162,7 +162,7 @@ namespace Zentech.Repositories
             using (var connection = _context.GetConnection())
             {
                 connection.Open();
-                var command = new MySqlCommand("DELETE FROM Photos WHERE Url = @Url", connection);
+                var command = new MySqlCommand("DELETE FROM photos WHERE Url = @Url", connection);
                 command.Parameters.AddWithValue("@Url", photoUrl);
                 command.ExecuteNonQuery();
                 connection.Close();
@@ -178,7 +178,7 @@ namespace Zentech.Repositories
 
                 // update a news
                 var command = new MySqlCommand(
-                    "UPDATE News SET Title = @Title, Content = @Content, Author = @Author, UpdatedBy = @UpdatedBy, categoryId = @categoryId, UpdatedAt = @UpdatedAt, mainPicture = @mainPicture  WHERE NewsID = @NewsID",
+                    "UPDATE news SET Title = @Title, Content = @Content, Author = @Author, UpdatedBy = @UpdatedBy, categoryId = @categoryId, UpdatedAt = @UpdatedAt, mainPicture = @mainPicture  WHERE NewsID = @NewsID",
                     connection
                 );
                 command.Parameters.AddWithValue("@Title", news.Title);
@@ -211,12 +211,12 @@ namespace Zentech.Repositories
                 connection.Open();
 
                 // First, delete all photos associated with the news article
-                var deletePhotosCommand = new MySqlCommand("DELETE FROM Photos WHERE EntityID = @EntityID AND EntityType = 'News'", connection);
+                var deletePhotosCommand = new MySqlCommand("DELETE FROM photos WHERE EntityID = @EntityID AND EntityType = 'News'", connection);
                 deletePhotosCommand.Parameters.AddWithValue("@EntityID", newsId);
                 deletePhotosCommand.ExecuteNonQuery();
 
                 // Delete the news article
-                var deleteNewsCommand = new MySqlCommand("DELETE FROM News WHERE NewsID = @NewsID", connection);
+                var deleteNewsCommand = new MySqlCommand("DELETE FROM news WHERE NewsID = @NewsID", connection);
                 deleteNewsCommand.Parameters.AddWithValue("@NewsID", newsId);
                 deleteNewsCommand.ExecuteNonQuery();
 
@@ -231,7 +231,7 @@ namespace Zentech.Repositories
             using (var connection = _context.GetConnection())
             {
                 connection.Open();
-                var command = new MySqlCommand("SELECT NewsID, title, content, author, categoryId,mainPicture  FROM News WHERE categoryId = @categoryId", connection);
+                var command = new MySqlCommand("SELECT NewsID, title, content, author, categoryId,mainPicture  FROM news WHERE categoryId = @categoryId", connection);
                 command.Parameters.AddWithValue("@categoryId", category_id);
 
                 using (var reader = command.ExecuteReader())
