@@ -1,26 +1,32 @@
+﻿# Dossiers bin et obj
+bin/
+obj/
+
+# Fichiers de logs et caches
+*.log
+*.cache
+*.tmp
+
+# Configuration utilisateur
 .vs/
-/bin/Debug/net8.0/appsettings.json
-/bin/Debug/net8.0/Zentech.xml
-/bin/Debug/net8.0/ZentechAPI.dll
-/bin/Debug/net8.0/ZentechAPI.exe
-/bin/Debug/net8.0/ZentechAPI.pdb
-/bin/Debug/net8.0/ZentechAPI.staticwebassets.endpoints.json
-/bin/Debug/net8.0/ZentechAPI.staticwebassets.runtime.json
-/obj/Debug/net8.0/ApiEndpoints.json
-/obj/Debug/net8.0/apphost.exe
-/obj/Debug/net8.0/EndpointInfo/ZentechAPI.json
-/obj/Debug/net8.0/ref/ZentechAPI.dll
-/obj/Debug/net8.0/refint/ZentechAPI.dll
-/obj/Debug/net8.0/staticwebassets.build.endpoints.json
-/obj/Debug/net8.0/staticwebassets.build.json
-/obj/Debug/net8.0/staticwebassets.development.json
-/obj/Debug/net8.0/staticwebassets.pack.json
-/obj/Debug/net8.0/staticwebassets.upToDateCheck.txt
-/obj/Debug/net8.0/ZentechAPI.AssemblyInfo.cs
-/obj/Debug/net8.0/ZentechAPI.AssemblyInfoInputs.cache
-/obj/Debug/net8.0/ZentechAPI.csproj.CoreCompileInputs.cache
-/obj/Debug/net8.0/ZentechAPI.dll
-/obj/Debug/net8.0/ZentechAPI.pdb
-/obj/Debug/net8.0/ZentechAPI.sourcelink.json
-/obj/Debug/net8.0/staticwebassets/msbuild.ZentechAPI.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
-/obj/Debug/net8.0/staticwebassets/msbuild.ZentechAPI.Microsoft.AspNetCore.StaticWebAssets.props
+*.user
+*.suo
+*.vscode
+
+# Fichiers secrets (⚠️ Ne jamais committer les clés API en dur)
+appsettings.Development.json
+appsettings.Local.json
+secrets.json
+
+# Dépendances de Build
+*.dll
+*.exe
+*.pdb
+*.json
+*.xml
+*.runtimeconfig.json
+*.staticwebassets.runtime.json
+
+# Publish Output
+out/
+publish/
