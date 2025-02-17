@@ -23,7 +23,7 @@ namespace Zentech.Repositories
             using (var connection = _context.GetConnection())
             {
                 await connection.OpenAsync();
-                var query = "INSERT INTO Users (FullName, Email, Password, RoleID, CreatedBy) VALUES (@FullName, @Email, @Password, @RoleID, @CreatedBy)";
+                var query = "INSERT INTO users (FullName, Email, Password, RoleID, CreatedBy) VALUES (@FullName, @Email, @Password, @RoleID, @CreatedBy)";
                 using (var command = new MySqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@FullName", user.FullName);
@@ -46,7 +46,7 @@ namespace Zentech.Repositories
             using (var connection = _context.GetConnection())
             {
                 await connection.OpenAsync();
-                var query = "SELECT u.*, r.RoleName FROM Users u JOIN Roles r ON u.RoleID = r.RoleID WHERE u.UserID = @UserID";
+                var query = "SELECT u.*, r.RoleName FROM users u JOIN roles r ON u.RoleID = r.RoleID WHERE u.UserID = @UserID";
                 using (var command = new MySqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@UserID", userId);
@@ -85,7 +85,7 @@ namespace Zentech.Repositories
             using (var connection = _context.GetConnection())
             {
                 await connection.OpenAsync();
-                var query = "SELECT u.*, r.RoleName FROM Users u JOIN Roles r ON u.RoleID = r.RoleID WHERE u.Email = @Email";
+                var query = "SELECT u.*, r.RoleName FROM users u JOIN roles r ON u.RoleID = r.RoleID WHERE u.Email = @Email";
                 using (var command = new MySqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@Email", email);
@@ -121,7 +121,7 @@ namespace Zentech.Repositories
             using (var connection = _context.GetConnection())
             {
                 await connection.OpenAsync();
-                var query = "SELECT u.*, r.RoleName FROM Users u JOIN Roles r ON u.RoleID = r.RoleID";
+                var query = "SELECT u.*, r.RoleName FROM users u JOIN roles r ON u.RoleID = r.RoleID";
                 using (var command = new MySqlCommand(query, connection))
                 {
                     using (var reader = await command.ExecuteReaderAsync())
@@ -161,7 +161,7 @@ namespace Zentech.Repositories
                 await connection.OpenAsync();
 
                 // Construire la requête conditionnellement
-                var query = new StringBuilder("UPDATE Users SET FullName = @FullName, Email = @Email, RoleID = @RoleID, UpdatedAt = @UpdatedAt, UpdatedBy = @UpdatedBy");
+                var query = new StringBuilder("UPDATE users SET FullName = @FullName, Email = @Email, RoleID = @RoleID, UpdatedAt = @UpdatedAt, UpdatedBy = @UpdatedBy");
                 if (!string.IsNullOrWhiteSpace(user.Password))
                 {
                     query.Append(", Password = @Password");
@@ -197,7 +197,7 @@ namespace Zentech.Repositories
             using (var connection = _context.GetConnection())
             {
                 await connection.OpenAsync();
-                var query = "DELETE FROM Users WHERE UserID = @UserID";
+                var query = "DELETE FROM users WHERE UserID = @UserID";
                 using (var command = new MySqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@UserID", userId);
@@ -214,7 +214,7 @@ namespace Zentech.Repositories
             using (var connection = _context.GetConnection())
             {
                 await connection.OpenAsync();
-                var query = "SELECT COUNT(*) FROM Users u JOIN Roles r ON u.RoleID = r.RoleID WHERE u.UserID = @UserID AND r.RoleName = @RoleName";
+                var query = "SELECT COUNT(*) FROM users u JOIN roles r ON u.RoleID = r.RoleID WHERE u.UserID = @UserID AND r.RoleName = @RoleName";
                 using (var command = new MySqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@UserID", userId);
@@ -234,7 +234,7 @@ namespace Zentech.Repositories
             using (var connection = _context.GetConnection())
             {
                 await connection.OpenAsync();
-                var query = "SELECT * FROM Roles";
+                var query = "SELECT * FROM roles";
                 using (var command = new MySqlCommand(query, connection))
                 {
                     using (var reader = await command.ExecuteReaderAsync())

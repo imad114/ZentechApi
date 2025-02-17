@@ -87,14 +87,14 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             IssuerSigningKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"]))  // Secret key to be defined in appsettings.json
         };
     });
-// Register DatabaseContext as a service
+
+//builder.Services.AddScoped<DatabaseContext>();
 
 var connectionString = Environment.GetEnvironmentVariable("DATABASE_URL")
                        ?? builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddScoped<DatabaseContext>(provider =>
-    new DatabaseContext(connectionString));
-//builder.Services.AddScoped<DatabaseContext>();
+    new DatabaseContext(connectionString));//builder.Services.AddScoped<DatabaseContext>();
 
 // Register services and repositories
 
@@ -130,6 +130,8 @@ builder.Services.AddScoped<SlidesService>();
 builder.Services.AddScoped<TechincalDocRepository>();
 builder.Services.AddScoped<TechnicalDocService>();
 
+
+builder.Services.AddTransient<OtherCategoriesRepository>();
 
 builder.Services.AddTransient<OtherCategoriesRepository>();
 
