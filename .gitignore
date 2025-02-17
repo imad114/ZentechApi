@@ -1,7 +1,6 @@
 .vs/
 /bin/Debug/net8.0/appsettings.json
 /bin/Debug/net8.0/Zentech.xml
-/appsettings.json
 /bin/Debug/net8.0/ZentechAPI.dll
 /bin/Debug/net8.0/ZentechAPI.exe
 /bin/Debug/net8.0/ZentechAPI.pdb
