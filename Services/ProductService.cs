@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using ZentechAPI.Models;
 using Zentech.Repositories;
 using ZentechAPI.Dto;
+using MySql.Data.MySqlClient;
 
 namespace Zentech.Services
 {
@@ -50,21 +51,25 @@ namespace Zentech.Services
             return await Task.Run(() => _repository.UpdateProduct(product, updatedBy));
         }
 
-      
-        public async Task<bool> DeleteProductAsync(int id)
+
+        public async Task<string> DeleteProductAsync(int id)
         {
             try
             {
                 _repository.DeleteProduct(id);
-                return true;
+                return "success";
             }
-            catch (Exception)
+            catch (MySqlException ex) when (ex.Number == 1451) // Erreur clé étrangère
             {
-                return false;
+                return "Cannot delete product because it is referenced in another table.";
+            }
+            catch (Exception ex)
+            {
+                return $"An error occurred: {ex.Message}";
             }
         }
 
-      
+
         public void AddPhotoToProduct(int productId, string photoUrl)
         {
             if (productId <= 0 || string.IsNullOrEmpty(photoUrl))

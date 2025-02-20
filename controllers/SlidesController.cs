@@ -84,6 +84,7 @@ namespace ZentechAPI.Controllers
         /// <param name="slide">The slide data.</param>
         /// <returns>The created slide.</returns>
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [SwaggerResponse(StatusCodes.Status201Created, "Slide created successfully", typeof(Slide))]
         [SwaggerResponse(StatusCodes.Status400BadRequest, "Invalid slide data")]
         [SwaggerResponse(StatusCodes.Status500InternalServerError, "Internal server error")]
@@ -121,6 +122,7 @@ namespace ZentechAPI.Controllers
         /// <param name="id">The ID of the slide to update.</param>
         /// <param name="slide">The updated slide data.</param>
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         [SwaggerResponse(StatusCodes.Status204NoContent, "Slide updated successfully")]
         [SwaggerResponse(StatusCodes.Status400BadRequest, "Invalid slide data")]
         [SwaggerResponse(StatusCodes.Status404NotFound, "Slide not found")]
@@ -163,7 +165,7 @@ namespace ZentechAPI.Controllers
         /// <param name="slideID">The ID of the slide.</param>
         /// <param name="file">The photo file.</param>
         [HttpPost("{slideID}/upload-photo")]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [SwaggerResponse(StatusCodes.Status201Created, "Photo uploaded successfully")]
         [SwaggerResponse(StatusCodes.Status400BadRequest, "Invalid file upload")]
         [SwaggerResponse(StatusCodes.Status500InternalServerError, "Internal server error")]
@@ -218,6 +220,7 @@ namespace ZentechAPI.Controllers
         /// </summary>
         /// <param name="id">The ID of the slide to delete.</param>
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         [SwaggerResponse(StatusCodes.Status204NoContent, "Slide deleted successfully")]
         [SwaggerResponse(StatusCodes.Status404NotFound, "Slide not found")]
         [SwaggerResponse(StatusCodes.Status500InternalServerError, "Internal server error")]

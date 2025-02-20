@@ -126,6 +126,7 @@ public class ContactController : ControllerBase
     /// <param name="contactMessage">Object containing the updated information of the contact request.</param>
     /// <returns>The updated contact request.</returns>
     [HttpPut("{id}")]
+    [Authorize(Roles = "Admin")]
     [SwaggerOperation(Summary = "Update a contact request",
                       Description = "Updates an existing contact request with new information.")]
     public async Task<IActionResult> UpdateContact(int id, [FromBody] ContactMessage contactMessage)
@@ -148,6 +149,7 @@ public class ContactController : ControllerBase
     /// <param name="id">The ID of the contact request to be deleted.</param>
     /// <returns>Confirmation of deletion.</returns>
     [HttpDelete("{id}")]
+    [Authorize(Roles = "Admin")]
     [SwaggerOperation(Summary = "Delete a contact request",
                       Description = "Deletes a specific contact request by its ID.")]
     public async Task<IActionResult> DeleteContact(int id)

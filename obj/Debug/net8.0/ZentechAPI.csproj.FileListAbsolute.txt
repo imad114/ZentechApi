@@ -156,3 +156,11 @@ C:\Users\helpdesk-admin\Desktop\ZentechWeb\ZentechAPI\obj\Debug\net8.0\refint\Ze
 C:\Users\helpdesk-admin\Desktop\ZentechWeb\ZentechAPI\obj\Debug\net8.0\ZentechAPI.pdb
 C:\Users\helpdesk-admin\Desktop\ZentechWeb\ZentechAPI\obj\Debug\net8.0\ZentechAPI.genruntimeconfig.cache
 C:\Users\helpdesk-admin\Desktop\ZentechWeb\ZentechAPI\obj\Debug\net8.0\ref\ZentechAPI.dll
+C:\Users\helpdesk-admin\Desktop\ZentechWeb\ZentechAPI\bin\Debug\net8.0\out\web.config
+C:\Users\helpdesk-admin\Desktop\ZentechWeb\ZentechAPI\bin\Debug\net8.0\appsettings.Production.json
+C:\Users\helpdesk-admin\Desktop\ZentechWeb\ZentechAPI\bin\Debug\net8.0\out\appsettings.Development.json
+C:\Users\helpdesk-admin\Desktop\ZentechWeb\ZentechAPI\bin\Debug\net8.0\out\appsettings.json
+C:\Users\helpdesk-admin\Desktop\ZentechWeb\ZentechAPI\bin\Debug\net8.0\out\appsettings.Production.json
+C:\Users\helpdesk-admin\Desktop\ZentechWeb\ZentechAPI\bin\Debug\net8.0\out\ZentechAPI.deps.json
+C:\Users\helpdesk-admin\Desktop\ZentechWeb\ZentechAPI\bin\Debug\net8.0\out\ZentechAPI.runtimeconfig.json
+C:\Users\helpdesk-admin\Desktop\ZentechWeb\ZentechAPI\bin\Debug\net8.0\out\ZentechAPI.staticwebassets.endpoints.json

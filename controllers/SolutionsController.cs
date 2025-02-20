@@ -67,6 +67,7 @@ namespace Zentech.Controllers
 
 
         [HttpPost("AddProductsToSolution")]
+        [Authorize(Roles = "Admin")]
         public IActionResult AddProductsToSolution([FromBody] AddProductsToSolutionDto dto)
         {
             if (dto == null || dto.ProductIDs == null || dto.ProductIDs.Count == 0)
@@ -230,6 +231,7 @@ namespace Zentech.Controllers
         /// <param name="productId">The ID of the product.</param>
         /// <returns>HTTP 200 OK if successful, or an error message.</returns>
         [HttpDelete("{solutionId}/products/{productId}")]
+        [Authorize(Roles = "Admin")]
         public IActionResult DeleteProductFromSolution(int solutionId, int productId)
         {
             if (solutionId <= 0 || productId <= 0)
@@ -270,6 +272,7 @@ namespace Zentech.Controllers
         /// Delete a solution by its ID.
         /// </summary>
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         [SwaggerOperation(Summary = "Delete a solution", Description = "Deletes a solution from the system.")]
         public async Task<IActionResult> DeleteSolution(int id)
         {

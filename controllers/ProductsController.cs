@@ -64,6 +64,7 @@ namespace Zentech.Controllers
         /// <param name="product">The product information to add.</param>
         // Add a new product
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [SwaggerOperation(Summary = "Add a product", Description = "Adds a new product to the system.")]
         public async Task<IActionResult> AddProduct([FromBody] ProductDto product)
         {
@@ -103,16 +104,14 @@ namespace Zentech.Controllers
         // Delete a product
         [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
-        [SwaggerOperation(Summary = "Delete a product", Description = "Deletes a product from the system.")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
-            var isDeleted = await _productService.DeleteProductAsync(id);
-            if (!isDeleted)
-                return NotFound();
+            var result = await _productService.DeleteProductAsync(id);
+            if (result == "success")
+                return NoContent(); // Suppression réussie
 
-            return NoContent();
+            return BadRequest(new { message = result }); // Renvoie un message d'erreur
         }
-
 
         /// <summary>
         /// Upload a photo for a specific product.

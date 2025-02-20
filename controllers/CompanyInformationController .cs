@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using ZentechAPI.Models;
 using Zentech.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ZentechAPI.Controllers
 {
@@ -74,6 +75,7 @@ namespace ZentechAPI.Controllers
         /// <response code="201">Company successfully created</response>
         /// <response code="400">Invalid company data</response>
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [SwaggerOperation(Summary = "Add a new company", Description = "Creates a new company in the system.")]
         public async Task<IActionResult> AddCompany([FromBody] CompanyInformation company)
         {
@@ -106,6 +108,7 @@ namespace ZentechAPI.Controllers
         /// <response code="400">Invalid company data</response>
         /// <response code="404">Company not found</response>
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         [SwaggerOperation(Summary = "Update existing company information", Description = "Updates the information of an existing company.")]
         public async Task<IActionResult> UpdateCompany(int id, [FromBody] CompanyInformation company)
         {

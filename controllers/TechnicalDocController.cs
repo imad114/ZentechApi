@@ -28,6 +28,7 @@ namespace ZentechAPI.controllers
         /// <param name="technicalDoc">The technical document data.</param>
         /// <returns>The created technical document.</returns>
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddTechnicalDoc([FromForm] TechincalDoc technicalDoc)
         {
             try
@@ -63,6 +64,7 @@ namespace ZentechAPI.controllers
         /// <param name="id">The ID of the technical document to update.</param>
         /// <param name="technicalDoc">The updated technical document data.</param>
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateTechnicalDoc([FromForm] TechincalDoc technicalDoc)
         {
             try
@@ -199,6 +201,7 @@ namespace ZentechAPI.controllers
 
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public IActionResult DeleteSlide(int id)
         {
             try
