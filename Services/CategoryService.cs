@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using ZentechAPI.Models;
 using Zentech.Repositories;
 using System.Collections.Concurrent;
+using MySql.Data.MySqlClient;
 
 namespace Zentech.Services
 {
@@ -74,18 +75,20 @@ namespace Zentech.Services
         /// </summary>
         /// <param name="categoryId">ID de la catégorie à supprimer.</param>
         /// <returns>True si la suppression a réussi, False sinon.</returns>
-        public async Task<bool> DeleteCategoryAsync(int categoryId)
+        public async Task<string> DeleteCategoryAsync(int categoryId)
         {
             try
             {
                 _repository.DeleteCategory(categoryId);
-                return true;
+                return "success"; // Indique que la suppression a réussi
+            }
+            catch (MySqlException ex) when (ex.Number == 1451) // Erreur FOREIGN KEY
+            {
+                return "Cannot delete category because it is referenced in another table.";
             }
             catch (Exception ex)
             {
-                // Vous pouvez logger l'erreur ici si nécessaire
-                Console.WriteLine($"Erreur lors de la suppression de la catégorie : {ex.Message}");
-                return false;
+                return $"An error occurred: {ex.Message}";
             }
         }
         #endregion
@@ -118,16 +121,20 @@ namespace Zentech.Services
         }
 
         // Supprimer une catégorie principale
-        public async Task<bool> DeleteMainProdCategoryAsync(int categoryId)
+        public async Task<string> DeleteMainProdCategoryAsync(int categoryId)
         {
             try
             {
                 await Task.Run(() => _repository.DeleteMainProdCategory(categoryId));
-                return true;
+                return "success"; // Suppression réussie
             }
-            catch (Exception)
+            catch (MySqlException ex) when (ex.Number == 1451) // Contrainte FOREIGN KEY
             {
-                return false;
+                return "Cannot delete this category because it is referenced in another table.";
+            }
+            catch (Exception ex)
+            {
+                return $"An error occurred: {ex.Message}";
             }
         }
         #endregion

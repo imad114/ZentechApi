@@ -324,19 +324,18 @@ namespace Zentech.Controllers
                 }
                 else
                 {
-                    return NotFound($"Category with ID {id} not found or The category used by another entity. ");
+                    return NotFound($"Category with ID {id} not found or is referenced by another entity.");
                 }
             }
             catch (InvalidOperationException ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new { message = ex.Message });
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode(500, new { message = $"Internal server error: {ex.Message}" });
             }
         }
-
         #endregion
 
     }

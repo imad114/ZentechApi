@@ -277,11 +277,20 @@ namespace Zentech.Repositories
         }
         public async Task<int> DeleteNewsCategoryAsync(string id)
         {
-           
+            try
+            {
                 return await Task.Run(() => _otherCategoriesRepository.DeleteOtherCategory(id, "News"));
-         
+            }
+            catch (MySqlException ex) when (ex.Number == 1451) // Code MySQL pour une erreur de clé étrangère
+            {
+                throw new InvalidOperationException("Cannot delete this category because it is referenced by other entities.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"An error occurred while deleting the category: {ex.Message}");
+            }
         }
-            
+
         #endregion
 
 

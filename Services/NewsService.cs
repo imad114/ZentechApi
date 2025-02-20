@@ -105,7 +105,18 @@ namespace Zentech.Services
         // Delete a news category
         public async Task<int> DeleteNewsCategoryAsync(int categoryId)
         {
-            return await _newsRepository.DeleteNewsCategoryAsync(categoryId.ToString());
+            try
+            {
+                return await _newsRepository.DeleteNewsCategoryAsync(categoryId.ToString());
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw new InvalidOperationException(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"An unexpected error occurred: {ex.Message}");
+            }
         }
 
 

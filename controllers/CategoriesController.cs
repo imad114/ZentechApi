@@ -133,11 +133,12 @@ namespace Zentech.Controllers
         [SwaggerOperation(Summary = "Delete a category", Description = "Deletes a category from the system.")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
-            var isDeleted = await _categoryService.DeleteCategoryAsync(id);
-            if (!isDeleted)
-                return NotFound();
+            var result = await _categoryService.DeleteCategoryAsync(id);
 
-            return NoContent();
+            if (result == "success")
+                return NoContent(); // Suppression réussie
+
+            return BadRequest(new { message = result }); // Retourne un message d'erreur au frontend
         }
         #endregion
 
@@ -225,11 +226,12 @@ namespace Zentech.Controllers
         [SwaggerOperation(Summary = "Delete a main category", Description = "Deletes a main category from the system.")]
         public async Task<IActionResult> DeleteMainProdCategory(int id)
         {
-            var isDeleted = await _categoryService.DeleteMainProdCategoryAsync(id);
-            if (!isDeleted)
-                return NotFound();
+            var result = await _categoryService.DeleteMainProdCategoryAsync(id);
 
-            return NoContent();
+            if (result == "success")
+                return NoContent(); // Suppression réussie
+
+            return BadRequest(new { message = result }); // Retourne un message d'erreur au frontend
         }
         #endregion
     }
